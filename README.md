@@ -1,5 +1,8 @@
 # zhu.codes
 
+This project is the frontend successor to `andrew-zhu.com`, written using Vue/Bulma. The backend code can be found
+TBD.
+
 ## Project setup
 ```
 npm install
