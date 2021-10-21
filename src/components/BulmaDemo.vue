@@ -4,7 +4,8 @@
   </h1>
 
   <p class="subtitle">
-    Modern CSS framework based on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Flexbox</a>
+    Modern CSS framework based on <a
+      href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Flexbox</a>
   </p>
 
   <div class="field">
@@ -24,14 +25,19 @@
   </div>
 
   <div class="buttons">
+    <a class="button">Default</a>
     <a class="button is-primary">Primary</a>
     <a class="button is-link">Link</a>
+    <a class="button is-info">Info</a>
+    <a class="button is-success">Success</a>
+    <a class="button is-warning">Warning</a>
+    <a class="button is-danger">Danger</a>
   </div>
 </template>
 
 <script>
 export default {
-  name: "bulma"
+  name: "BulmaDemo"
 }
 </script>
 
