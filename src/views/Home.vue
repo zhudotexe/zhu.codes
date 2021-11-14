@@ -139,31 +139,43 @@
   </section>
   <!-- /about me -->
 
-  <!-- projects -->
   <section class="section">
     <div class="container">
       <h1 class="title">
-        Projects
+        Note
       </h1>
-      <h2 class="subtitle">
-        blep
-      </h2>
+      <p>
+        This website is still under construction (I just wanted to get CI/CD running :p). If you're looking for the old
+        version of the website, use <a href="https://andrew-zhu.com">andrew-zhu.com</a>.
+      </p>
     </div>
   </section>
-  <!-- /projects -->
 
-  <!-- publications -->
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Publications
-      </h1>
-      <h2 class="subtitle">
-        blep
-      </h2>
-    </div>
-  </section>
-  <!-- /publications -->
+  <!--&lt;!&ndash; projects &ndash;&gt;-->
+  <!--<section class="section">-->
+  <!--  <div class="container">-->
+  <!--    <h1 class="title">-->
+  <!--      Projects-->
+  <!--    </h1>-->
+  <!--    <h2 class="subtitle">-->
+  <!--      blep-->
+  <!--    </h2>-->
+  <!--  </div>-->
+  <!--</section>-->
+  <!--&lt;!&ndash; /projects &ndash;&gt;-->
+
+  <!--&lt;!&ndash; publications &ndash;&gt;-->
+  <!--<section class="section">-->
+  <!--  <div class="container">-->
+  <!--    <h1 class="title">-->
+  <!--      Publications-->
+  <!--    </h1>-->
+  <!--    <h2 class="subtitle">-->
+  <!--      blep-->
+  <!--    </h2>-->
+  <!--  </div>-->
+  <!--</section>-->
+  <!--&lt;!&ndash; /publications &ndash;&gt;-->
 </template>
 
 <script>
