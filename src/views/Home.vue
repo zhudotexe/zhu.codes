@@ -52,6 +52,24 @@
                   <span>me@andrew-zhu.com</span>
                 </span>
               </a>
+
+              <a href="https://www.linkedin.com/in/angzhu/" target="_blank">
+                <span class="icon-text mr-3">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'linkedin']"/>
+                  </span>
+                  <span>angzhu</span>
+                </span>
+              </a>
+
+              <a href="CV.pdf" target="_blank">
+                <span class="icon-text mr-3">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fas', 'file-alt']"/>
+                  </span>
+                  <span>CV</span>
+                </span>
+              </a>
             </p>
             <p>
               <span class="icon-text">

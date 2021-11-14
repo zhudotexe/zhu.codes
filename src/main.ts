@@ -1,6 +1,14 @@
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faDAndD, faDiscord, faGithub} from "@fortawesome/free-brands-svg-icons";
-import {faBuilding, faCode, faEnvelope, faRobot, faSitemap, faUniversity} from "@fortawesome/free-solid-svg-icons";
+import {faDAndD, faDiscord, faGithub, faLinkedin} from "@fortawesome/free-brands-svg-icons";
+import {
+    faBuilding,
+    faCode,
+    faEnvelope,
+    faFileAlt,
+    faRobot,
+    faSitemap,
+    faUniversity
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {createApp} from 'vue'
 import App from './App.vue'
@@ -8,9 +16,9 @@ import router from './router'
 
 // ==== fontawesome ====
 // brands
-library.add(faGithub, faDiscord, faDAndD)
+library.add(faGithub, faDiscord, faDAndD, faLinkedin)
 // regular
-library.add(faEnvelope, faUniversity, faBuilding, faRobot, faSitemap, faCode)
+library.add(faEnvelope, faUniversity, faBuilding, faRobot, faSitemap, faCode, faFileAlt)
 
 // ==== init ====
 createApp(App)
