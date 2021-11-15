@@ -129,7 +129,7 @@
           <font-awesome-icon :icon="['fab', 'd-and-d']"/>
         </span>
         <span class="icon">
-          <img src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor" style="margin: 2px">
+          <img class="svg-grey-dark" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor" style="margin: 2px">
         </span>
         <span class="icon">
           <font-awesome-icon :icon="['fas', 'robot']"/>

@@ -7,6 +7,7 @@
   font-weight: normal;
   src: local('Shadow'), url('assets/HDVLPMNT01.ttf') format('truetype');
 }
+
 @import url('https://fonts.googleapis.com/css?family=Zilla+Slab:400,700');
 
 // site colors
@@ -37,3 +38,9 @@ $body-background-color: $beige-lighter;
 
 // the rest
 @import "../node_modules/bulma/bulma.sass";
+
+// ==== custom ====
+// svg color transforms - calculated with https://codepen.io/sosuke/pen/Pjoqqp
+.svg-grey-dark {
+  filter: invert(25%) sepia(8%) saturate(1127%) hue-rotate(122deg) brightness(96%) contrast(94%);
+}
