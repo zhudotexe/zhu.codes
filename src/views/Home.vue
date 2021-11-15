@@ -139,30 +139,243 @@
   </section>
   <!-- /about me -->
 
+  <!-- projects -->
   <section class="section">
     <div class="container">
       <h1 class="title">
-        Note
+        Projects
       </h1>
-      <p>
-        This website is still under construction (I just wanted to get CI/CD running :p). If you're looking for the old
-        version of the website, use <a href="https://andrew-zhu.com">andrew-zhu.com</a>.
-      </p>
+
+      <div class="columns is-multiline">
+        <!-- avrae -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <img src="../assets/AvraeBanner.png" alt="Avrae Banner">
+              </figure>
+            </div>
+
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/AvraeLogo.png" alt="Avrae Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">
+                    Avrae
+                  </p>
+                  <p class="subtitle is-6">
+                    Just roll with it.
+                  </p>
+                </div>
+              </div>
+
+              <p>
+                Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
+                play D&amp;D together online.
+                Rolling with over 5 million users across over 340,000 Discord servers since 2016.
+              </p>
+              <p>
+                <i>2016 - current</i>
+              </p>
+              <div>
+                icons lahee
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /avrae -->
+
+        <!-- paissa -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">The Paissa Stack</p>
+                  <p class="subtitle is-6">Look into their eyes.</p>
+                </div>
+              </div>
+
+              <p>
+                Built in response to the Final Fantasy XIV housing crisis, the Paissa Stack combines a distributed data
+                collection agent with a low-power central server. It'll broadcast when houses become available on your
+                server, and the data helps us learn about the hidden housing timers.
+              </p>
+              <p>
+                <i>2021 - current</i>
+              </p>
+              <div>
+                icons lahee
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /paissa -->
+
+        <!-- draconic -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <!--<div class="card-image">-->
+            <!--  <figure class="image is-16by9">-->
+            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
+            <!--  </figure>-->
+            <!--</div>-->
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Draconic Language</p>
+                  <p class="subtitle is-6">Safe server-side user scripting.</p>
+                </div>
+              </div>
+
+              <p>
+                The Draconic language is built to enable users to write powerful custom commands in Avrae that run on
+                the application layer, while enforcing limits on resource usage. With a custom interpreter built in
+                Python, safety is enforced through both a runtime watchdog and its type system.
+              </p>
+              <p>
+                Draconic is used in production to run over 75 thousand user scripts daily. You can see some user
+                creations on the <a href="https://avrae.io/dashboard/workshop" target="_blank">Avrae Alias Workshop</a>.
+              </p>
+              <p>
+                <i>2020 - current</i>
+              </p>
+              <div>
+                icons lahee
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /draconic -->
+
+        <!-- d20 -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <!--<div class="card-image">-->
+            <!--  <figure class="image is-16by9">-->
+            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
+            <!--  </figure>-->
+            <!--</div>-->
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">d20</p>
+                  <p class="subtitle is-6">Safe server-side user scripting.</p>
+                </div>
+              </div>
+
+              <p>
+                blep
+              </p>
+              <p>
+                <i>2020 - current</i>
+              </p>
+              <div>
+                icons lahee
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /d20 -->
+
+        <!-- dicecloud tools -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <!--<div class="card-image">-->
+            <!--  <figure class="image is-16by9">-->
+            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
+            <!--  </figure>-->
+            <!--</div>-->
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Dicecloud Tools</p>
+                  <p class="subtitle is-6">Safe server-side user scripting.</p>
+                </div>
+              </div>
+
+              <p>
+                blep
+              </p>
+              <p>
+                <i>2018 - 2020</i>
+              </p>
+              <div>
+                icons lahee
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /dicecloud tools -->
+
+        <!-- iris -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <!--<div class="card-image">-->
+            <!--  <figure class="image is-16by9">-->
+            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
+            <!--  </figure>-->
+            <!--</div>-->
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Iris</p>
+                  <p class="subtitle is-6">Safe server-side user scripting.</p>
+                </div>
+              </div>
+
+              <p>
+                blep
+              </p>
+              <p>
+                <i>2019</i>
+              </p>
+              <div>
+                icons lahee
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /iris -->
+
+      </div>
     </div>
   </section>
-
-  <!--&lt;!&ndash; projects &ndash;&gt;-->
-  <!--<section class="section">-->
-  <!--  <div class="container">-->
-  <!--    <h1 class="title">-->
-  <!--      Projects-->
-  <!--    </h1>-->
-  <!--    <h2 class="subtitle">-->
-  <!--      blep-->
-  <!--    </h2>-->
-  <!--  </div>-->
-  <!--</section>-->
-  <!--&lt;!&ndash; /projects &ndash;&gt;-->
+  <!-- /projects -->
 
   <!--&lt;!&ndash; publications &ndash;&gt;-->
   <!--<section class="section">-->
@@ -176,6 +389,15 @@
   <!--  </div>-->
   <!--</section>-->
   <!--&lt;!&ndash; /publications &ndash;&gt;-->
+
+  <section class="section">
+    <div class="container">
+      <p>
+        This website is still under construction (I just wanted to get CI/CD running :p). If you're looking for the old
+        version of the website, use <a href="https://andrew-zhu.com">andrew-zhu.com</a>.
+      </p>
+    </div>
+  </section>
 </template>
 
 <script>
