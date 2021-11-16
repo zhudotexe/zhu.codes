@@ -244,10 +244,10 @@
 
                 <div class="level-right is-flex is-justify-content-center">
                   <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
+                    <img class="svg-grey-dark" src="../assets/CSharpLogo.png" alt="CSharp">
                   </span>
                   <span class="icon">
-                    <img class="svg-grey-dark" src="../assets/CSharpLogo.png" alt="CSharp">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
                   </span>
                   <span class="icon">
                     <font-awesome-icon :icon="['fas', 'sitemap']"/>
