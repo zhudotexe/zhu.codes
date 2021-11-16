@@ -178,7 +178,7 @@
                 play D&amp;D together online.
                 Rolling with over 5 million users across over 340,000 Discord servers since 2016.
               </p>
-              <div class="level">
+              <div class="level is-mobile">
                 <div class="level-left">
                   <i>2016 - current</i>
                 </div>
@@ -237,7 +237,7 @@
                 collection agent with a low-power central server. It'll broadcast when houses become available on your
                 server, and the data helps us learn about the hidden housing timers.
               </p>
-              <div class="level">
+              <div class="level is-mobile">
                 <div class="level-left">
                   <i>2021 - current</i>
                 </div>
@@ -295,7 +295,7 @@
                 Draconic is used in production to run over 75 thousand user scripts daily. You can see some user
                 creations on the <a href="https://avrae.io/dashboard/workshop" target="_blank">Avrae Alias Workshop</a>.
               </p>
-              <div class="level">
+              <div class="level is-mobile">
                 <div class="level-left">
                   <i>2020 - current</i>
                 </div>
@@ -342,7 +342,7 @@
               <p>
                 <i>d20</i> is used in production to handle over 1 million dice rolls each day.
               </p>
-              <div class="level">
+              <div class="level is-mobile">
                 <div class="level-left">
                   <i>2020 - current</i>
                 </div>
@@ -388,7 +388,7 @@
               <p>
                 The Dicecloud Tools are looking for new maintainers!
               </p>
-              <div class="level">
+              <div class="level is-mobile">
                 <div class="level-left">
                   <i>2018 - 2020</i>
                 </div>
@@ -442,7 +442,7 @@
               <p>
                 <i>Winner: Tech Cares, Best Use of Google Cloud Platform</i>
               </p>
-              <div class="level">
+              <div class="level is-mobile">
                 <div class="level-left">
                   <i>2019</i>
                 </div>
