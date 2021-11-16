@@ -129,7 +129,7 @@
           <font-awesome-icon :icon="['fab', 'd-and-d']"/>
         </span>
         <span class="icon">
-          <img class="svg-grey-dark" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor" style="margin: 2px">
+          <img class="svg-grey-dark svg-margin" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor">
         </span>
         <span class="icon">
           <font-awesome-icon :icon="['fas', 'robot']"/>
@@ -178,13 +178,35 @@
                 play D&amp;D together online.
                 Rolling with over 5 million users across over 340,000 Discord servers since 2016.
               </p>
-              <p>
-                <i>2016 - current</i>
-              </p>
-              <div>
-                icons lahee
+              <div class="level">
+                <div class="level-left">
+                  <i>2016 - current</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'node-js']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'aws']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'discord']"/>
+                  </span>
+                </div>
               </div>
             </div>
+
+            <footer class="card-footer">
+              <a href="https://github.com/avrae/avrae" target="_blank" class="card-footer-item">GitHub</a>
+              <a href="https://avrae.io/" target="_blank" class="card-footer-item">Website</a>
+            </footer>
           </div>
         </div>
         <!-- /avrae -->
@@ -215,13 +237,35 @@
                 collection agent with a low-power central server. It'll broadcast when houses become available on your
                 server, and the data helps us learn about the hidden housing timers.
               </p>
-              <p>
-                <i>2021 - current</i>
-              </p>
-              <div>
-                icons lahee
+              <div class="level">
+                <div class="level-left">
+                  <i>2021 - current</i>
+                </div>
+
+                <div class="level-right is-flex is-justify-content-center">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <img class="svg-grey-dark" src="../assets/CSharpLogo.png" alt="CSharp">
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fas', 'sitemap']"/>
+                  </span>
+                  <span class="icon">
+                    <img class="svg-grey-dark svg-margin" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor">
+                  </span>
+                </div>
               </div>
             </div>
+            <footer class="card-footer">
+              <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse" target="_blank" class="card-footer-item">
+                PaissaHouse
+              </a>
+              <a href="https://github.com/zhudotexe/FFXIV_PaissaDB" target="_blank" class="card-footer-item">
+                PaissaDB
+              </a>
+            </footer>
           </div>
         </div>
         <!-- /paissa -->
@@ -229,16 +273,11 @@
         <!-- draconic -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
-            <!--<div class="card-image">-->
-            <!--  <figure class="image is-16by9">-->
-            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
-            <!--  </figure>-->
-            <!--</div>-->
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                    <img src="../assets/DraconicLogo.svg" alt="Draconic Logo">
                   </figure>
                 </div>
                 <div class="media-content">
@@ -256,13 +295,24 @@
                 Draconic is used in production to run over 75 thousand user scripts daily. You can see some user
                 creations on the <a href="https://avrae.io/dashboard/workshop" target="_blank">Avrae Alias Workshop</a>.
               </p>
-              <p>
-                <i>2020 - current</i>
-              </p>
-              <div>
-                icons lahee
+              <div class="level">
+                <div class="level-left">
+                  <i>2020 - current</i>
+                </div>
+
+                <div class="level-right is-flex is-justify-content-center">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fas', 'code']"/>
+                  </span>
+                </div>
               </div>
             </div>
+            <footer class="card-footer">
+              <a href="https://github.com/avrae/draconic" target="_blank" class="card-footer-item">GitHub</a>
+            </footer>
           </div>
         </div>
         <!-- /draconic -->
@@ -270,34 +320,47 @@
         <!-- d20 -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
-            <!--<div class="card-image">-->
-            <!--  <figure class="image is-16by9">-->
-            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
-            <!--  </figure>-->
-            <!--</div>-->
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                    <img class="svg-grey-dark" src="../assets/d20Logo.svg" alt="d20 Logo">
                   </figure>
                 </div>
                 <div class="media-content">
                   <p class="title is-4">d20</p>
-                  <p class="subtitle is-6">Safe server-side user scripting.</p>
+                  <p class="subtitle is-6">Oops I made a DSL</p>
                 </div>
               </div>
 
               <p>
-                blep
+                <i>d20</i>
+                is a fast, powerful, safe, and extensible dice engine for D&D, d20 systems, and any other system that
+                needs dice. Built on top of the Lark parser, each roll comes with a rich expression tree that enables
+                applications to have full control over each roll.
               </p>
               <p>
-                <i>2020 - current</i>
+                <i>d20</i> is used in production to handle over 1 million dice rolls each day.
               </p>
-              <div>
-                icons lahee
+              <div class="level">
+                <div class="level-left">
+                  <i>2020 - current</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fas', 'code']"/>
+                  </span>
+                </div>
               </div>
             </div>
+            <footer class="card-footer">
+              <a href="https://github.com/avrae/d20" target="_blank" class="card-footer-item">GitHub</a>
+              <a href="https://pypi.org/project/d20/" target="_blank" class="card-footer-item">PyPI</a>
+            </footer>
           </div>
         </div>
         <!-- /d20 -->
@@ -305,34 +368,53 @@
         <!-- dicecloud tools -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
-            <!--<div class="card-image">-->
-            <!--  <figure class="image is-16by9">-->
-            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
-            <!--  </figure>-->
-            <!--</div>-->
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                    <img src="../assets/DicecloudLogo.png" alt="Dicecloud Tools Logo">
                   </figure>
                 </div>
                 <div class="media-content">
                   <p class="title is-4">Dicecloud Tools</p>
-                  <p class="subtitle is-6">Safe server-side user scripting.</p>
+                  <p class="subtitle is-6">New characters simplified.</p>
                 </div>
               </div>
 
               <p>
-                blep
+                The Dicecloud Tools are an old project meant to help users create new characters and manage their
+                spellbooks in Dicecloud with minimal effort.
               </p>
               <p>
-                <i>2018 - 2020</i>
+                The Dicecloud Tools are looking for new maintainers!
               </p>
-              <div>
-                icons lahee
+              <div class="level">
+                <div class="level-left">
+                  <i>2018 - 2020</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'js-square']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
+                  </span>
+                </div>
               </div>
             </div>
+            <footer class="card-footer">
+              <a href="https://andrew-zhu.com/dnd/dicecloudtools/autochar.html"
+                 target="_blank"
+                 class="card-footer-item">
+                Autochar
+              </a>
+              <a href="https://andrew-zhu.com/dnd/dicecloudtools/spellbook.html"
+                 target="_blank"
+                 class="card-footer-item">
+                Spell Manager
+              </a>
+            </footer>
           </div>
         </div>
         <!-- /dicecloud tools -->
@@ -340,34 +422,47 @@
         <!-- iris -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
-            <!--<div class="card-image">-->
-            <!--  <figure class="image is-16by9">-->
-            <!--    <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">-->
-            <!--  </figure>-->
-            <!--</div>-->
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                    <img src="../assets/IrisLogo.jpeg" alt="Iris Logo">
                   </figure>
                 </div>
                 <div class="media-content">
                   <p class="title is-4">Iris</p>
-                  <p class="subtitle is-6">Safe server-side user scripting.</p>
+                  <p class="subtitle is-6">An AI-powered virtual assistant.</p>
                 </div>
               </div>
 
               <p>
-                blep
+                Built at CruzHacks 2019, Iris combines wearable technology and facial recognition in an AI-powered
+                virtual assistance to help Alzheimer's patients combat memory loss.
               </p>
               <p>
-                <i>2019</i>
+                <i>Winner: Tech Cares, Best Use of Google Cloud Platform</i>
               </p>
-              <div>
-                icons lahee
+              <div class="level">
+                <div class="level-left">
+                  <i>2019</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'angular']"/>
+                  </span>
+                </div>
               </div>
             </div>
+            <footer class="card-footer">
+              <a href="https://github.com/CruzHacks2019/iris-frontend" target="_blank" class="card-footer-item">
+                GitHub
+              </a>
+              <a href="https://devpost.com/software/iris-io" target="_blank" class="card-footer-item">Devpost</a>
+            </footer>
           </div>
         </div>
         <!-- /iris -->
@@ -393,8 +488,8 @@
   <section class="section">
     <div class="container">
       <p>
-        This website is still under construction (I just wanted to get CI/CD running :p). If you're looking for the old
-        version of the website, use <a href="https://andrew-zhu.com">andrew-zhu.com</a>.
+        If you're looking for the old version of this website, use
+        <a href="https://andrew-zhu.com">andrew-zhu.com</a>.
       </p>
     </div>
   </section>
@@ -408,3 +503,9 @@ export default {
   components: {CurrentTime}
 }
 </script>
+
+<style scoped>
+.svg-margin {
+  margin: 2px;
+}
+</style>

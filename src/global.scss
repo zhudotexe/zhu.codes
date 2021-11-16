@@ -30,7 +30,7 @@ $grey: $grey-green;
 $grey-light: $beige-light;
 
 $primary: $grey-green;
-$link: $cucumber;
+$link: $purple;
 $info: $lime;
 
 // Bulma component variables
@@ -42,5 +42,5 @@ $body-background-color: $beige-lighter;
 // ==== custom ====
 // svg color transforms - calculated with https://codepen.io/sosuke/pen/Pjoqqp
 .svg-grey-dark {
-  filter: invert(25%) sepia(8%) saturate(1127%) hue-rotate(122deg) brightness(96%) contrast(94%);
+  filter: brightness(0) saturate(100%) invert(25%) sepia(8%) saturate(1127%) hue-rotate(122deg) brightness(96%) contrast(94%);
 }
