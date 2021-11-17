@@ -404,12 +404,12 @@
               </div>
             </div>
             <footer class="card-footer">
-              <a href="https://andrew-zhu.com/dnd/dicecloudtools/autochar.html"
+              <a href="dicecloudtools/autochar.html"
                  target="_blank"
                  class="card-footer-item">
                 Autochar
               </a>
-              <a href="https://andrew-zhu.com/dnd/dicecloudtools/spellbook.html"
+              <a href="dicecloudtools/spellbook.html"
                  target="_blank"
                  class="card-footer-item">
                 Spell Manager
@@ -484,15 +484,6 @@
   <!--  </div>-->
   <!--</section>-->
   <!--&lt;!&ndash; /publications &ndash;&gt;-->
-
-  <section class="section">
-    <div class="container">
-      <p>
-        If you're looking for the old version of this website, use
-        <a href="https://andrew-zhu.com">andrew-zhu.com</a>.
-      </p>
-    </div>
-  </section>
 </template>
 
 <script>

@@ -3,9 +3,11 @@
 
   <!-- footer -->
   <div class="is-flex is-justify-content-center mb-1">
-    <span class="icon">
-      <font-awesome-icon :icon="['fas', 'dragon']"/>
-    </span>
+    <a href="https://github.com/zhudotexe/zhu.codes" target="_blank">
+      <span class="icon">
+        <font-awesome-icon :icon="['fas', 'dragon']"/>
+      </span>
+    </a>
   </div>
 </template>
 
