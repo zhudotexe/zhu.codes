@@ -1,12 +1,9 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import Home from '@/views/Home.vue'
+import NotFound from '@/views/NotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home
-    },
+    {path: '/', name: 'Home', component: Home},
     // {
     //   path: '/about',
     //   name: 'About',
@@ -15,6 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     //   // which is lazy-loaded when the route is visited.
     //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     // }
+    {path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound}
 ]
 
 const router = createRouter({
