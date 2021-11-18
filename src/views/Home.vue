@@ -404,12 +404,12 @@
               </div>
             </div>
             <footer class="card-footer">
-              <a href="dicecloudtools/autochar.html"
+              <a href="dnd/dicecloudtools/autochar.html"
                  target="_blank"
                  class="card-footer-item">
                 Autochar
               </a>
-              <a href="dicecloudtools/spellbook.html"
+              <a href="dnd/dicecloudtools/spellbook.html"
                  target="_blank"
                  class="card-footer-item">
                 Spell Manager
