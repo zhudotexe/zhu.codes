@@ -21,9 +21,7 @@
             <h1 class="title is-size-1">
               Andrew Zhu
             </h1>
-            <h2 class="subtitle">
-              I like to make things on the internet.
-            </h2>
+            <HomeSubtitle></HomeSubtitle>
 
             <p>
               <a href="https://github.com/zhudotexe" target="_blank">
@@ -488,10 +486,11 @@
 
 <script>
 import CurrentTime from "@/components/CurrentTime";
+import HomeSubtitle from "@/components/HomeSubtitle";
 
 export default {
   name: 'Home',
-  components: {CurrentTime}
+  components: {HomeSubtitle, CurrentTime}
 }
 </script>
 
