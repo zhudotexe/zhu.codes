@@ -33,7 +33,7 @@
                 </span>
               </a>
 
-              <a href="discord://-/users/187421759484592128" target="_blank">
+              <a href="https://discord.gg/9rduk8aDek" target="_blank">
                 <span class="icon-text mr-3">
                   <span class="icon">
                     <font-awesome-icon :icon="['fab', 'discord']"/>
