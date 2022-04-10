@@ -74,7 +74,15 @@
                 <span class="icon">
                   <font-awesome-icon :icon="['fas', 'university']"/>
                 </span>
-                <span>University of California, Santa Cruz</span>
+                <span>University of Pennsylvania <i>(2022 - 2027, Ph.D.)</i></span>
+              </span>
+            </p>
+            <p>
+              <span class="icon-text">
+                <span class="icon">
+                  <font-awesome-icon :icon="['fas', 'university']"/>
+                </span>
+                <span>University of California, Santa Cruz <i>(2018 - 2021, B.S.)</i></span>
               </span>
             </p>
             <p>
@@ -100,11 +108,11 @@
         About Me
       </h1>
       <p>
-        I'm a prospective Ph.D. student hoping to start in the fall of 2022.
+        I'm a Ph.D. student at the University of Pennsylvania starting in the fall of 2022.
       </p>
       <p>
-        My research interests include distributed systems and algorithms, programming languages, low-power systems and
-        edge computing, distributed machine learning, Byzantine fault tolerance, and volunteer computing.
+        My research interests include natural language processing, programming languages,
+        distributed systems, and more.
       </p>
       <p>
         In my free time, I make all sorts of applications to help people play Dungeons and Dragons online, find a house
@@ -174,7 +182,7 @@
               <p>
                 Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
                 play D&amp;D together online.
-                Rolling with over 5 million users across over 340,000 Discord servers since 2016.
+                Rolling with over 5 million users across over 380,000 Discord servers since 2016.
               </p>
               <div class="level is-mobile">
                 <div class="level-left">
