@@ -90,7 +90,7 @@
                 <span class="icon">
                   <font-awesome-icon :icon="['fas', 'building']"/>
                 </span>
-                <span>D&amp;D Beyond; FANDOM, Inc.</span>
+                <span>D&amp;D Beyond</span>
               </span>
             </p>
           </div>
