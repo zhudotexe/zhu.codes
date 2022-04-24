@@ -19,7 +19,8 @@ import {
     faFileAlt,
     faRobot,
     faSitemap,
-    faUniversity
+    faUniversity,
+    faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {createApp} from 'vue'
@@ -30,7 +31,7 @@ import router from './router'
 // brands
 library.add(faGithub, faDiscord, faDAndD, faLinkedin, faPython, faAws, faJsSquare, faNodeJs, faAngular)
 // regular
-library.add(faEnvelope, faUniversity, faBuilding, faRobot, faSitemap, faCode, faFileAlt, faDragon, faDiceD20)
+library.add(faEnvelope, faUniversity, faBuilding, faRobot, faSitemap, faCode, faFileAlt, faDragon, faDiceD20, faExclamationTriangle)
 
 // ==== init ====
 createApp(App)

@@ -1,0 +1,61 @@
+<!-- Displays the nodes contained within this node iff the current system time falls between *from* and *to*. -->
+<template>
+  <div v-if="isDisplayed">
+    <div class="temp-display-background">
+      <slot></slot>
+
+      <div class="temp-message" :class="tempMessageClass">
+        <p class="is-size-7 has-text-grey">
+          <span class="icon-text">
+            <span class="icon">
+              <font-awesome-icon :icon="['fas', 'exclamation-triangle']"/>
+            </span>
+            <span>This is a temporary message. This message will disappear after {{displayedUntil}}.</span>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import {DateTime} from "luxon";
+
+export default {
+  name: "TemporaryDisplay",
+  props: {
+    from: Number,
+    to: Number,
+    tempMessageClass: Object
+  },
+  data() {
+    const now = DateTime.now().toSeconds();
+    const until = DateTime.fromSeconds(this.to);
+    let timeFmtOptions = DateTime.DATETIME_SHORT;
+    if (until.hasSame(DateTime.now(), 'day')) {
+      timeFmtOptions = DateTime.TIME_SIMPLE;
+    }
+    return {
+      isDisplayed: this.from <= now && now <= this.to,
+      displayedUntil: until.toLocaleString(timeFmtOptions)
+    }
+  }
+}
+</script>
+
+<style scoped>
+.temp-display-background {
+  width: 100%;
+  padding: 2px 2px 2px 4px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.temp-message {
+  padding: 4px 0;
+}
+
+.is-size-7 > .icon {
+  height: 1rem;
+  vertical-align: middle;
+}
+</style>
