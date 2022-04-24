@@ -145,6 +145,35 @@
   </section>
   <!-- /about me -->
 
+  <!-- pax east 2022 -->
+  <!-- displays midnight Apr 24 - midnight Apr 26 -->
+  <TemporaryDisplay :from="1650772800" :to="1650945599" temp-message-class="container">
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          PAX East 2022
+        </h1>
+        <p>
+          Coming from the
+          <a href="https://east.paxsite.com/en-us/schedule/listing.html?gtID=761688&panel-name=D-and-ampD-and-ampD-TTRPG-Communities-and-Play-on-Discord"
+             target="_blank">
+            D&amp;D&amp;D panel at PAX East
+          </a>
+          and want to chat?
+        </p>
+        <p>
+          Come hang out with me on my <a href="https://discord.gg/9rduk8aDek" target="_blank">personal Discord</a>, the
+          <a href="https://support.avrae.io" target="_blank">Avrae Development Discord</a>, or find me after the panel!
+        </p>
+        <p class="is-size-7">
+          I'm a fan of ciders and other fruity drinks
+          <span style="font-size: 0.5rem">but in moderation because I have a 6am flight</span>.
+        </p>
+      </div>
+    </section>
+  </TemporaryDisplay>
+  <!-- /pax east 2022 -->
+
   <!-- projects -->
   <section class="section">
     <div class="container">
@@ -495,10 +524,11 @@
 <script>
 import CurrentTime from "@/components/CurrentTime";
 import HomeSubtitle from "@/components/HomeSubtitle";
+import TemporaryDisplay from "@/components/TemporaryDisplay";
 
 export default {
   name: 'Home',
-  components: {HomeSubtitle, CurrentTime}
+  components: {TemporaryDisplay, HomeSubtitle, CurrentTime}
 }
 </script>
 
