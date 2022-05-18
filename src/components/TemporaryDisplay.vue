@@ -26,7 +26,7 @@ export default {
   props: {
     from: Number,
     to: Number,
-    tempMessageClass: Object
+    tempMessageClass: String
   },
   data() {
     const now = DateTime.now().toSeconds();
