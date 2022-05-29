@@ -1,5 +1,5 @@
-import {PlotState} from "@/utils/paissa/client";
-import {HouseSize, LottoPhase, PurchaseSystem} from "@/utils/paissa/types";
+import {PlotState} from "@/views/paissa/client";
+import {HouseSize, LottoPhase, PurchaseSystem} from "@/views/paissa/types";
 import {DateTime} from "luxon";
 
 export function isLottery(state: PlotState) {

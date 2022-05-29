@@ -118,9 +118,9 @@
 <script lang="ts">
 import Dropdown from "@/components/Dropdown.vue";
 import FlashOnChange from "@/components/FlashOnChange.vue";
-import {PaissaClient, PlotState} from "@/utils/paissa/client";
-import {LottoPhase, WorldSummary} from "@/utils/paissa/types";
-import * as utils from "@/utils/paissa/utils";
+import {PaissaClient, PlotState} from "@/views/paissa/client";
+import {WorldSummary} from "@/views/paissa/types";
+import * as utils from "@/views/paissa/utils";
 import {groupBy} from "lodash";
 import {defineComponent} from "vue";
 

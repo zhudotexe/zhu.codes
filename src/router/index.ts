@@ -1,6 +1,6 @@
 import Home from '@/views/Home.vue'
 import NotFound from '@/views/NotFound.vue'
-import PaissaViewer from '@/views/PaissaViewer.vue'
+import PaissaViewer from '@/views/paissa/PaissaViewer.vue'
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
