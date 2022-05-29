@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown"
        :class="{'is-active': isExpanded}"
-       @click="isExpanded = !isExpanded"
+       @focusin="isExpanded = true"
        @focusout="isExpanded = false"
        tabindex="0">
     <div class="dropdown-trigger">
@@ -10,7 +10,7 @@
       </button>
     </div>
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
-      <div class="dropdown-content">
+      <div class="dropdown-content" @click="isExpanded = false">
         <slot></slot>
       </div>
     </div>
