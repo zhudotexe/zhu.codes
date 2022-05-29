@@ -103,3 +103,9 @@ export enum LottoPhase {
     RESULTS = 2,
     UNAVAILABLE = 3
 }
+
+export enum HouseSize {
+    SMALL = 0,
+    MEDIUM = 1,
+    LARGE = 2
+}

@@ -47,16 +47,17 @@
         </h4>
 
         <template v-if="!loadingWorld">
+          <!-- # info -->
           <p>
             {{ selectedWorld.name }} has
             <FlashOnChange :value="selectedWorldPlots.length"/>
             open plots, at least
-            <FlashOnChange :value="selectedWorldPlots.filter(isEntryPhase).length"/>
+            <FlashOnChange :value="selectedWorldPlots.filter(utils.isEntryPhase).length"/>
             of which are available for bidding.
           </p>
-          <p v-if="selectedWorldPlots.filter(isUnknownOrOutdatedPhase).length">
+          <p v-if="selectedWorldPlots.filter(utils.isUnknownOrOutdatedPhase).length">
             <strong>
-              <FlashOnChange :value="selectedWorldPlots.filter(isUnknownOrOutdatedPhase).length"/>
+              <FlashOnChange :value="selectedWorldPlots.filter(utils.isUnknownOrOutdatedPhase).length"/>
             </strong>
             plots have unknown or outdated lottery data. You can contribute by installing the
             <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse#lottery-sweeps" target="_blank">
@@ -64,22 +65,52 @@
             </a>
             and clicking on the placard of any outdated plot in-game. This site will update in real time!
           </p>
+          <!-- /# info -->
+
+          <!-- table -->
+          <div class="table-container mt-4">
+            <table class="table is-striped is-fullwidth is-hoverable">
+              <thead>
+              <tr>
+                <th>Address</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Entries</th>
+                <th>Lottery Phase</th>
+                <th>Allowed Tenants</th>
+                <th>Last Updated</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr v-for="plot in selectedWorldPlots"
+                  :key="[plot.world_id, plot.district_id, plot.ward_number, plot.plot_number]">
+                <td>
+                  {{ client.districtName(plot.district_id) }}, Ward {{ plot.ward_number + 1 }}, Plot
+                  {{ plot.plot_number + 1 }}
+                </td>
+                <td>{{ utils.sizeStr(plot.size) }}</td>
+                <td>{{ plot.price.toLocaleString() }}</td>
+                <td>
+                  <FlashOnChange :value="utils.lotteryEntryCountStr(plot)"
+                                 :class="{'is-italic': utils.shouldEm(plot)}"/>
+                </td>
+                <td>
+                  <FlashOnChange :value="utils.lotteryPhaseStr(plot)" :class="{'is-italic': utils.shouldEm(plot)}"/>
+                </td>
+                <td>{{ utils.tenantStr(plot.purchase_system) }}</td>
+                <td>
+                  <FlashOnChange :value="utils.updatedStr(plot.last_updated_time)"/>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /table -->
         </template>
       </template>
       <!-- /world view -->
 
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h4 class="title is-4">
-        Event Log
-      </h4>
-      <h6 class="subtitle is-6">
-        The last 100 events that have occurred since you loaded this page.
-      </h6>
-      <!-- todo -->
     </div>
   </section>
 </template>
@@ -89,6 +120,7 @@ import Dropdown from "@/components/Dropdown.vue";
 import FlashOnChange from "@/components/FlashOnChange.vue";
 import {PaissaClient, PlotState} from "@/utils/paissa/client";
 import {LottoPhase, WorldSummary} from "@/utils/paissa/types";
+import * as utils from "@/utils/paissa/utils";
 import {groupBy} from "lodash";
 import {defineComponent} from "vue";
 
@@ -98,6 +130,7 @@ export default defineComponent({
   data() {
     return {
       client: new PaissaClient(),
+      utils,
       loadingWorldList: true,
       selectedWorld: null as WorldSummary | null,
       loadingWorld: false,
@@ -133,20 +166,6 @@ export default defineComponent({
       this.client.loadWorld(world.id).then(() => {
         this.loadingWorld = false
       });
-    },
-    // --- filters ---
-    isLottery(state: PlotState) {
-      return (state.purchase_system & 1) === 1;
-    },
-    isOutdatedPhase(state: PlotState) {
-      const timeSecs = +new Date() / 1000;
-      return this.isLottery(state) && ((state.lotto_phase_until ?? 0) < timeSecs);
-    },
-    isEntryPhase(state: PlotState) {
-      return this.isLottery(state) && !this.isOutdatedPhase(state) && state.lotto_phase === LottoPhase.ENTRY;
-    },
-    isUnknownOrOutdatedPhase(state: PlotState) {
-      return this.isLottery(state) && (state.lotto_phase === null || this.isOutdatedPhase(state));
     }
   }
 })

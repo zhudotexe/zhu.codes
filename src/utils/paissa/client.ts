@@ -34,6 +34,7 @@ export class PaissaClient {
 
     ws: WebSocket | null = null;
     worldsLoaded: Set<number> = new Set<number>();
+    districtNames: Map<number, string> = new Map<number, string>();
 
     // ==== lifecycle ====
     public init() {
@@ -86,6 +87,8 @@ export class PaissaClient {
         console.debug(`Got world detail for ${world.name} - ${world.num_open_plots} plots open.`)
 
         for (const district of world.districts) {
+            // while we're here, populate the district names
+            this.districtNames.set(district.id, district.name);
             for (const plot of district.open_plots) {
                 this.plotStates.set(extractPlotLoc(plot), plot);
             }
@@ -123,6 +126,11 @@ export class PaissaClient {
 
     onPlotSold(event: SoldPlotDetail) {
         this.plotStates.delete(extractPlotLoc(event));
+    }
+
+    // ==== helpers ====
+    public districtName(districtId: number): string {
+        return this.districtNames.get(districtId) ?? districtId.toString();
     }
 }
 
