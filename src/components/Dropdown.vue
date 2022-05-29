@@ -2,7 +2,6 @@
   <div class="dropdown"
        :class="{'is-active': isExpanded}"
        @click="isExpanded = !isExpanded"
-       @focus="isExpanded = true"
        @focusout="isExpanded = false"
        tabindex="0">
     <div class="dropdown-trigger">
