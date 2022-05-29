@@ -11,6 +11,9 @@
         using the
         <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse" target="_blank">PaissaHouse XIVLauncher plugin</a>.
       </h5>
+      <div class="notification is-warning" v-if="client.isDisconnected">
+        Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
+      </div>
       <!-- /title -->
 
       <!-- world select -->
@@ -64,7 +67,6 @@
         </template>
       </template>
       <!-- /world view -->
-
 
     </div>
   </section>

@@ -30,6 +30,7 @@ export interface PlotState extends PlotLoc {
 export class PaissaClient {
     public plotStates: Map<PlotLoc, PlotState> = new Map<PlotLoc, PlotState>();
     public worlds: WorldSummary[] = [];
+    public isDisconnected = false;
 
     ws: WebSocket | null = null;
     worldsLoaded: Set<number> = new Set<number>();
@@ -38,8 +39,14 @@ export class PaissaClient {
     public init() {
         this.ws?.close();
         this.ws = new WebSocket(PAISSADB_WS_URL);
-        this.ws.addEventListener('open', () => console.log("WS connected"));
-        this.ws.addEventListener('close', () => console.log("WS closed"));
+        this.ws.addEventListener('open', () => {
+            console.log("WS connected");
+            this.isDisconnected = false;
+        });
+        this.ws.addEventListener('close', () => {
+            console.log("WS closed");
+            this.isDisconnected = true;
+        });
         this.ws.addEventListener('error', event => console.warn('WebSocket error: ', event));
         this.ws.addEventListener('message', event => this.onRawMessage(event.data));
     }
@@ -61,6 +68,7 @@ export class PaissaClient {
     }
 
     public async loadWorld(worldId: number, forceReload = false) {
+        console.debug(`Loading data for world ${worldId}...`)
         if (this.worldsLoaded.has(worldId) && !forceReload) {
             console.debug(`World ID ${worldId} has been loaded - skipping loadWorld.`)
             return;
