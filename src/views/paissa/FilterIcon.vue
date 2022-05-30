@@ -39,7 +39,7 @@ export default defineComponent({
       required: true
     },
     filters: {
-      type: Array as PropType<Filter[]>,
+      type: Array as PropType<[string, Filter][]>,
       required: true
     }
   },
@@ -47,7 +47,7 @@ export default defineComponent({
   data() {
     return {
       selectedOptions: new Set(),
-      filterIndex: null as number | null,
+      nonce: (Math.random() + 1).toString(36).substring(7),
       isExpanded: false
     }
   },
@@ -60,21 +60,26 @@ export default defineComponent({
       }
       this.onNewSelectedOptions(Array.from(this.selectedOptions));
     },
+    findFilterIndex(arr: [string, Filter][]): number | null {
+      const idx = arr.findIndex(([nonce, _]) => nonce === this.nonce);
+      return idx !== -1 ? idx : null;
+    },
     onNewSelectedOptions(options: any[]) {
       let newFilters = [...this.filters]
-      if (this.filterIndex !== null) {
+      const existingFilterIdx = this.findFilterIndex(newFilters);
+      if (existingFilterIdx !== null) {
         if (!options.length) {
           // remove existing filter
-          newFilters.splice(this.filterIndex);
-          this.filterIndex = null;
+          newFilters.splice(existingFilterIdx, 1);
         } else {
           // update existing filter
-          newFilters[this.filterIndex] = this.params.strategy(options);
+          const newFilterInst = this.params.strategy(options);
+          newFilters[existingFilterIdx] = [this.nonce, newFilterInst];
         }
       } else if (options.length) {
         // create new filter
-        const newLen = newFilters.push(this.params.strategy(options));
-        this.filterIndex = newLen - 1;
+        const newFilterInst = this.params.strategy(options);
+        newFilters.push([this.nonce, newFilterInst]);
       }
       this.$emit('update:filters', newFilters);
     }

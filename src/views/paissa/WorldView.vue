@@ -150,7 +150,7 @@ export default defineComponent({
       filt,
       page: 0,
       numPerPage: 50,
-      filters: [] as filt.Filter[],
+      filters: [] as [string, filt.Filter][],
       sorters: [] as sort.Sorter[]
     }
   },
@@ -162,7 +162,7 @@ export default defineComponent({
     filteredSortedWorldPlots() {
       let plots = [...this.worldPlots];
       // filter
-      for (const filter of this.filters) {
+      for (const [_, filter] of this.filters) {
         plots = plots.filter(filter);
       }
       // sort: return first non-zero sort
