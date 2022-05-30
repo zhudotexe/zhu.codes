@@ -19,30 +19,29 @@ export interface PlotState {
 export class PaissaClient {
     public plotStates: Map<string, PlotState> = new Map<string, PlotState>();
     public worlds: WorldSummary[] = [];
-    public isDisconnected = false;
+    public get isDisconnected() {
+        return this.isWSDisconnected && !this.isWSConnecting;
+    }
 
     ws: WebSocket | null = null;
     worldsLoaded: Set<number> = new Set<number>();
     districtNames: Map<number, string> = new Map<number, string>();
+    isWSConnecting = false;
+    isWSDisconnected = false;
 
     // ==== lifecycle ====
     public init() {
-        this.ws?.close();
+        this.ws?.close(1000);
+        this.isWSConnecting = true;
         this.ws = new WebSocket(PAISSADB_WS_URL);
-        this.ws.addEventListener('open', () => {
-            console.log("WS connected");
-            this.isDisconnected = false;
-        });
-        this.ws.addEventListener('close', () => {
-            console.log("WS closed");
-            this.isDisconnected = true;
-        });
+        this.ws.addEventListener('open', () => this.onWSOpen());
+        this.ws.addEventListener('close', event => this.onWSClose(event));
         this.ws.addEventListener('error', event => console.warn('WebSocket error: ', event));
         this.ws.addEventListener('message', event => this.onRawMessage(event.data));
     }
 
     public close() {
-        this.ws?.close();
+        this.ws?.close(1000);
         this.worldsLoaded.clear();
     }
 
@@ -115,6 +114,35 @@ export class PaissaClient {
 
     onPlotSold(event: SoldPlotDetail) {
         this.plotStates.delete(extractPlotLoc(event));
+    }
+
+    onWSOpen() {
+        console.log("WS connected");
+        this.isWSDisconnected = false;
+        this.isWSConnecting = false;
+    }
+
+    onWSClose(event: CloseEvent) {
+        console.log(`WS closed with ${event.code} (reason=${event.reason}; clean=${event.wasClean})`);
+        this.isWSDisconnected = true;
+        if (event.wasClean && event.code !== 1012) {
+            this.isWSConnecting = false;
+        } else if (!this.isWSConnecting) {
+            // attempt reconnect with exponential backoff
+            this.attemptReconnect(1);
+        }
+    }
+
+    attemptReconnect(attempt: number, maxAttempts = 5) {
+        if (!this.isWSDisconnected) return;
+        if (attempt > maxAttempts) {
+            this.isWSDisconnected = true;
+            this.isWSConnecting = false;
+            return;
+        }
+        console.log(`Attempting to reconnect (try ${attempt} of ${maxAttempts})...`)
+        this.init();
+        setTimeout(() => this.attemptReconnect(attempt + 1, maxAttempts), attempt * 1000 + (Math.random() * 1000));
     }
 
     // ==== helpers ====
