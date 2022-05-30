@@ -23,13 +23,56 @@
     <table class="table is-striped is-fullwidth is-hoverable">
       <thead>
       <tr>
-        <th>Address</th>
-        <th>Size</th>
-        <th>Price</th>
-        <th>Entries</th>
-        <th>Lottery Phase</th>
-        <th>Allowed Tenants</th>
-        <th>Last Updated</th>
+        <th>
+          <span class="icon-text">
+            <span>Address</span>
+            <FilterIcon class="ml-1"/>
+          </span>
+        </th>
+        <th>
+          <span class="icon-text">
+            <span>Size</span>
+            <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.size" :inverse-sorter="sort.sizeInverse"/>
+            <FilterIcon/>
+          </span>
+        </th>
+        <th>
+          <span class="icon-text">
+            <span>Price</span>
+            <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.price" :inverse-sorter="sort.priceInverse"/>
+          </span>
+        </th>
+        <th>
+          <span class="icon-text">
+            <span>Entries</span>
+            <SortIcon class="ml-1"
+                      v-model:sorters="sorters"
+                      :sorter="sort.entries"
+                      :inverse-sorter="sort.entriesInverse"/>
+          </span>
+        </th>
+        <th>
+          <span class="icon-text">
+            <span>Lottery Phase</span>
+            <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.phase" :inverse-sorter="sort.phaseInverse"/>
+            <FilterIcon/>
+          </span>
+        </th>
+        <th>
+          <span class="icon-text">
+            <span>Allowed Tenants</span>
+            <FilterIcon class="ml-1"/>
+          </span>
+        </th>
+        <th>
+          <span class="icon-text">
+            <span>Last Updated</span>
+            <SortIcon class="ml-1"
+                      v-model:sorters="sorters"
+                      :sorter="sort.updateTime"
+                      :inverse-sorter="sort.updateTimeInverse"/>
+          </span>
+        </th>
       </tr>
       </thead>
 
@@ -78,14 +121,17 @@
 
 <script lang="ts">
 import FlashOnChange from "@/components/FlashOnChange.vue";
-import {PaissaClient} from "@/views/paissa/client";
+import {PaissaClient, PlotState} from "@/views/paissa/client";
+import FilterIcon from "@/views/paissa/FilterIcon.vue";
+import * as sort from "@/views/paissa/sorters"
+import SortIcon from "@/views/paissa/SortIcon.vue";
 import {WorldSummary} from "@/views/paissa/types";
 import * as utils from "@/views/paissa/utils";
-import {defineComponent, PropType, reactive} from "vue";
+import {defineComponent, PropType} from "vue";
 
 export default defineComponent({
   name: "WorldView",
-  components: {FlashOnChange},
+  components: {FilterIcon, SortIcon, FlashOnChange},
   props: {
     client: {
       type: PaissaClient,
@@ -99,9 +145,11 @@ export default defineComponent({
   data() {
     return {
       utils,
+      sort,
       page: 0,
       numPerPage: 50,
-      filters: []
+      filters: [],
+      sorters: [] as ((a: PlotState, b: PlotState) => number)[]
     }
   },
   computed: {
@@ -109,8 +157,20 @@ export default defineComponent({
       const allPlots = Array.from(this.client.plotStates.values());
       return allPlots.filter(state => state.world_id === this.world!.id);
     },
+    filteredSortedWorldPlots() {
+      const plots = [...this.worldPlots];
+      // filter: todo
+      // sort: return first non-zero sort
+      return plots.sort((a, b) => {
+        for (const sorter of this.sorters) {
+          const val = sorter(a, b);
+          if (val) return val;
+        }
+        return sort.address(a, b);
+      });
+    },
     currentPagePlots() {
-      return this.worldPlots.slice(this.page * this.numPerPage, (this.page + 1) * this.numPerPage);
+      return this.filteredSortedWorldPlots.slice(this.page * this.numPerPage, (this.page + 1) * this.numPerPage);
     },
     numPages() {
       return Math.ceil(this.worldPlots.length / this.numPerPage);
