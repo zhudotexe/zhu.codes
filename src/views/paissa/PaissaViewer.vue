@@ -46,31 +46,7 @@
           <span class="loader is-inline-block" v-if="loadingWorld"></span>
         </h4>
 
-        <template v-if="!loadingWorld">
-          <!-- # info -->
-          <p>
-            {{ selectedWorld.name }} has
-            <FlashOnChange :value="selectedWorldPlots.length"/>
-            open plots, at least
-            <FlashOnChange :value="selectedWorldPlots.filter(utils.isEntryPhase).length"/>
-            of which are available for bidding.
-          </p>
-          <p v-if="selectedWorldPlots.filter(utils.isUnknownOrOutdatedPhase).length">
-            <strong>
-              <FlashOnChange :value="selectedWorldPlots.filter(utils.isUnknownOrOutdatedPhase).length"/>
-            </strong>
-            plots have unknown or outdated lottery data. You can contribute by installing the
-            <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse#lottery-sweeps" target="_blank">
-              PaissaHouse XIVLauncher plugin
-            </a>
-            and clicking on the placard of any outdated plot in-game. This site will update in real time!
-          </p>
-          <!-- /# info -->
-
-          <!-- table -->
-          <WorldTable :client="client" :plots="selectedWorldPlots"/>
-          <!-- /table -->
-        </template>
+        <WorldView :client="client" :world="selectedWorld" v-if="!loadingWorld"/>
       </template>
       <!-- /world view -->
 
@@ -80,17 +56,16 @@
 
 <script lang="ts">
 import Dropdown from "@/components/Dropdown.vue";
-import FlashOnChange from "@/components/FlashOnChange.vue";
 import {PaissaClient, PlotState} from "@/views/paissa/client";
 import {WorldSummary} from "@/views/paissa/types";
 import * as utils from "@/views/paissa/utils";
-import WorldTable from "@/views/paissa/WorldTable.vue";
+import WorldView from "@/views/paissa/WorldView.vue";
 import {groupBy} from "lodash";
 import {defineComponent} from "vue";
 
 export default defineComponent({
   name: "PaissaViewer",
-  components: {WorldTable, Dropdown, FlashOnChange},
+  components: {WorldView, Dropdown},
   data() {
     return {
       client: new PaissaClient(),
