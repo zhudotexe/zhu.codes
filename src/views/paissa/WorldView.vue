@@ -26,14 +26,14 @@
         <th>
           <span class="icon-text">
             <span>Address</span>
-            <FilterIcon class="ml-1"/>
+            <FilterIcon class="ml-1" v-model:filters="filters" :params="filt.districts"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Size</span>
             <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.size" :inverse-sorter="sort.sizeInverse"/>
-            <FilterIcon/>
+            <FilterIcon v-model:filters="filters" :params="filt.sizes"/>
           </span>
         </th>
         <th>
@@ -55,13 +55,13 @@
           <span class="icon-text">
             <span>Lottery Phase</span>
             <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.phase" :inverse-sorter="sort.phaseInverse"/>
-            <FilterIcon/>
+            <FilterIcon v-model:filters="filters" :params="filt.phases"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Allowed Tenants</span>
-            <FilterIcon class="ml-1"/>
+            <FilterIcon class="ml-1" v-model:filters="filters" :params="filt.tenants"/>
           </span>
         </th>
         <th>
@@ -121,8 +121,9 @@
 
 <script lang="ts">
 import FlashOnChange from "@/components/FlashOnChange.vue";
-import {PaissaClient, PlotState} from "@/views/paissa/client";
+import {PaissaClient} from "@/views/paissa/client";
 import FilterIcon from "@/views/paissa/FilterIcon.vue";
+import * as filt from "@/views/paissa/filters";
 import * as sort from "@/views/paissa/sorters"
 import SortIcon from "@/views/paissa/SortIcon.vue";
 import {WorldSummary} from "@/views/paissa/types";
@@ -146,10 +147,11 @@ export default defineComponent({
     return {
       utils,
       sort,
+      filt,
       page: 0,
       numPerPage: 50,
-      filters: [],
-      sorters: [] as ((a: PlotState, b: PlotState) => number)[]
+      filters: [] as filt.Filter[],
+      sorters: [] as sort.Sorter[]
     }
   },
   computed: {
@@ -158,8 +160,11 @@ export default defineComponent({
       return allPlots.filter(state => state.world_id === this.world!.id);
     },
     filteredSortedWorldPlots() {
-      const plots = [...this.worldPlots];
-      // filter: todo
+      let plots = [...this.worldPlots];
+      // filter
+      for (const filter of this.filters) {
+        plots = plots.filter(filter);
+      }
       // sort: return first non-zero sort
       return plots.sort((a, b) => {
         for (const sorter of this.sorters) {
@@ -173,12 +178,14 @@ export default defineComponent({
       return this.filteredSortedWorldPlots.slice(this.page * this.numPerPage, (this.page + 1) * this.numPerPage);
     },
     numPages() {
-      return Math.ceil(this.worldPlots.length / this.numPerPage);
+      return Math.ceil(this.filteredSortedWorldPlots.length / this.numPerPage);
     }
   }
 })
 </script>
 
 <style scoped>
-
+.table-container {
+  min-height: 350px;
+}
 </style>
