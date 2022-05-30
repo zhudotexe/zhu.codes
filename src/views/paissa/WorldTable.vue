@@ -41,13 +41,17 @@
 
 <script lang="ts">
 import FlashOnChange from "@/components/FlashOnChange.vue";
+import {PaissaClient, PlotState} from "@/views/paissa/client";
 import * as utils from "@/views/paissa/utils";
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
 
 export default defineComponent({
   name: "WorldTable",
   components: {FlashOnChange},
-  props: ['client', 'plots'],
+  props: {
+    client: PaissaClient,
+    plots: Array as PropType<PlotState[]>
+  },
   data() {
     return {
       utils
