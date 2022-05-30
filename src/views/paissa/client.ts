@@ -2,14 +2,11 @@ import {PAISSADB_BASE, PAISSADB_WS_URL} from "@/utils/constants";
 import {OpenPlotDetail, PlotUpdate, SoldPlotDetail, WorldDetail, WorldSummary, WSMessage} from "@/views/paissa/types";
 import axios from "axios";
 
-interface PlotLoc {
+export interface PlotState {
     world_id: number;
     district_id: number;
     ward_number: number;
     plot_number: number;
-}
-
-export interface PlotState extends PlotLoc {
     size: number;
     price: number;
     last_updated_time: number;
@@ -20,7 +17,7 @@ export interface PlotState extends PlotLoc {
 }
 
 export class PaissaClient {
-    public plotStates: Map<PlotLoc, PlotState> = new Map<PlotLoc, PlotState>();
+    public plotStates: Map<string, PlotState> = new Map<string, PlotState>();
     public worlds: WorldSummary[] = [];
     public isDisconnected = false;
 
@@ -126,11 +123,6 @@ export class PaissaClient {
     }
 }
 
-function extractPlotLoc(data: OpenPlotDetail | PlotUpdate | SoldPlotDetail): PlotLoc {
-    return {
-        world_id: data.world_id,
-        district_id: data.district_id,
-        ward_number: data.ward_number,
-        plot_number: data.plot_number
-    };
+function extractPlotLoc(data: OpenPlotDetail | PlotUpdate | SoldPlotDetail): string {
+    return `${data.world_id}-${data.district_id}-${data.ward_number}-${data.plot_number}`;
 }
