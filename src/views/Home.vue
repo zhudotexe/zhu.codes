@@ -495,11 +495,10 @@
 <script>
 import CurrentTime from "@/components/CurrentTime";
 import HomeSubtitle from "@/components/HomeSubtitle";
-import TemporaryDisplay from "@/components/TemporaryDisplay";
 
 export default {
   name: 'Home',
-  components: {TemporaryDisplay, HomeSubtitle, CurrentTime}
+  components: {HomeSubtitle, CurrentTime}
 }
 </script>
 

@@ -13,13 +13,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "axios": "^0.24.0",
+    "click-outside-vue3": "^4.0.1",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
     "luxon": "^2.1.1",
     "typeit": "^8.0.8",
     "vue": "^3.0.0",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "@types/luxon": "^2.0.7",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
