@@ -1,5 +1,7 @@
 # zhu.codes
 
+[![Discord](https://img.shields.io/discord/927834873916440646?color=5865F2&label=discord&logo=discord&logoColor=white)](https://discord.gg/9rduk8aDek)
+
 This project is the frontend successor to `andrew-zhu.com`, written using Vue/Bulma. The backend code can be found
 TBD.
 
