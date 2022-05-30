@@ -11,7 +11,7 @@
     <strong>
       <FlashOnChange :value="worldPlots.filter(utils.isUnknownOrOutdatedPhase).length"/>
     </strong>
-    plots have unknown or outdated lottery data. You can contribute by installing the
+    plots have missing or outdated lottery data. You can contribute by installing the
     <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse#lottery-sweeps" target="_blank">
       PaissaHouse XIVLauncher plugin
     </a>
