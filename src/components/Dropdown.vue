@@ -1,16 +1,15 @@
 <template>
   <div class="dropdown"
        :class="{'is-active': isExpanded}"
-       @focusin="isExpanded = true"
-       @focusout="isExpanded = false"
-       tabindex="0">
+       @click="isExpanded = !isExpanded"
+       v-click-outside="() => isExpanded = false">
     <div class="dropdown-trigger">
       <button class="button is-info" aria-haspopup="true" aria-controls="dropdown-menu">
         <span>{{ label }}</span>
       </button>
     </div>
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
-      <div class="dropdown-content" @click="isExpanded = false">
+      <div class="dropdown-content">
         <slot></slot>
       </div>
     </div>
@@ -18,19 +17,22 @@
 </template>
 
 <script>
+import vClickOutside from 'click-outside-vue3';
+
 export default {
   name: "Dropdown",
   props: ["label"],
   data() {
     return {isExpanded: false};
+  },
+  directives: {
+    clickOutside: vClickOutside.directive
   }
 }
 </script>
 
 <style scoped>
-.dropdown {
-  outline: none;
-}
+
 </style>
 
 <!--
