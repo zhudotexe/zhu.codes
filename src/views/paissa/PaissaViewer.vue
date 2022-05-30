@@ -78,7 +78,7 @@ export default defineComponent({
   computed: {
     worldGroups(): [string, WorldSummary[]][] {
       let worlds = this.client.worlds;
-      worlds.sort(((a, b) => a.datacenter_name.localeCompare(b.datacenter_name)));
+      worlds.sort(((a, b) => a.datacenter_name.localeCompare(b.datacenter_name) || a.name.localeCompare(b.name)));
       return Object.entries(groupBy(worlds, (world: WorldSummary) => world.datacenter_name));
     },
     selectedWorldPlots(): PlotState[] {
