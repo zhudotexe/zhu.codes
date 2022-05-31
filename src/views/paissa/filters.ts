@@ -20,7 +20,7 @@ export const districts: FilterParams<number> = {
         {label: "The Lavender Beds", value: 340},
         {label: "The Goblet", value: 341},
         {label: "Shirogane", value: 641},
-        {label: "Empyreum", value: 886}
+        {label: "Empyreum", value: 979}
     ],
     strategy(values: number[]): (plot: PlotState) => boolean {
         return (plot: PlotState) => values.includes(plot.district_id);
