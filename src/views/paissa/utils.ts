@@ -26,12 +26,16 @@ export function shouldEm(plot: PlotState): boolean {
 export function lotteryEntryCountStr(plot: PlotState): string {
     if (!isLottery(plot)) {
         return "N/A";
-    } else if (plot.lotto_entries === null) {
-        return "Missing Data";
-    } else if (isOutdatedPhase(plot)) {
-        return "Outdated Data"
     }
-    return plot.lotto_entries.toString();
+    if (plot.lotto_phase === null) {
+        // BUG(server): sometimes, lotto_entries can be null on 0-entry plots; so we render 0 if it's not outdated
+        // and only "Missing Data" if lotto_phase is null
+        return "Missing Data";
+    }
+    if (isOutdatedPhase(plot)) {
+        return "Outdated Data";
+    }
+    return plot.lotto_entries?.toString() ?? '0';
 }
 
 export function lotteryPhaseStr(plot: PlotState): string {

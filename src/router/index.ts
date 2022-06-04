@@ -1,6 +1,5 @@
 import Home from '@/views/Home.vue'
 import NotFound from '@/views/NotFound.vue'
-import PaissaViewer from '@/views/paissa/PaissaViewer.vue'
 import {nextTick} from "vue";
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 

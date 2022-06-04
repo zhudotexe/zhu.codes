@@ -14,13 +14,15 @@ export const price = (a: PlotState, b: PlotState) => a.price - b.price;
 export const priceInverse = inverse(price);
 
 export const entries = (a: PlotState, b: PlotState) => {
-    const aVal = isOutdatedPhase(a) || a.lotto_entries === null ? Number.MAX_VALUE : a.lotto_entries;
-    const bVal = isOutdatedPhase(b) || b.lotto_entries === null ? Number.MAX_VALUE : b.lotto_entries;
+    const aVal = isOutdatedPhase(a) || a.lotto_phase === null ? Number.MAX_VALUE : (a.lotto_entries ?? 0);
+    const bVal = isOutdatedPhase(b) || b.lotto_phase === null ? Number.MAX_VALUE : (b.lotto_entries ?? 0);
     return aVal - bVal;
 }
 export const entriesInverse = (a: PlotState, b: PlotState) => {
-    const aVal = isOutdatedPhase(a) || a.lotto_entries === null ? Number.MIN_VALUE : a.lotto_entries;
-    const bVal = isOutdatedPhase(b) || b.lotto_entries === null ? Number.MIN_VALUE : b.lotto_entries;
+    // Number.MIN_VALUE is actually an epsilon and not the minimum value representable in a float
+    // because *that's* not a foot-gun at all. Thanks Javascript.
+    const aVal = isOutdatedPhase(a) || a.lotto_phase === null ? Number.MIN_SAFE_INTEGER : (a.lotto_entries ?? 0);
+    const bVal = isOutdatedPhase(b) || b.lotto_phase === null ? Number.MIN_SAFE_INTEGER : (b.lotto_entries ?? 0);
     return bVal - aVal;
 };
 
