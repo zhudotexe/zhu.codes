@@ -50,6 +50,22 @@
       </template>
       <!-- /world view -->
 
+      <!-- changelog -->
+      <h4 class="title is-4 mt-4">
+        Changelog
+      </h4>
+      <h6 class="subtitle is-6">
+        For feedback and to keep up-to-date with development, come hang out in
+        <a href="https://discord.gg/9rduk8aDek" target="_blank">my Discord server.</a>
+      </h6>
+      <div class="content">
+        <ul>
+          <li>June 5, 2022: PaissaDB now persists the selected world, sort, and filters on refresh</li>
+          <li>June 4, 2022: fix "Missing Data" on some 0-entry plots with up-to-date data</li>
+          <li>May 30, 2022: initial release</li>
+        </ul>
+      </div>
+      <!-- /changelog -->
     </div>
   </section>
 </template>
