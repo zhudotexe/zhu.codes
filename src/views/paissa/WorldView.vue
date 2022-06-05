@@ -26,14 +26,14 @@
         <th>
           <span class="icon-text">
             <span>Address</span>
-            <FilterIcon class="ml-1" v-model:filters="filters" :params="filt.districts"/>
+            <FilterIcon class="ml-1" v-model:filters="filters" :filter-id="'districts'"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Size</span>
             <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.size" :inverse-sorter="sort.sizeInverse"/>
-            <FilterIcon v-model:filters="filters" :params="filt.sizes"/>
+            <FilterIcon v-model:filters="filters" :filter-id="'sizes'"/>
           </span>
         </th>
         <th>
@@ -55,13 +55,13 @@
           <span class="icon-text">
             <span>Lottery Phase</span>
             <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.phase" :inverse-sorter="sort.phaseInverse"/>
-            <FilterIcon v-model:filters="filters" :params="filt.phases"/>
+            <FilterIcon v-model:filters="filters" :filter-id="'phases'"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Allowed Tenants</span>
-            <FilterIcon class="ml-1" v-model:filters="filters" :params="filt.tenants"/>
+            <FilterIcon class="ml-1" v-model:filters="filters" :filter-id="'tenants'"/>
           </span>
         </th>
         <th>
@@ -123,7 +123,7 @@
 import FlashOnChange from "@/components/FlashOnChange.vue";
 import {PaissaClient} from "@/views/paissa/client";
 import FilterIcon from "@/views/paissa/FilterIcon.vue";
-import * as filt from "@/views/paissa/filters";
+import {Filter, filters as filt} from "@/views/paissa/filters";
 import * as sort from "@/views/paissa/sorters"
 import SortIcon from "@/views/paissa/SortIcon.vue";
 import * as utils from "@/views/paissa/utils";
@@ -149,7 +149,7 @@ export default defineComponent({
       filt,
       page: 0,
       numPerPage: 50,
-      filters: [] as [string, filt.Filter][],
+      filters: [] as [string, Filter][],
       sorters: [] as sort.Sorter[]
     }
   },

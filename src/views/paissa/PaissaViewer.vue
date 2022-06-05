@@ -124,7 +124,7 @@ export default defineComponent({
   methods: {
     async onSelectWorld(world: WorldSummary) {
       // update the world query param
-      await this.$router.push({query: {...this.$route.query, world: world.id}});
+      await this.$router.replace({query: {...this.$route.query, world: world.id}});
       // load the worlds
       await this.loadWorld(world.id);
     },
