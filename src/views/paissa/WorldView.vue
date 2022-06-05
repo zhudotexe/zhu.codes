@@ -26,51 +26,45 @@
         <th>
           <span class="icon-text">
             <span>Address</span>
-            <FilterIcon class="ml-1" v-model:filters="filters" :filter-id="'districts'"/>
+            <FilterIcon class="ml-1" v-model:filters="filters" filter-id="districts"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Size</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.size" :inverse-sorter="sort.sizeInverse"/>
-            <FilterIcon v-model:filters="filters" :filter-id="'sizes'"/>
+            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="size" inverse-sorter-id="sizeDesc"/>
+            <FilterIcon v-model:filters="filters" filter-id="sizes"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Price</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.price" :inverse-sorter="sort.priceInverse"/>
+            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="price" inverse-sorter-id="priceDesc"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Entries</span>
-            <SortIcon class="ml-1"
-                      v-model:sorters="sorters"
-                      :sorter="sort.entries"
-                      :inverse-sorter="sort.entriesInverse"/>
+            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="entries" inverse-sorter-id="entriesDesc"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Lottery Phase</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" :sorter="sort.phase" :inverse-sorter="sort.phaseInverse"/>
-            <FilterIcon v-model:filters="filters" :filter-id="'phases'"/>
+            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="phase" inverse-sorter-id="phaseDesc"/>
+            <FilterIcon v-model:filters="filters" filter-id="phases"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Allowed Tenants</span>
-            <FilterIcon class="ml-1" v-model:filters="filters" :filter-id="'tenants'"/>
+            <FilterIcon class="ml-1" v-model:filters="filters" filter-id="tenants"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Last Updated</span>
-            <SortIcon class="ml-1"
-                      v-model:sorters="sorters"
-                      :sorter="sort.updateTime"
-                      :inverse-sorter="sort.updateTimeInverse"/>
+            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="updateTime" inverse-sorter-id="updateTimeDesc"/>
           </span>
         </th>
       </tr>
@@ -123,8 +117,8 @@
 import FlashOnChange from "@/components/FlashOnChange.vue";
 import {PaissaClient} from "@/views/paissa/client";
 import FilterIcon from "@/views/paissa/FilterIcon.vue";
-import {Filter, filters as filt} from "@/views/paissa/filters";
-import * as sort from "@/views/paissa/sorters"
+import {Filter} from "@/views/paissa/filters";
+import {Sorter, sorters as sort} from "@/views/paissa/sorters";
 import SortIcon from "@/views/paissa/SortIcon.vue";
 import * as utils from "@/views/paissa/utils";
 import {defineComponent} from "vue";
@@ -145,12 +139,10 @@ export default defineComponent({
   data() {
     return {
       utils,
-      sort,
-      filt,
       page: 0,
       numPerPage: 50,
       filters: [] as [string, Filter][],
-      sorters: [] as sort.Sorter[]
+      sorters: [] as [string, Sorter][]
     }
   },
   computed: {
@@ -166,7 +158,7 @@ export default defineComponent({
       }
       // sort: return first non-zero sort
       return plots.sort((a, b) => {
-        for (const sorter of this.sorters) {
+        for (const [_, sorter] of this.sorters) {
           const val = sorter(a, b);
           if (val) return val;
         }
