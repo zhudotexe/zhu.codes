@@ -1,7 +1,7 @@
 <template>
   <!-- # info -->
   <p>
-    {{ world.name }} has
+    {{ client.worldName(worldId) }} has
     <FlashOnChange :value="worldPlots.length"/>
     open plots, at least
     <FlashOnChange :value="worldPlots.filter(utils.isEntryPhase).length"/>
@@ -126,9 +126,8 @@ import FilterIcon from "@/views/paissa/FilterIcon.vue";
 import * as filt from "@/views/paissa/filters";
 import * as sort from "@/views/paissa/sorters"
 import SortIcon from "@/views/paissa/SortIcon.vue";
-import {WorldSummary} from "@/views/paissa/types";
 import * as utils from "@/views/paissa/utils";
-import {defineComponent, PropType} from "vue";
+import {defineComponent} from "vue";
 
 export default defineComponent({
   name: "WorldView",
@@ -138,8 +137,8 @@ export default defineComponent({
       type: PaissaClient,
       required: true
     },
-    world: {
-      type: Object as PropType<WorldSummary>,
+    worldId: {
+      type: Number,
       required: true
     }
   },
@@ -157,7 +156,7 @@ export default defineComponent({
   computed: {
     worldPlots() {
       const allPlots = Array.from(this.client.plotStates.values());
-      return allPlots.filter(state => state.world_id === this.world!.id);
+      return allPlots.filter(state => state.world_id === this.worldId);
     },
     filteredSortedWorldPlots() {
       let plots = [...this.worldPlots];

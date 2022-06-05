@@ -19,12 +19,14 @@ export interface PlotState {
 export class PaissaClient {
     public plotStates: Map<string, PlotState> = new Map<string, PlotState>();
     public worlds: WorldSummary[] = [];
+
     public get isDisconnected() {
         return this.isWSDisconnected && !this.isWSConnecting;
     }
 
     ws: WebSocket | null = null;
     worldsLoaded: Set<number> = new Set<number>();
+    worldMap: Map<number, WorldSummary> = new Map<number, WorldSummary>();
     districtNames: Map<number, string> = new Map<number, string>();
     isWSConnecting = false;
     isWSDisconnected = false;
@@ -50,6 +52,9 @@ export class PaissaClient {
         try {
             const response = await axios.get(`${PAISSADB_BASE}/worlds`);
             this.worlds = response.data;
+            for (const world of response.data) {
+                this.worldMap.set(world.id, world);
+            }
             console.debug(`Loaded ${this.worlds.length} world defs.`)
         } catch (error) {
             console.error("Failed to get world list:", error);
@@ -146,6 +151,10 @@ export class PaissaClient {
     }
 
     // ==== helpers ====
+    public worldName(worldId: number): string {
+        return this.worldMap.get(worldId)?.name ?? worldId.toString();
+    }
+
     public districtName(districtId: number): string {
         return this.districtNames.get(districtId) ?? districtId.toString();
     }
