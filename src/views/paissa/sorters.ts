@@ -1,24 +1,32 @@
 import {PlotState} from "@/views/paissa/client";
 import {isOutdatedPhase, isUnknownOrOutdatedPhase} from "@/views/paissa/utils";
 
+// helpers
 export type Sorter = (a: PlotState, b: PlotState) => number;
 
 const inverse = (f: Sorter) => ((a: PlotState, b: PlotState) => -f(a, b));
 
-export const address: Sorter = (a, b) => a.district_id - b.district_id || a.ward_number - b.ward_number || a.plot_number - b.plot_number;
+export const enum SortOrder {
+    NONE = 0,
+    ASC = 1,
+    DESC = 2
+}
 
-export const size = (a: PlotState, b: PlotState) => a.size - b.size;
-export const sizeInverse = inverse(size);
+export const addressSorter: Sorter = (a, b) => a.district_id - b.district_id || a.ward_number - b.ward_number || a.plot_number - b.plot_number;
 
-export const price = (a: PlotState, b: PlotState) => a.price - b.price;
-export const priceInverse = inverse(price);
+// sorter impls
+const size = (a: PlotState, b: PlotState) => a.size - b.size;
+const sizeDesc = inverse(size);
 
-export const entries = (a: PlotState, b: PlotState) => {
+const price = (a: PlotState, b: PlotState) => a.price - b.price;
+const priceDesc = inverse(price);
+
+const entries = (a: PlotState, b: PlotState) => {
     const aVal = isOutdatedPhase(a) || a.lotto_phase === null ? Number.MAX_VALUE : (a.lotto_entries ?? 0);
     const bVal = isOutdatedPhase(b) || b.lotto_phase === null ? Number.MAX_VALUE : (b.lotto_entries ?? 0);
     return aVal - bVal;
 }
-export const entriesInverse = (a: PlotState, b: PlotState) => {
+const entriesDesc = (a: PlotState, b: PlotState) => {
     // Number.MIN_VALUE is actually an epsilon and not the minimum value representable in a float
     // because *that's* not a foot-gun at all. Thanks Javascript.
     const aVal = isOutdatedPhase(a) || a.lotto_phase === null ? Number.MIN_SAFE_INTEGER : (a.lotto_entries ?? 0);
@@ -26,12 +34,21 @@ export const entriesInverse = (a: PlotState, b: PlotState) => {
     return bVal - aVal;
 };
 
-export const phase = (a: PlotState, b: PlotState) => {
+const phase = (a: PlotState, b: PlotState) => {
     const aVal = isUnknownOrOutdatedPhase(a) ? Number.MAX_VALUE : a.lotto_phase!;
     const bVal = isUnknownOrOutdatedPhase(b) ? Number.MAX_VALUE : b.lotto_phase!;
     return aVal - bVal;
 }
-export const phaseInverse = inverse(phase);
+const phaseDesc = inverse(phase);
 
-export const updateTime = (a: PlotState, b: PlotState) => b.last_updated_time - a.last_updated_time;
-export const updateTimeInverse = inverse(updateTime);
+const updateTime = (a: PlotState, b: PlotState) => b.last_updated_time - a.last_updated_time;
+const updateTimeDesc = inverse(updateTime);
+
+// full mapping
+export const sorters: { [id: string]: { asc: Sorter, desc?: Sorter } } = {
+    size: {asc: size, desc: sizeDesc},
+    price: {asc: price, desc: priceDesc},
+    entries: {asc: entries, desc: entriesDesc},
+    phase: {asc: phase, desc: phaseDesc},
+    updateTime: {asc: updateTime, desc: updateTimeDesc},
+};

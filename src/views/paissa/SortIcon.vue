@@ -1,87 +1,47 @@
 <template>
-  <span class="icon m-0 is-clickable" @click="toggleSortState">
-    <font-awesome-icon :icon="['fas', 'sort']" v-if="sortState === 0"/>
-    <font-awesome-icon :icon="['fas', 'sort-up']" v-else-if="sortState === 1"/>
+  <span class="icon m-0 is-clickable" @click="cycleSortState">
+    <font-awesome-icon :icon="['fas', 'sort']" v-if="direction === 0"/>
+    <font-awesome-icon :icon="['fas', 'sort-up']" v-else-if="direction === 1"/>
     <font-awesome-icon :icon="['fas', 'sort-down']" v-else/>
-    {{ sorterIndex !== null ? sorterIndex + 1 : null }}
+    {{ index !== null ? index + 1 : null }}
   </span>
 </template>
 
 <script lang="ts">
-import {Sorter} from "@/views/paissa/sorters";
+import {SortOrder} from "@/views/paissa/sorters";
 import {defineComponent, PropType} from "vue";
-
-const enum SortState {
-  NONE = 0,
-  ASC = 1,
-  DESC = 2
-}
 
 export default defineComponent({
   name: "SortIcon",
   props: {
-    sorter: {
-      type: Function as PropType<Sorter>,
+    index: {
+      // type: number | null
       required: true
     },
-    inverseSorter: {
-      type: Function as PropType<Sorter>,
-    },
-    sorters: {
-      type: Array as PropType<Sorter[]>,
+    direction: {
+      type: Number as PropType<SortOrder>,
       required: true
+    },
+    allowSortDesc: {
+      type: Boolean,
+      default: true
     }
   },
-  emits: ['update:sorters'],
-  data() {
-    return {
-      sortState: SortState.NONE,
-    }
-  },
-  computed: {
-    sorterIndex(): number | null {
-      if (this.sortState === SortState.ASC) return this.sorters.indexOf(this.sorter);
-      if (this.sortState === SortState.DESC && this.inverseSorter) return this.sorters.indexOf(this.inverseSorter);
-      return null;
-    }
-  },
+  emits: ['directionChanged'],
   methods: {
-    toggleSortState() {
-      let newSorters;
-      if (this.sortState === SortState.NONE) {
-        newSorters = this.addSorter();
-        this.sortState = SortState.ASC;
-      } else if (this.sortState === SortState.ASC) {
-        if (this.inverseSorter) {
-          newSorters = this.updateSorterDesc();
-          this.sortState = SortState.DESC;
+    cycleSortState() {
+      if (this.direction === SortOrder.NONE) {
+        this.$emit('directionChanged', SortOrder.ASC)
+      } else if (this.direction === SortOrder.ASC) {
+        if (this.allowSortDesc) {
+          this.$emit('directionChanged', SortOrder.DESC)
         } else {
-          newSorters = this.removeSorter();
-          this.sortState = SortState.NONE;
+          this.$emit('directionChanged', SortOrder.NONE)
         }
       } else {
-        newSorters = this.removeSorter();
-        this.sortState = SortState.NONE;
+        this.$emit('directionChanged', SortOrder.NONE)
       }
-      this.$emit('update:sorters', newSorters);
-    },
-    addSorter() {
-      const newSorters = [...this.sorters];
-      newSorters.push(this.sorter);
-      return newSorters;
-    },
-    updateSorterDesc() {
-      const index = this.sorterIndex!;
-      const newSorters = [...this.sorters];
-      newSorters[index] = this.inverseSorter!;
-      return newSorters;
-    },
-    removeSorter() {
-      const index = this.sorterIndex!;
-      const newSorters = [...this.sorters];
-      newSorters.splice(index, 1);
-      return newSorters;
-    },
+    }
   }
 });
 </script>

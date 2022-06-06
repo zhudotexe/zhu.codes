@@ -40,16 +40,32 @@
       <!-- /world select -->
 
       <!-- world view -->
-      <template v-if="selectedWorld">
+      <template v-if="selectedWorldId">
         <h4 class="title is-4 mt-4">
-          {{ selectedWorld.name }}
+          {{ client.worldName(selectedWorldId) }}
           <span class="loader is-inline-block" v-if="loadingWorld"></span>
         </h4>
 
-        <WorldView :client="client" :world="selectedWorld" v-if="!loadingWorld"/>
+        <WorldView :client="client" :world-id="selectedWorldId" v-if="!loadingWorld"/>
       </template>
       <!-- /world view -->
 
+      <!-- changelog -->
+      <h4 class="title is-4 mt-4">
+        Changelog
+      </h4>
+      <h6 class="subtitle is-6">
+        For feedback and to keep up-to-date with development, come hang out in
+        <a href="https://discord.gg/9rduk8aDek" target="_blank">my Discord server.</a>
+      </h6>
+      <div class="content">
+        <ul>
+          <li>June 5, 2022: PaissaDB now persists the selected world, sort, and filters on refresh</li>
+          <li>June 4, 2022: fix "Missing Data" on some 0-entry plots with up-to-date data</li>
+          <li>May 30, 2022: initial release</li>
+        </ul>
+      </div>
+      <!-- /changelog -->
     </div>
   </section>
 </template>
@@ -71,7 +87,7 @@ export default defineComponent({
       client: new PaissaClient(),
       utils,
       loadingWorldList: true,
-      selectedWorld: null as WorldSummary | null,
+      selectedWorldId: null as number | null,
       loadingWorld: false,
     }
   },
@@ -82,29 +98,41 @@ export default defineComponent({
       return Object.entries(groupBy(worlds, (world: WorldSummary) => world.datacenter_name));
     },
     selectedWorldPlots(): PlotState[] {
-      if (!this.selectedWorld) {
+      if (!this.selectedWorldId) {
         return [];
       }
       const allPlots = Array.from(this.client.plotStates.values());
-      return allPlots.filter(state => state.world_id === this.selectedWorld!.id)
+      return allPlots.filter(state => state.world_id === this.selectedWorldId)
     }
   },
-  mounted() {
+  async mounted() {
     this.client.init();
-    this.client.getWorlds().then(() => {
-      this.loadingWorldList = false;
-    });
+    await this.client.getWorlds();
+    this.loadingWorldList = false;
+    // if the world is in the query param and valid, select it
+    const worldQuery = this.$route.query.world;
+    if (worldQuery) {
+      const worldId = +worldQuery;
+      if (this.client.worldMap.has(worldId)) {
+        await this.loadWorld(worldId);
+      }
+    }
   },
   unmounted() {
     this.client.close();
   },
   methods: {
-    onSelectWorld(world: WorldSummary) {
-      this.selectedWorld = world;
+    async onSelectWorld(world: WorldSummary) {
+      // update the world query param
+      await this.$router.replace({query: {...this.$route.query, world: world.id}});
+      // load the worlds
+      await this.loadWorld(world.id);
+    },
+    async loadWorld(worldId: number) {
+      this.selectedWorldId = worldId;
       this.loadingWorld = true;
-      this.client.loadWorld(world.id).then(() => {
-        this.loadingWorld = false
-      });
+      await this.client.loadWorld(worldId);
+      this.loadingWorld = false;
     }
   }
 })
