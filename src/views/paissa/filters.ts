@@ -2,7 +2,7 @@ import {PlotState} from "@/views/paissa/client";
 import {HouseSize, LottoPhase, PurchaseSystem} from "@/views/paissa/types";
 import {isLottery, isUnknownOrOutdatedPhase} from "@/views/paissa/utils";
 
-interface FilterOption<T> {
+export interface FilterOption<T> {
     label: string;
     value: T;
 }

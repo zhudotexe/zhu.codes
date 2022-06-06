@@ -26,45 +26,70 @@
         <th>
           <span class="icon-text">
             <span>Address</span>
-            <FilterIcon class="ml-1" v-model:filters="filters" filter-id="districts"/>
+            <FilterIcon class="ml-1"
+                        :options="filters.districts.options"
+                        :selected="getSelectedFilterOptions('districts')"
+                        @selectionChanged="onFilterSelectionChange('districts', $event)"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Size</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="size" inverse-sorter-id="sizeDesc"/>
-            <FilterIcon v-model:filters="filters" filter-id="sizes"/>
+            <SortIcon class="ml-1"
+                      :index="getSortIndex('size')"
+                      :direction="getSortDirection('size')"
+                      @directionChanged="onSortDirectionChange('size', $event)"/>
+            <FilterIcon :options="filters.sizes.options"
+                        :selected="getSelectedFilterOptions('sizes')"
+                        @selectionChanged="onFilterSelectionChange('sizes', $event)"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Price</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="price" inverse-sorter-id="priceDesc"/>
+            <SortIcon class="ml-1"
+                      :index="getSortIndex('price')"
+                      :direction="getSortDirection('price')"
+                      @directionChanged="onSortDirectionChange('price', $event)"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Entries</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="entries" inverse-sorter-id="entriesDesc"/>
+            <SortIcon class="ml-1"
+                      :index="getSortIndex('entries')"
+                      :direction="getSortDirection('entries')"
+                      @directionChanged="onSortDirectionChange('entries', $event)"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Lottery Phase</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="phase" inverse-sorter-id="phaseDesc"/>
-            <FilterIcon v-model:filters="filters" filter-id="phases"/>
+            <SortIcon class="ml-1"
+                      :index="getSortIndex('phase')"
+                      :direction="getSortDirection('phase')"
+                      @directionChanged="onSortDirectionChange('phase', $event)"/>
+            <FilterIcon :options="filters.phases.options"
+                        :selected="getSelectedFilterOptions('phases')"
+                        @selectionChanged="onFilterSelectionChange('phases', $event)"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Allowed Tenants</span>
-            <FilterIcon class="ml-1" v-model:filters="filters" filter-id="tenants"/>
+            <FilterIcon class="ml-1"
+                        :options="filters.tenants.options"
+                        :selected="getSelectedFilterOptions('tenants')"
+                        @selectionChanged="onFilterSelectionChange('tenants', $event)"/>
           </span>
         </th>
         <th>
           <span class="icon-text">
             <span>Last Updated</span>
-            <SortIcon class="ml-1" v-model:sorters="sorters" sorter-id="updateTime" inverse-sorter-id="updateTimeDesc"/>
+            <SortIcon class="ml-1"
+                      :index="getSortIndex('updateTime')"
+                      :direction="getSortDirection('updateTime')"
+                      @directionChanged="onSortDirectionChange('updateTime', $event)"/>
           </span>
         </th>
       </tr>
@@ -117,8 +142,8 @@
 import FlashOnChange from "@/components/FlashOnChange.vue";
 import {PaissaClient} from "@/views/paissa/client";
 import FilterIcon from "@/views/paissa/FilterIcon.vue";
-import {Filter} from "@/views/paissa/filters";
-import {Sorter, sorters as sort} from "@/views/paissa/sorters";
+import {filters} from "@/views/paissa/filters";
+import {addressSorter, sorters, SortOrder} from "@/views/paissa/sorters";
 import SortIcon from "@/views/paissa/SortIcon.vue";
 import * as utils from "@/views/paissa/utils";
 import {defineComponent} from "vue";
@@ -138,11 +163,17 @@ export default defineComponent({
   },
   data() {
     return {
+      // useful modules
       utils,
+      filters,
+      sorters,
+      // pagination
       page: 0,
       numPerPage: 50,
-      filters: [] as [string, Filter][],
-      sorters: [] as [string, Sorter][]
+      // filtering
+      filterSelections: {} as { [filterKey: string]: Set<number> },
+      // sorting
+      sortOrders: new Map<string, SortOrder>()
     }
   },
   computed: {
@@ -153,16 +184,25 @@ export default defineComponent({
     filteredSortedWorldPlots() {
       let plots = [...this.worldPlots];
       // filter
-      for (const [_, filter] of this.filters) {
-        plots = plots.filter(filter);
+      for (const [filterKey, selected] of Object.entries(this.filterSelections)) {
+        const filterImpl = filters[filterKey];
+        if (!filterImpl) continue;
+        plots = plots.filter(filterImpl.strategy(Array.from(selected)));
       }
       // sort: return first non-zero sort
       return plots.sort((a, b) => {
-        for (const [_, sorter] of this.sorters) {
-          const val = sorter(a, b);
+        for (const [sorterKey, direction] of this.sortOrders) {
+          const sorterImpl = sorters[sorterKey];
+          if (!sorterImpl) continue;
+          let val = 0;
+          if (direction === SortOrder.ASC) {
+            val = sorterImpl.asc(a, b);
+          } else if (direction === SortOrder.DESC && sorterImpl.desc) {
+            val = sorterImpl.desc(a, b);
+          }
           if (val) return val;
         }
-        return sort.address(a, b);
+        return addressSorter(a, b);
       });
     },
     currentPagePlots() {
@@ -170,6 +210,48 @@ export default defineComponent({
     },
     numPages() {
       return Math.ceil(this.filteredSortedWorldPlots.length / this.numPerPage);
+    }
+  },
+  methods: {
+    // filters
+    getSelectedFilterOptions(filterKey: string): number[] {
+      const selected = this.filterSelections[filterKey] as (Set<number> | undefined);
+      if (selected !== undefined) {
+        return Array.from(selected);
+      }
+      return [];
+    },
+    onFilterSelectionChange(filterKey: string, selected: number[]) {
+      if (!selected.length) {
+        delete this.filterSelections[filterKey];
+        this.$router.replace({query: {...this.$route.query, [filterKey]: undefined}});
+      } else {
+        this.filterSelections[filterKey] = new Set<number>(selected);
+        this.$router.replace({query: {...this.$route.query, [filterKey]: selected}});
+      }
+    },
+    // sorters
+    getSortIndex(sorterKey: string): number | null {
+      const idx = Array.from(this.sortOrders.keys()).indexOf(sorterKey);
+      return idx === -1 ? null : idx;
+    },
+    getSortDirection(sorterKey: string): SortOrder {
+      return this.sortOrders.get(sorterKey) ?? SortOrder.NONE;
+    },
+    onSortDirectionChange(sorterKey: string, direction: SortOrder) {
+      if (direction === SortOrder.NONE) {
+        this.sortOrders.delete(sorterKey);
+      } else {
+        this.sortOrders.set(sorterKey, direction);
+      }
+      this.$router.replace({query: {...this.$route.query, sort: this.buildSortQueryParam()}});
+    },
+    buildSortQueryParam(): string[] {
+      const result = [];
+      for (const [sorterKey, direction] of this.sortOrders) {
+        result.push(`${sorterKey}:${direction}`)
+      }
+      return result;
     }
   }
 })

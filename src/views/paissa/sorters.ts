@@ -4,17 +4,17 @@ import {isOutdatedPhase, isUnknownOrOutdatedPhase} from "@/views/paissa/utils";
 // helpers
 export type Sorter = (a: PlotState, b: PlotState) => number;
 
-export const enum SortState {
+const inverse = (f: Sorter) => ((a: PlotState, b: PlotState) => -f(a, b));
+
+export const enum SortOrder {
     NONE = 0,
     ASC = 1,
     DESC = 2
 }
 
-const inverse = (f: Sorter) => ((a: PlotState, b: PlotState) => -f(a, b));
+export const addressSorter: Sorter = (a, b) => a.district_id - b.district_id || a.ward_number - b.ward_number || a.plot_number - b.plot_number;
 
 // sorter impls
-const address: Sorter = (a, b) => a.district_id - b.district_id || a.ward_number - b.ward_number || a.plot_number - b.plot_number;
-
 const size = (a: PlotState, b: PlotState) => a.size - b.size;
 const sizeDesc = inverse(size);
 
@@ -45,16 +45,10 @@ const updateTime = (a: PlotState, b: PlotState) => b.last_updated_time - a.last_
 const updateTimeDesc = inverse(updateTime);
 
 // full mapping
-export const sorters: { [id: string]: Sorter } = {
-    address,
-    size,
-    sizeDesc,
-    price,
-    priceDesc,
-    entries,
-    entriesDesc,
-    phase,
-    phaseDesc,
-    updateTime,
-    updateTimeDesc
+export const sorters: { [id: string]: { asc: Sorter, desc?: Sorter } } = {
+    size: {asc: size, desc: sizeDesc},
+    price: {asc: price, desc: priceDesc},
+    entries: {asc: entries, desc: entriesDesc},
+    phase: {asc: phase, desc: phaseDesc},
+    updateTime: {asc: updateTime, desc: updateTimeDesc},
 };
