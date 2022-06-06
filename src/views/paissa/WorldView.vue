@@ -19,6 +19,18 @@
   </p>
   <!-- /# info -->
 
+  <!-- filter info -->
+  <div class="is-flex is-align-items-baseline">
+    <span>
+      {{ filteredSortedWorldPlots.length }} {{ filteredSortedWorldPlots.length === 1 ? 'plot matches' : 'plots match' }}
+      your current filters.
+    </span>
+    <button class="button ml-2" @click="clearFilters()">
+      Clear Sort &amp; Filters
+    </button>
+  </div>
+  <!-- /filter info -->
+
   <div class="table-container mt-4">
     <table class="table is-striped is-fullwidth is-hoverable">
       <thead>
@@ -172,7 +184,7 @@ export default defineComponent({
       page: 0,
       numPerPage: 50,
       // filtering
-      filterSelections: {} as { [filterKey: string]: Set<number> },
+      filterSelections: new Map<string, Set<number>>(),
       // sorting
       sortOrders: new Map<string, SortOrder>()
     }
@@ -189,7 +201,7 @@ export default defineComponent({
     filteredSortedWorldPlots() {
       let plots = [...this.worldPlots];
       // filter
-      for (const [filterKey, selected] of Object.entries(this.filterSelections)) {
+      for (const [filterKey, selected] of this.filterSelections) {
         const filterImpl = filters[filterKey];
         if (!filterImpl) continue;
         plots = plots.filter(filterImpl.strategy(Array.from(selected)));
@@ -220,7 +232,7 @@ export default defineComponent({
   methods: {
     // filters
     getSelectedFilterOptions(filterKey: string): number[] {
-      const selected = this.filterSelections[filterKey] as (Set<number> | undefined);
+      const selected = this.filterSelections.get(filterKey);
       if (selected !== undefined) {
         return Array.from(selected);
       }
@@ -228,12 +240,11 @@ export default defineComponent({
     },
     onFilterSelectionChange(filterKey: string, selected: number[]) {
       if (!selected.length) {
-        delete this.filterSelections[filterKey];
-        this.$router.replace({query: {...this.$route.query, [filterKey]: undefined}});
+        this.filterSelections.delete(filterKey);
       } else {
-        this.filterSelections[filterKey] = new Set<number>(selected);
-        this.$router.replace({query: {...this.$route.query, [filterKey]: selected}});
+        this.filterSelections.set(filterKey, new Set<number>(selected));
       }
+      this.updateQueryParams();
     },
     // sorters
     getSortIndex(sorterKey: string): number | null {
@@ -249,9 +260,24 @@ export default defineComponent({
       } else {
         this.sortOrders.set(sorterKey, direction);
       }
-      this.$router.replace({query: {...this.$route.query, sort: this.buildSortQueryParam()}});
+      this.updateQueryParams();
     },
     // query param helpers
+    updateQueryParams() {
+      const queryParams: { [key: string]: any } = {
+        ...this.$route.query,
+        sort: this.buildSortQueryParam()
+      }
+      for (const filterKey of Object.keys(filters)) {
+        const filterSelections = this.filterSelections.get(filterKey);
+        if (filterSelections) {
+          queryParams[filterKey] = Array.from(filterSelections);
+        } else {
+          queryParams[filterKey] = undefined;
+        }
+      }
+      this.$router.replace({query: queryParams});
+    },
     loadFilterQueryParams() {
       for (const [filterKey, filterDef] of Object.entries(filters)) {
         // if the filter is in the query param and valid, set it up
@@ -271,7 +297,7 @@ export default defineComponent({
         }
         // and init the filter
         if (validOptions.length) {
-          this.filterSelections[filterKey] = new Set<number>(validOptions);
+          this.filterSelections.set(filterKey, new Set<number>(validOptions));
         }
       }
     },
@@ -299,6 +325,12 @@ export default defineComponent({
       }
       return result;
     },
+    // other
+    clearFilters() {
+      this.filterSelections.clear();
+      this.sortOrders.clear();
+      this.updateQueryParams();
+    }
   }
 })
 </script>
