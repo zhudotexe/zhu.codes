@@ -146,6 +146,7 @@ import {filters} from "@/views/paissa/filters";
 import {addressSorter, sorters, SortOrder} from "@/views/paissa/sorters";
 import SortIcon from "@/views/paissa/SortIcon.vue";
 import * as utils from "@/views/paissa/utils";
+import {isArray} from "lodash";
 import {defineComponent} from "vue";
 
 export default defineComponent({
@@ -175,6 +176,10 @@ export default defineComponent({
       // sorting
       sortOrders: new Map<string, SortOrder>()
     }
+  },
+  mounted() {
+    this.loadFilterQueryParams();
+    this.loadSortQueryParams();
   },
   computed: {
     worldPlots() {
@@ -246,13 +251,54 @@ export default defineComponent({
       }
       this.$router.replace({query: {...this.$route.query, sort: this.buildSortQueryParam()}});
     },
+    // query param helpers
+    loadFilterQueryParams() {
+      for (const [filterKey, filterDef] of Object.entries(filters)) {
+        // if the filter is in the query param and valid, set it up
+        // ensure query params are array
+        let filterQuery = this.$route.query[filterKey];
+        if (!filterQuery) continue;
+        if (!isArray(filterQuery)) {
+          filterQuery = [filterQuery];
+        }
+        // find the valid options
+        let validOptions = [];
+        for (const queryElem of filterQuery) {
+          const matchingOption = filterDef.options.find(option => option.value === +(queryElem ?? 0));
+          if (matchingOption) {
+            validOptions.push(matchingOption.value);
+          }
+        }
+        // and init the filter
+        if (validOptions.length) {
+          this.filterSelections[filterKey] = new Set<number>(validOptions);
+        }
+      }
+    },
+    loadSortQueryParams() {
+      // if the sorter is in the query param and valid, set it up
+      // ensure query params are array
+      let sortQuery = this.$route.query.sort;
+      if (!sortQuery) return;
+      if (!isArray(sortQuery)) {
+        sortQuery = [sortQuery];
+      }
+      for (const sortElem of sortQuery) {
+        // ensure key and direction are valid
+        if (!sortElem) continue;
+        const [sorterKey, direction] = sortElem.split(':', 2);
+        if (!(sorters[sorterKey] && (+direction === 1 || +direction === 2))) continue;
+        // init the sorter
+        this.sortOrders.set(sorterKey, +direction);
+      }
+    },
     buildSortQueryParam(): string[] {
       const result = [];
       for (const [sorterKey, direction] of this.sortOrders) {
         result.push(`${sorterKey}:${direction}`)
       }
       return result;
-    }
+    },
   }
 })
 </script>
