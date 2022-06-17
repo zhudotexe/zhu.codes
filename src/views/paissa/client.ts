@@ -158,6 +158,20 @@ export class PaissaClient {
     public districtName(districtId: number): string {
         return this.districtNames.get(districtId) ?? districtId.toString();
     }
+
+    public nextOrLatestPhaseChange(): number {
+        // return the next or latest phase change, might return a date in the past if missing data
+        // or 0 if missing all the data
+        const now = +new Date() / 1000;
+        const sortedPhaseChangeTimes = Array.from(this.plotStates.values())
+            .map(state => state.lotto_phase_until ?? 0)
+            .sort((a, b) => a - b);
+        const nextPhaseChange = sortedPhaseChangeTimes.find(val => val > now);
+        if (nextPhaseChange) {
+            return nextPhaseChange;
+        }
+        return sortedPhaseChangeTimes[sortedPhaseChangeTimes.length - 1] ?? 0;
+    }
 }
 
 function extractPlotLoc(data: OpenPlotDetail | PlotUpdate | SoldPlotDetail): string {

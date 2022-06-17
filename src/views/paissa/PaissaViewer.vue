@@ -60,6 +60,7 @@
       </h6>
       <div class="content">
         <ul>
+          <li>June 17, 2022: added a display showing when the current lottery phase ends</li>
           <li>June 5, 2022: PaissaDB now persists the selected world, sort, and filters on refresh</li>
           <li>June 4, 2022: fix "Missing Data" on some 0-entry plots with up-to-date data</li>
           <li>May 30, 2022: initial release</li>

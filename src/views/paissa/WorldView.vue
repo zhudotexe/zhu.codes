@@ -20,14 +20,35 @@
   <!-- /# info -->
 
   <!-- filter info -->
-  <div class="is-flex is-align-items-baseline">
-    <span>
-      {{ filteredSortedWorldPlots.length }} {{ filteredSortedWorldPlots.length === 1 ? 'plot matches' : 'plots match' }}
-      your current filters.
-    </span>
-    <button class="button ml-2" @click="clearFilters()">
-      Clear Sort &amp; Filters
-    </button>
+  <div class="level mt-2">
+    <div class="level-left">
+      <p class="level-item" v-if="client.nextOrLatestPhaseChange() > +new Date() / 1000">
+        The current lottery phase ends at
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday"/>
+        (<TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>).
+      </p>
+      <p class="level-item" v-else-if="client.nextOrLatestPhaseChange() > 0">
+        The previous lottery phase ended at
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday"/>
+        (<TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>).
+      </p>
+      <p class="level-item" v-else>
+        There is insufficient data to calculate when the next lottery phase ends.
+      </p>
+    </div>
+    <div class="level-right">
+      <p class="level-item">
+        {{ filteredSortedWorldPlots.length }} {{
+          filteredSortedWorldPlots.length === 1 ? 'plot matches' : 'plots match'
+        }}
+        your current filters.
+      </p>
+      <p class="level-item">
+        <button class="button" @click="clearFilters()">
+          Clear Sort &amp; Filters
+        </button>
+      </p>
+    </div>
   </div>
   <!-- /filter info -->
 
@@ -152,6 +173,7 @@
 
 <script lang="ts">
 import FlashOnChange from "@/components/FlashOnChange.vue";
+import TimeDisplay from "@/components/TimeDisplay.vue";
 import {PaissaClient} from "@/views/paissa/client";
 import FilterIcon from "@/views/paissa/FilterIcon.vue";
 import {filters} from "@/views/paissa/filters";
@@ -163,7 +185,7 @@ import {defineComponent} from "vue";
 
 export default defineComponent({
   name: "WorldView",
-  components: {FilterIcon, SortIcon, FlashOnChange},
+  components: {TimeDisplay, FilterIcon, SortIcon, FlashOnChange},
   props: {
     client: {
       type: PaissaClient,

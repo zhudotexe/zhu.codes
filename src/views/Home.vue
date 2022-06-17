@@ -266,11 +266,11 @@
             </div>
             <footer class="card-footer">
               <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse" target="_blank" class="card-footer-item">
-                PaissaHouse
+                GitHub
               </a>
-              <a href="https://github.com/zhudotexe/FFXIV_PaissaDB" target="_blank" class="card-footer-item">
+              <router-link to="/paissa" class="card-footer-item">
                 PaissaDB
-              </a>
+              </router-link>
             </footer>
           </div>
         </div>
