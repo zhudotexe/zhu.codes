@@ -8,7 +8,8 @@ import {
     faJsSquare,
     faLinkedin,
     faNodeJs,
-    faPython
+    faPython,
+    faVuejs
 } from "@fortawesome/free-brands-svg-icons";
 import {
     faAngleLeft,
@@ -35,7 +36,7 @@ import router from './router'
 
 // ==== fontawesome ====
 // brands
-library.add(faGithub, faDiscord, faDAndD, faLinkedin, faPython, faAws, faJsSquare, faNodeJs, faAngular)
+library.add(faGithub, faDiscord, faDAndD, faLinkedin, faPython, faAws, faJsSquare, faNodeJs, faAngular, faVuejs)
 // regular
 library.add(faEnvelope, faUniversity, faBuilding, faRobot, faSitemap, faCode, faFileAlt, faDragon, faDiceD20, faExclamationTriangle, faAngleLeft, faAngleRight, faSort, faSortUp, faSortDown, faFilter)
 

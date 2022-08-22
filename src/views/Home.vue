@@ -376,6 +376,60 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
         </div>
         <!-- /d20 -->
 
+        <!-- kinesis tools -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/KinesisToolsLogo.svg" alt="Kinesis Tools Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">AWS Kinesis Tools</p>
+                  <p class="subtitle is-6">The fastest way to iterate on data heuristics in the West.</p>
+                </div>
+              </div>
+
+              <p>
+                Built in order to quickly iterate on heuristics and filter a large quantity of events captured for the
+                <a href="https://www.cis.upenn.edu/~ccb/language-to-avrae.html" target="_blank">Avrae NLP project</a>
+                at UPenn, the Kinesis Tools are a blazing-fast (>10GB/min) way to explore a structured dataset.
+              </p>
+              <p>
+                <a href="mailto:me@andrew-zhu.com" target="_blank">
+                  Contact me
+                </a>
+                for help using these tools for your own data science project!
+              </p>
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <i>2022 - current</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'vuejs']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'aws']"/>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="https://github.com/zhudotexe/aws-kinesis-dataset-exploration-tool"
+                 target="_blank"
+                 class="card-footer-item">GitHub</a>
+            </footer>
+          </div>
+        </div>
+        <!-- /kinesis tools -->
+
         <!-- dicecloud tools -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
