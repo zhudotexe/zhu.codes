@@ -1,4 +1,28 @@
 <!-- Displays the nodes contained within this node iff the current system time falls between *from* and *to*. -->
+<script setup lang="ts">
+import {DateTime} from "luxon";
+import {computed} from "vue";
+
+const props = defineProps<{
+  from: number,
+  to: number,
+  tempMessageClass: string
+}>();
+
+const isDisplayed = computed(() => {
+  const now = DateTime.now().toSeconds();
+  return props.from <= now && now <= props.to;
+});
+const displayedUntil = computed(() => {
+  const until = DateTime.fromSeconds(props.to);
+  let timeFmtOptions = DateTime.DATETIME_SHORT;
+  if (until.hasSame(DateTime.now(), 'day')) {
+    timeFmtOptions = DateTime.TIME_SIMPLE;
+  }
+  return until.toLocaleString(timeFmtOptions);
+})
+</script>
+
 <template>
   <div v-if="isDisplayed">
     <div class="temp-display-background">
@@ -10,38 +34,13 @@
             <span class="icon">
               <font-awesome-icon :icon="['fas', 'exclamation-triangle']"/>
             </span>
-            <span>This is a temporary message. This message will disappear after {{displayedUntil}}.</span>
+            <span>This is a temporary message. This message will disappear after {{ displayedUntil }}.</span>
           </span>
         </p>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-import {DateTime} from "luxon";
-
-export default {
-  name: "TemporaryDisplay",
-  props: {
-    from: Number,
-    to: Number,
-    tempMessageClass: String
-  },
-  data() {
-    const now = DateTime.now().toSeconds();
-    const until = DateTime.fromSeconds(this.to);
-    let timeFmtOptions = DateTime.DATETIME_SHORT;
-    if (until.hasSame(DateTime.now(), 'day')) {
-      timeFmtOptions = DateTime.TIME_SIMPLE;
-    }
-    return {
-      isDisplayed: this.from <= now && now <= this.to,
-      displayedUntil: until.toLocaleString(timeFmtOptions)
-    }
-  }
-}
-</script>
 
 <style scoped>
 .temp-display-background {

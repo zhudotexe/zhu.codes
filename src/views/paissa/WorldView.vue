@@ -1,3 +1,187 @@
+<script setup lang="ts">
+import FlashOnChange from "@/components/FlashOnChange.vue";
+import TimeDisplay from "@/components/TimeDisplay.vue";
+import type {PaissaClient} from "@/views/paissa/client";
+import FilterIcon from "@/views/paissa/FilterIcon.vue";
+import {filters} from "@/views/paissa/filters";
+import {addressSorter, sorters, SortOrder} from "@/views/paissa/sorters";
+import SortIcon from "@/views/paissa/SortIcon.vue";
+import * as utils from "@/views/paissa/utils";
+import {isArray} from "lodash";
+import {computed, onMounted, reactive} from "vue";
+import {useRoute, useRouter} from "vue-router";
+
+// setup
+const router = useRouter();
+const route = useRoute();
+const props = defineProps<{
+  client: PaissaClient,
+  worldId: number
+}>();
+
+// state
+const pagination = reactive({
+  currentPage: 0,
+  numPerPage: 50
+});
+const filterSelections = reactive(new Map<string, Set<number>>());
+const sortOrders = reactive(new Map<string, SortOrder>());
+
+// computed
+const worldPlots = computed(() => {
+  const allPlots = Array.from(props.client.plotStates.values());
+  return allPlots.filter(state => state.world_id === props.worldId);
+});
+const filteredSortedWorldPlots = computed(() => {
+  let plots = [...worldPlots.value];
+  // filter
+  for (const [filterKey, selected] of filterSelections) {
+    const filterImpl = filters[filterKey];
+    if (!filterImpl) continue;
+    plots = plots.filter(filterImpl.strategy(Array.from(selected)));
+  }
+  // sort: return first non-zero sort
+  return plots.sort((a, b) => {
+    for (const [sorterKey, direction] of sortOrders) {
+      const sorterImpl = sorters[sorterKey];
+      if (!sorterImpl) continue;
+      let val = 0;
+      if (direction === SortOrder.ASC) {
+        val = sorterImpl.asc(a, b);
+      } else if (direction === SortOrder.DESC && sorterImpl.desc) {
+        val = sorterImpl.desc(a, b);
+      }
+      if (val) return val;
+    }
+    return addressSorter(a, b);
+  });
+});
+const currentPagePlots = computed(() => {
+  return filteredSortedWorldPlots.value.slice(pagination.currentPage * pagination.numPerPage, (pagination.currentPage + 1) * pagination.numPerPage);
+});
+const numPages = computed(() => {
+  return Math.ceil(filteredSortedWorldPlots.value.length / pagination.numPerPage)
+});
+
+// methods
+// filters
+function getSelectedFilterOptions(filterKey: string): number[] {
+  const selected = filterSelections.get(filterKey);
+  if (selected !== undefined) {
+    return Array.from(selected);
+  }
+  return [];
+}
+
+function onFilterSelectionChange(filterKey: string, selected: number[]) {
+  if (!selected.length) {
+    filterSelections.delete(filterKey);
+  } else {
+    filterSelections.set(filterKey, new Set<number>(selected));
+  }
+  updateQueryParams();
+}
+
+// sorters
+function getSortIndex(sorterKey: string): number | null {
+  const idx = Array.from(sortOrders.keys()).indexOf(sorterKey);
+  return idx === -1 ? null : idx;
+}
+
+function getSortDirection(sorterKey: string): SortOrder {
+  return sortOrders.get(sorterKey) ?? SortOrder.NONE;
+}
+
+function onSortDirectionChange(sorterKey: string, direction: SortOrder) {
+  if (direction === SortOrder.NONE) {
+    sortOrders.delete(sorterKey);
+  } else {
+    sortOrders.set(sorterKey, direction);
+  }
+  updateQueryParams();
+}
+
+// query param helpers
+function updateQueryParams() {
+  const queryParams: { [key: string]: any } = {
+    ...route.query,
+    sort: buildSortQueryParam()
+  }
+  for (const filterKey of Object.keys(filters)) {
+    const oneFilterSelections = filterSelections.get(filterKey);
+    if (oneFilterSelections) {
+      queryParams[filterKey] = Array.from(oneFilterSelections);
+    } else {
+      queryParams[filterKey] = undefined;
+    }
+  }
+  router.replace({query: queryParams});
+}
+
+function loadFilterQueryParams() {
+  for (const [filterKey, filterDef] of Object.entries(filters)) {
+    // if the filter is in the query param and valid, set it up
+    // ensure query params are array
+    let filterQuery = route.query[filterKey];
+    if (!filterQuery) continue;
+    if (!isArray(filterQuery)) {
+      filterQuery = [filterQuery];
+    }
+    // find the valid options
+    let validOptions = [];
+    for (const queryElem of filterQuery) {
+      const matchingOption = filterDef.options.find(option => option.value === +(queryElem ?? 0));
+      if (matchingOption) {
+        validOptions.push(matchingOption.value);
+      }
+    }
+    // and init the filter
+    if (validOptions.length) {
+      filterSelections.set(filterKey, new Set<number>(validOptions));
+    }
+  }
+}
+
+function loadSortQueryParams() {
+  // if the sorter is in the query param and valid, set it up
+  // ensure query params are array
+  let sortQuery = route.query.sort;
+  if (!sortQuery) return;
+  if (!isArray(sortQuery)) {
+    sortQuery = [sortQuery];
+  }
+  for (const sortElem of sortQuery) {
+    // ensure key and direction are valid
+    if (!sortElem) continue;
+    const [sorterKey, direction] = sortElem.split(':', 2);
+    if (!(sorters[sorterKey] && (+direction === 1 || +direction === 2))) continue;
+    // init the sorter
+    sortOrders.set(sorterKey, +direction);
+  }
+}
+
+function buildSortQueryParam(): string[] {
+  const result = [];
+  for (const [sorterKey, direction] of sortOrders) {
+    result.push(`${sorterKey}:${direction}`)
+  }
+  return result;
+}
+
+// other
+function clearFilters() {
+  filterSelections.clear();
+  sortOrders.clear();
+  updateQueryParams();
+}
+
+// hooks
+onMounted(() => {
+  loadFilterQueryParams();
+  loadSortQueryParams();
+})
+</script>
+
 <template>
   <!-- # info -->
   <p>
@@ -130,7 +314,7 @@
 
       <tbody>
       <tr v-for="plot in currentPagePlots"
-          :key="[plot.world_id, plot.district_id, plot.ward_number, plot.plot_number]">
+          :key="[plot.world_id, plot.district_id, plot.ward_number, plot.plot_number].toString()">
         <td>
           {{ client.districtName(plot.district_id) }}, Ward {{ plot.ward_number + 1 }}, Plot
           {{ plot.plot_number + 1 }}
@@ -154,13 +338,13 @@
 
     <div class="level" v-if="numPages > 1">
       <p class="level-item">
-        <button class="button mr-2" v-if="page > 0" @click="page--">
+        <button class="button mr-2" v-if="pagination.currentPage > 0" @click="pagination.currentPage--">
           <span class="icon is-small">
             <font-awesome-icon :icon="['fas', 'angle-left']"/>
           </span>
         </button>
-        <span>Page {{ page + 1 }} / {{ numPages }}</span>
-        <button class="button ml-2" v-if="page < numPages - 1" @click="page++">
+        <span>Page {{ pagination.currentPage + 1 }} / {{ numPages }}</span>
+        <button class="button ml-2" v-if="pagination.currentPage < numPages - 1" @click="pagination.currentPage++">
           <span class="icon is-small">
             <font-awesome-icon :icon="['fas', 'angle-right']"/>
           </span>
@@ -170,192 +354,6 @@
 
   </div>
 </template>
-
-<script lang="ts">
-import FlashOnChange from "@/components/FlashOnChange.vue";
-import TimeDisplay from "@/components/TimeDisplay.vue";
-import {PaissaClient} from "@/views/paissa/client";
-import FilterIcon from "@/views/paissa/FilterIcon.vue";
-import {filters} from "@/views/paissa/filters";
-import {addressSorter, sorters, SortOrder} from "@/views/paissa/sorters";
-import SortIcon from "@/views/paissa/SortIcon.vue";
-import * as utils from "@/views/paissa/utils";
-import {isArray} from "lodash";
-import {defineComponent} from "vue";
-
-export default defineComponent({
-  name: "WorldView",
-  components: {TimeDisplay, FilterIcon, SortIcon, FlashOnChange},
-  props: {
-    client: {
-      type: PaissaClient,
-      required: true
-    },
-    worldId: {
-      type: Number,
-      required: true
-    }
-  },
-  data() {
-    return {
-      // useful modules
-      utils,
-      filters,
-      sorters,
-      // pagination
-      page: 0,
-      numPerPage: 50,
-      // filtering
-      filterSelections: new Map<string, Set<number>>(),
-      // sorting
-      sortOrders: new Map<string, SortOrder>()
-    }
-  },
-  mounted() {
-    this.loadFilterQueryParams();
-    this.loadSortQueryParams();
-  },
-  computed: {
-    worldPlots() {
-      const allPlots = Array.from(this.client.plotStates.values());
-      return allPlots.filter(state => state.world_id === this.worldId);
-    },
-    filteredSortedWorldPlots() {
-      let plots = [...this.worldPlots];
-      // filter
-      for (const [filterKey, selected] of this.filterSelections) {
-        const filterImpl = filters[filterKey];
-        if (!filterImpl) continue;
-        plots = plots.filter(filterImpl.strategy(Array.from(selected)));
-      }
-      // sort: return first non-zero sort
-      return plots.sort((a, b) => {
-        for (const [sorterKey, direction] of this.sortOrders) {
-          const sorterImpl = sorters[sorterKey];
-          if (!sorterImpl) continue;
-          let val = 0;
-          if (direction === SortOrder.ASC) {
-            val = sorterImpl.asc(a, b);
-          } else if (direction === SortOrder.DESC && sorterImpl.desc) {
-            val = sorterImpl.desc(a, b);
-          }
-          if (val) return val;
-        }
-        return addressSorter(a, b);
-      });
-    },
-    currentPagePlots() {
-      return this.filteredSortedWorldPlots.slice(this.page * this.numPerPage, (this.page + 1) * this.numPerPage);
-    },
-    numPages() {
-      return Math.ceil(this.filteredSortedWorldPlots.length / this.numPerPage);
-    }
-  },
-  methods: {
-    // filters
-    getSelectedFilterOptions(filterKey: string): number[] {
-      const selected = this.filterSelections.get(filterKey);
-      if (selected !== undefined) {
-        return Array.from(selected);
-      }
-      return [];
-    },
-    onFilterSelectionChange(filterKey: string, selected: number[]) {
-      if (!selected.length) {
-        this.filterSelections.delete(filterKey);
-      } else {
-        this.filterSelections.set(filterKey, new Set<number>(selected));
-      }
-      this.updateQueryParams();
-    },
-    // sorters
-    getSortIndex(sorterKey: string): number | null {
-      const idx = Array.from(this.sortOrders.keys()).indexOf(sorterKey);
-      return idx === -1 ? null : idx;
-    },
-    getSortDirection(sorterKey: string): SortOrder {
-      return this.sortOrders.get(sorterKey) ?? SortOrder.NONE;
-    },
-    onSortDirectionChange(sorterKey: string, direction: SortOrder) {
-      if (direction === SortOrder.NONE) {
-        this.sortOrders.delete(sorterKey);
-      } else {
-        this.sortOrders.set(sorterKey, direction);
-      }
-      this.updateQueryParams();
-    },
-    // query param helpers
-    updateQueryParams() {
-      const queryParams: { [key: string]: any } = {
-        ...this.$route.query,
-        sort: this.buildSortQueryParam()
-      }
-      for (const filterKey of Object.keys(filters)) {
-        const filterSelections = this.filterSelections.get(filterKey);
-        if (filterSelections) {
-          queryParams[filterKey] = Array.from(filterSelections);
-        } else {
-          queryParams[filterKey] = undefined;
-        }
-      }
-      this.$router.replace({query: queryParams});
-    },
-    loadFilterQueryParams() {
-      for (const [filterKey, filterDef] of Object.entries(filters)) {
-        // if the filter is in the query param and valid, set it up
-        // ensure query params are array
-        let filterQuery = this.$route.query[filterKey];
-        if (!filterQuery) continue;
-        if (!isArray(filterQuery)) {
-          filterQuery = [filterQuery];
-        }
-        // find the valid options
-        let validOptions = [];
-        for (const queryElem of filterQuery) {
-          const matchingOption = filterDef.options.find(option => option.value === +(queryElem ?? 0));
-          if (matchingOption) {
-            validOptions.push(matchingOption.value);
-          }
-        }
-        // and init the filter
-        if (validOptions.length) {
-          this.filterSelections.set(filterKey, new Set<number>(validOptions));
-        }
-      }
-    },
-    loadSortQueryParams() {
-      // if the sorter is in the query param and valid, set it up
-      // ensure query params are array
-      let sortQuery = this.$route.query.sort;
-      if (!sortQuery) return;
-      if (!isArray(sortQuery)) {
-        sortQuery = [sortQuery];
-      }
-      for (const sortElem of sortQuery) {
-        // ensure key and direction are valid
-        if (!sortElem) continue;
-        const [sorterKey, direction] = sortElem.split(':', 2);
-        if (!(sorters[sorterKey] && (+direction === 1 || +direction === 2))) continue;
-        // init the sorter
-        this.sortOrders.set(sorterKey, +direction);
-      }
-    },
-    buildSortQueryParam(): string[] {
-      const result = [];
-      for (const [sorterKey, direction] of this.sortOrders) {
-        result.push(`${sorterKey}:${direction}`)
-      }
-      return result;
-    },
-    // other
-    clearFilters() {
-      this.filterSelections.clear();
-      this.sortOrders.clear();
-      this.updateQueryParams();
-    }
-  }
-})
-</script>
 
 <style scoped>
 .table-container {

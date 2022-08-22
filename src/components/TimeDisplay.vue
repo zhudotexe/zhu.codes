@@ -1,11 +1,7 @@
 <!-- This component displays a given time, updated each second. Use fmtOptions to change the display. -->
-<template>
-  {{ timeStr }}
-</template>
-
-<script lang="ts">
+<script setup lang="ts">
 import {DateTime} from "luxon";
-import {defineComponent, PropType} from "vue";
+import {computed, getCurrentInstance, onMounted, ref} from "vue";
 
 // formats like https://hammertime.cyou/
 type DateTimeFormat = 'date'
@@ -17,51 +13,40 @@ type DateTimeFormat = 'date'
     | 'relative'
     | 'timestamp';
 
-export default defineComponent({
-  name: "TimeDisplay",
-  props: {
-    time: {
-      type: Number,
-      required: true
-    },
-    format: {
-      default: 'time',
-      type: String as PropType<DateTimeFormat>
-    }
-  },
-  mounted() {
-    setInterval(this.$forceUpdate, 1000);
-  },
-  data() {
-    return {
-      luxonTime: DateTime.fromSeconds(this.time)
-    }
-  },
-  computed: {
-    timeStr() {
-      switch (this.format) {
-        case 'date':
-          return this.luxonTime.toLocaleString(DateTime.DATE_SHORT);
-        case 'dateDay':
-          return this.luxonTime.toLocaleString(DateTime.DATE_FULL);
-        case 'time':
-          return this.luxonTime.toLocaleString(DateTime.TIME_SIMPLE);
-        case 'timeSecs':
-          return this.luxonTime.toLocaleString(DateTime.TIME_WITH_SECONDS);
-        case 'datetime':
-          return `${this.luxonTime.toLocaleString(DateTime.DATE_FULL)} ${this.luxonTime.toLocaleString(DateTime.TIME_SIMPLE)}`;
-        case 'datetimeWeekday':
-          return `${this.luxonTime.toLocaleString(DateTime.DATE_HUGE)} ${this.luxonTime.toLocaleString(DateTime.TIME_SIMPLE)}`;
-        case 'relative':
-          return this.luxonTime.toRelative();
-        default:
-          return this.luxonTime.toSeconds().toString();
-      }
-    }
+const props = defineProps<{
+  time: number,
+  format: DateTimeFormat
+}>();
+
+const luxonTime = ref(DateTime.fromSeconds(props.time));
+
+const timeStr = computed(() => {
+  switch (props.format) {
+    case 'date':
+      return luxonTime.value.toLocaleString(DateTime.DATE_SHORT);
+    case 'dateDay':
+      return luxonTime.value.toLocaleString(DateTime.DATE_FULL);
+    case 'time':
+      return luxonTime.value.toLocaleString(DateTime.TIME_SIMPLE);
+    case 'timeSecs':
+      return luxonTime.value.toLocaleString(DateTime.TIME_WITH_SECONDS);
+    case 'datetime':
+      return `${luxonTime.value.toLocaleString(DateTime.DATE_FULL)} ${luxonTime.value.toLocaleString(DateTime.TIME_SIMPLE)}`;
+    case 'datetimeWeekday':
+      return `${luxonTime.value.toLocaleString(DateTime.DATE_HUGE)} ${luxonTime.value.toLocaleString(DateTime.TIME_SIMPLE)}`;
+    case 'relative':
+      return luxonTime.value.toRelative();
+    default:
+      return luxonTime.value.toSeconds().toString();
   }
 });
+
+onMounted(() => setInterval(() => {
+  const instance = getCurrentInstance();
+  instance?.proxy?.$forceUpdate();
+}, 1000));
 </script>
 
-<style scoped>
-
-</style>
+<template>
+  {{ timeStr }}
+</template>

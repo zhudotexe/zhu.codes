@@ -1,8 +1,26 @@
+<script setup lang="ts">
+import clickOutside from 'click-outside-vue3';
+import {ref} from "vue";
+
+defineProps<{ label: string }>();
+const vClickOutside = clickOutside.directive;
+
+const isExpanded = ref(false);
+
+function onButtonClick() {
+  isExpanded.value = !isExpanded.value;
+}
+
+function onClickOutside() {
+  isExpanded.value = false;
+}
+</script>
+
 <template>
   <div class="dropdown"
        :class="{'is-active': isExpanded}"
-       @click="isExpanded = !isExpanded"
-       v-click-outside="() => isExpanded = false">
+       @click="onButtonClick"
+       v-click-outside="onClickOutside">
     <div class="dropdown-trigger">
       <button class="button is-info" aria-haspopup="true" aria-controls="dropdown-menu">
         <span>{{ label }}</span>
@@ -15,25 +33,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import vClickOutside from 'click-outside-vue3';
-
-export default {
-  name: "Dropdown",
-  props: ["label"],
-  data() {
-    return {isExpanded: false};
-  },
-  directives: {
-    clickOutside: vClickOutside.directive
-  }
-}
-</script>
-
-<style scoped>
-
-</style>
 
 <!--
 usage:

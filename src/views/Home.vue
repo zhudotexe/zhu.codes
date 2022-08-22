@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import CurrentTime from "@/components/CurrentTime.vue";
+import HomeSubtitle from "@/components/HomeSubtitle.vue";
+</script>
+
 <template>
   <!-- heading -->
   <section class="hero is-primary">
@@ -108,7 +113,7 @@
         About Me
       </h1>
       <p>
-        I'm a Ph.D. student at the University of Pennsylvania starting in the fall of 2022.
+        I'm a Ph.D. student at the University of Pennsylvania.
       </p>
       <p>
         My research interests include natural language processing, programming languages,
@@ -121,7 +126,7 @@
       <p>
         You can find me lurking in various D&amp;D Discord servers, in Eorzea leading the <i>&laquo;kupo?&raquo;</i>
         Free Company, or by shooting me an email (it's
-        <CurrentTime to-time-zone="America/Los_Angeles"/>
+        <CurrentTime to-time-zone="America/New_York"/>
         for me right now).
       </p>
       <p class="is-flex is-justify-content-center">
@@ -182,7 +187,7 @@
               <p>
                 Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
                 play D&amp;D together online.
-                Rolling with over 5 million users across over 380,000 Discord servers since 2016.
+                Rolling with over 5 million users across over 400,000 Discord servers since 2016.
               </p>
               <div class="level is-mobile">
                 <div class="level-left">
@@ -491,16 +496,6 @@
   <!--</section>-->
   <!--&lt;!&ndash; /publications &ndash;&gt;-->
 </template>
-
-<script>
-import CurrentTime from "@/components/CurrentTime.vue";
-import HomeSubtitle from "@/components/HomeSubtitle.vue";
-
-export default {
-  name: 'Home',
-  components: {HomeSubtitle, CurrentTime}
-}
-</script>
 
 <style scoped>
 .svg-margin {

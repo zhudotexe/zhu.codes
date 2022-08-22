@@ -1,8 +1,46 @@
+<script setup lang="ts">
+import type {FilterOption} from "@/views/paissa/filters";
+import clickOutside from "click-outside-vue3";
+import {defineProps, ref} from "vue";
+
+// setup
+const props = defineProps<{
+  options: FilterOption<number>[];
+  selected: number[];
+}>();
+const emit = defineEmits<{
+  (e: 'selectionChanged', selectedOptions: number[]): void
+}>();
+const vClickOutside = clickOutside.directive;
+
+// state
+const isExpanded = ref(false);
+
+// methods
+function onCheckboxChange(event: any, value: number) {
+  const selectedOptions = new Set<number>(props.selected);
+  if (event.currentTarget.checked) {
+    selectedOptions.add(value);
+  } else {
+    selectedOptions.delete(value);
+  }
+  emit('selectionChanged', Array.from(selectedOptions));
+}
+
+function onClick() {
+  isExpanded.value = true;
+}
+
+function onClickOutside() {
+  isExpanded.value = false;
+}
+</script>
+
 <template>
   <div class="dropdown"
        :class="{'is-active': isExpanded}"
-       @click="isExpanded = true"
-       v-click-outside="() => isExpanded = false">
+       @click="onClick"
+       v-click-outside="onClickOutside">
 
     <div class="dropdown-trigger">
       <!-- dropdown controller = filter button -->
@@ -25,49 +63,4 @@
       </div>
     </div>
   </div>
-
 </template>
-
-<script lang="ts">
-import {FilterOption} from "@/views/paissa/filters";
-import vClickOutside from 'click-outside-vue3';
-import {defineComponent, PropType} from "vue";
-
-export default defineComponent({
-  name: "FilterIcon",
-  props: {
-    options: {
-      type: Array as PropType<FilterOption<number>[]>,
-      required: true
-    },
-    selected: {
-      type: Array as PropType<number[]>,
-      required: true
-    }
-  },
-  emits: ['selectionChanged'],
-  data() {
-    return {
-      isExpanded: false
-    }
-  },
-  methods: {
-    onCheckboxChange(event: any, value: number) {
-      const selectedOptions = new Set<number>(this.selected);
-      if (event.currentTarget.checked) {
-        selectedOptions.add(value);
-      } else {
-        selectedOptions.delete(value);
-      }
-      this.$emit('selectionChanged', Array.from(selectedOptions));
-    }
-  },
-  directives: {
-    clickOutside: vClickOutside.directive
-  }
-});
-</script>
-
-<style scoped>
-
-</style>

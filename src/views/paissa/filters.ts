@@ -1,4 +1,4 @@
-import {PlotState} from "@/views/paissa/client";
+import type {PlotState} from "@/views/paissa/client";
 import {HouseSize, LottoPhase, PurchaseSystem} from "@/views/paissa/types";
 import {isLottery, isUnknownOrOutdatedPhase} from "@/views/paissa/utils";
 

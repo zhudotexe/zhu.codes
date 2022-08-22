@@ -1,3 +1,7 @@
+<script setup lang="ts">
+defineProps<{ value: any }>();
+</script>
+
 <template>
   <transition mode="out-in">
     <span :key="value">
@@ -5,13 +9,6 @@
     </span>
   </transition>
 </template>
-
-<script>
-export default {
-  name: "FlashOnChange",
-  props: ['value']
-}
-</script>
 
 <style scoped lang="scss">
 .v-enter-active,

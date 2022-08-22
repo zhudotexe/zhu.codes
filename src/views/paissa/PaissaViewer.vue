@@ -1,3 +1,61 @@
+<script setup lang="ts">
+import Dropdown from "@/components/Dropdown.vue";
+import {PaissaClient} from "@/views/paissa/client";
+import type {WorldSummary} from "@/views/paissa/types";
+import WorldView from "@/views/paissa/WorldView.vue";
+import {groupBy} from "lodash";
+import {computed, onMounted, onUnmounted, reactive, ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
+
+// setup
+const router = useRouter();
+const route = useRoute();
+
+// state
+const client = reactive(new PaissaClient());
+const loadingWorldList = ref(true);
+const selectedWorldId = ref<number | null>(null);
+const loadingWorld = ref(false);
+
+// computed
+const worldGroups = computed<[string, WorldSummary[]][]>(() => {
+  let worlds = client.worlds;
+  worlds.sort(((a, b) => a.datacenter_name.localeCompare(b.datacenter_name) || a.name.localeCompare(b.name)));
+  return Object.entries(groupBy(worlds, (world: WorldSummary) => world.datacenter_name));
+});
+
+// methods
+async function onSelectWorld(world: WorldSummary) {
+  // update the world query param
+  await router.replace({query: {...route.query, world: world.id}});
+  // load the worlds
+  await loadWorld(world.id);
+}
+
+async function loadWorld(worldId: number) {
+  selectedWorldId.value = worldId;
+  loadingWorld.value = true;
+  await client.loadWorld(worldId);
+  loadingWorld.value = false;
+}
+
+// hooks
+onMounted(async () => {
+  client.init();
+  await client.getWorlds();
+  loadingWorldList.value = false;
+  // if the world is in the query param and valid, select it
+  const worldQuery = route.query.world;
+  if (worldQuery) {
+    const worldId = +worldQuery;
+    if (client.worldMap.has(worldId)) {
+      await loadWorld(worldId);
+    }
+  }
+});
+onUnmounted(() => client.close());
+</script>
+
 <template>
   <section class="section">
     <div class="container">
@@ -60,6 +118,7 @@
       </h6>
       <div class="content">
         <ul>
+          <li>August 22, 2022: refactored much of the site code, let me know if I broke anything!</li>
           <li>June 17, 2022: added a display showing when the current lottery phase ends</li>
           <li>June 5, 2022: PaissaDB now persists the selected world, sort, and filters on refresh</li>
           <li>June 4, 2022: fix "Missing Data" on some 0-entry plots with up-to-date data</li>
@@ -70,74 +129,6 @@
     </div>
   </section>
 </template>
-
-<script lang="ts">
-import Dropdown from "@/components/Dropdown.vue";
-import {PaissaClient, PlotState} from "@/views/paissa/client";
-import {WorldSummary} from "@/views/paissa/types";
-import * as utils from "@/views/paissa/utils";
-import WorldView from "@/views/paissa/WorldView.vue";
-import {groupBy} from "lodash";
-import {defineComponent} from "vue";
-
-export default defineComponent({
-  name: "PaissaViewer",
-  components: {WorldView, Dropdown},
-  data() {
-    return {
-      client: new PaissaClient(),
-      utils,
-      loadingWorldList: true,
-      selectedWorldId: null as number | null,
-      loadingWorld: false,
-    }
-  },
-  computed: {
-    worldGroups(): [string, WorldSummary[]][] {
-      let worlds = this.client.worlds;
-      worlds.sort(((a, b) => a.datacenter_name.localeCompare(b.datacenter_name) || a.name.localeCompare(b.name)));
-      return Object.entries(groupBy(worlds, (world: WorldSummary) => world.datacenter_name));
-    },
-    selectedWorldPlots(): PlotState[] {
-      if (!this.selectedWorldId) {
-        return [];
-      }
-      const allPlots = Array.from(this.client.plotStates.values());
-      return allPlots.filter(state => state.world_id === this.selectedWorldId)
-    }
-  },
-  async mounted() {
-    this.client.init();
-    await this.client.getWorlds();
-    this.loadingWorldList = false;
-    // if the world is in the query param and valid, select it
-    const worldQuery = this.$route.query.world;
-    if (worldQuery) {
-      const worldId = +worldQuery;
-      if (this.client.worldMap.has(worldId)) {
-        await this.loadWorld(worldId);
-      }
-    }
-  },
-  unmounted() {
-    this.client.close();
-  },
-  methods: {
-    async onSelectWorld(world: WorldSummary) {
-      // update the world query param
-      await this.$router.replace({query: {...this.$route.query, world: world.id}});
-      // load the worlds
-      await this.loadWorld(world.id);
-    },
-    async loadWorld(worldId: number) {
-      this.selectedWorldId = worldId;
-      this.loadingWorld = true;
-      await this.client.loadWorld(worldId);
-      this.loadingWorld = false;
-    }
-  }
-})
-</script>
 
 <style scoped>
 .paissa-logo {

@@ -34,13 +34,3 @@
     <a class="button is-danger">Danger</a>
   </div>
 </template>
-
-<script>
-export default {
-  name: "BulmaDemo"
-}
-</script>
-
-<style scoped>
-
-</style>

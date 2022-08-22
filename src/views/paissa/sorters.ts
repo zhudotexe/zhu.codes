@@ -1,4 +1,4 @@
-import {PlotState} from "@/views/paissa/client";
+import type {PlotState} from "@/views/paissa/client";
 import {isOutdatedPhase, isUnknownOrOutdatedPhase} from "@/views/paissa/utils";
 
 // helpers

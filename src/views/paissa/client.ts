@@ -1,5 +1,12 @@
 import {PAISSADB_BASE, PAISSADB_WS_URL} from "@/utils/constants";
-import {OpenPlotDetail, PlotUpdate, SoldPlotDetail, WorldDetail, WorldSummary, WSMessage} from "@/views/paissa/types";
+import type {
+    OpenPlotDetail,
+    PlotUpdate,
+    SoldPlotDetail,
+    WorldDetail,
+    WorldSummary,
+    WSMessage
+} from "@/views/paissa/types";
 import axios from "axios";
 
 export interface PlotState {
