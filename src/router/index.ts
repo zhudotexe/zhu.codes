@@ -1,11 +1,11 @@
 import Home from '@/views/Home.vue'
 import NotFound from '@/views/NotFound.vue'
 import {nextTick} from "vue";
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 const DEFAULT_TITLE = "zhu.codes";
 
-const routes: Array<RouteRecordRaw> = [
+const routes = [
     {path: '/', name: 'Home', component: Home},
     {
         path: '/paissa',
@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes
 })
 

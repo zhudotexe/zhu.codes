@@ -493,8 +493,8 @@
 </template>
 
 <script>
-import CurrentTime from "@/components/CurrentTime";
-import HomeSubtitle from "@/components/HomeSubtitle";
+import CurrentTime from "@/components/CurrentTime.vue";
+import HomeSubtitle from "@/components/HomeSubtitle.vue";
 
 export default {
   name: 'Home',
