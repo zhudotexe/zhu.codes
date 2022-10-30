@@ -25,6 +25,6 @@ onMounted(async () => {
 
 <template>
   <h2 class="subtitle">
-    <span id="home-subtitle-typeit">I like to make things on the internet.</span>
+    <span id="home-subtitle-typeit">Teaching computers to play D&amp;D since 2016.</span>
   </h2>
 </template>
