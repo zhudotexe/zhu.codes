@@ -169,7 +169,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
           <div class="card">
             <div class="card-image">
               <figure class="image is-16by9">
-                <img src="../assets/AvraeBanner.png" alt="Avrae Banner">
+                <img src="../assets/AvraeBanner.webp" alt="Avrae Banner">
               </figure>
             </div>
 
@@ -233,7 +233,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
           <div class="card">
             <div class="card-image">
               <figure class="image is-16by9">
-                <img src="../assets/PaissaBanner.jpeg" alt="Paissa Stack Banner">
+                <img src="../assets/PaissaBanner.webp" alt="Paissa Stack Banner">
               </figure>
             </div>
             <div class="card-content">
@@ -261,7 +261,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
 
                 <div class="level-right is-flex is-justify-content-center">
                   <span class="icon">
-                    <img class="svg-grey-dark" src="../assets/CSharpLogo.png" alt="CSharp">
+                    <img class="svg-grey-dark" src="../assets/CSharpLogo.webp" alt="CSharp">
                   </span>
                   <span class="icon">
                     <font-awesome-icon :icon="['fab', 'python']"/>
