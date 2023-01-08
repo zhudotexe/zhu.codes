@@ -74,7 +74,7 @@ export function sizeStr(size: number): string {
 
 export function tenantStr(purchaseSystem: number): string {
     if ((purchaseSystem & (PurchaseSystem.FREE_COMPANY | PurchaseSystem.INDIVIDUAL)) == (PurchaseSystem.FREE_COMPANY | PurchaseSystem.INDIVIDUAL)) {
-        return "FC, Individual"
+        return "Unrestricted"
     } else if (purchaseSystem & PurchaseSystem.FREE_COMPANY) {
         return "Free Company"
     }
