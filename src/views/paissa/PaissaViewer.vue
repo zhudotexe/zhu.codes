@@ -72,6 +72,10 @@ onUnmounted(() => client.close());
       <div class="notification is-warning" v-if="client.isDisconnected">
         Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
       </div>
+      <div class="notification is-warning">
+        The PaissaHouse plugin is not yet updated for patch 6.3, so the information displayed here is not up to date.
+        PaissaHouse will likely be updated around Jan 17 as I (Zhu) am currently travelling internationally.
+      </div>
       <!-- /title -->
 
       <!-- world select -->
@@ -109,6 +113,7 @@ onUnmounted(() => client.close());
       <!-- /world view -->
 
       <!-- changelog -->
+      <!--
       <h4 class="title is-4 mt-4">
         Changelog
       </h4>
@@ -125,6 +130,7 @@ onUnmounted(() => client.close());
           <li>May 30, 2022: initial release</li>
         </ul>
       </div>
+      -->
       <!-- /changelog -->
     </div>
   </section>
