@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Dropdown from "@/components/Dropdown.vue";
+import TimeDisplay from "@/components/TimeDisplay.vue";
 import {PaissaClient} from "@/views/paissa/client";
 import type {WorldSummary} from "@/views/paissa/types";
 import WorldView from "@/views/paissa/WorldView.vue";
@@ -73,7 +74,9 @@ onUnmounted(() => client.close());
         Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
       </div>
       <div class="notification is-warning">
-        Live updates are currently disabled due to extreme server load.
+        Update (<TimeDisplay format="datetime" :time="1674162000"/>): PaissaDB is very on fire. I'll try again to fix it this
+        evening, but until then, viewing plots has been disabled since the servers can't handle it. Sorry for the
+        inconvenience.
       </div>
       <!-- /title -->
 
