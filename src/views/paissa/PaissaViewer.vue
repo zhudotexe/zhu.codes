@@ -73,11 +73,6 @@ onUnmounted(() => client.close());
       <div class="notification is-warning" v-if="client.isDisconnected">
         Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
       </div>
-      <div class="notification is-warning">
-        Update (<TimeDisplay format="datetime" :time="1674162000"/>): PaissaDB is very on fire. I'll try again to fix it this
-        evening, but until then, viewing plots has been disabled since the servers can't handle it. Sorry for the
-        inconvenience.
-      </div>
       <!-- /title -->
 
       <!-- world select -->
