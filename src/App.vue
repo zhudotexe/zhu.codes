@@ -5,7 +5,7 @@
   <div class="is-flex is-justify-content-center mb-1">
     <a href="https://github.com/zhudotexe/zhu.codes" target="_blank">
       <span class="icon">
-        <font-awesome-icon :icon="['fas', 'dragon']"/>
+        <font-awesome-icon :icon="['fas', 'dragon']" alt="Website GitHub"/>
       </span>
     </a>
   </div>
