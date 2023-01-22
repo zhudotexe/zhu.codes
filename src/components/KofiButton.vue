@@ -7,13 +7,3 @@
          alt="Buy Me a Coffee at ko-fi.com"/>
   </a>
 </template>
-
-<script>
-export default {
-  name: "KofiButton"
-}
-</script>
-
-<style scoped>
-
-</style>
