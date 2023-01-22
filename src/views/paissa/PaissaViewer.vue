@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Dropdown from "@/components/Dropdown.vue";
-import TimeDisplay from "@/components/TimeDisplay.vue";
+import KofiButton from "@/components/KofiButton.vue";
 import {PaissaClient} from "@/views/paissa/client";
 import type {WorldSummary} from "@/views/paissa/types";
 import WorldView from "@/views/paissa/WorldView.vue";
@@ -129,6 +129,12 @@ onUnmounted(() => client.close());
       </div>
       -->
       <!-- /changelog -->
+      <!-- ko-fi -->
+      <hr/>
+      <p class="mb-2">
+        Enjoy the site? Consider tipping to help me keep the servers alive!
+      </p>
+      <KofiButton/>
     </div>
   </section>
 </template>

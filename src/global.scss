@@ -44,3 +44,8 @@ $body-background-color: $beige-lighter;
 .svg-grey-dark {
   filter: brightness(0) saturate(100%) invert(25%) sepia(8%) saturate(1127%) hue-rotate(122deg) brightness(96%) contrast(94%);
 }
+
+// style horizontal rules to look better
+hr {
+  background-color: $beige-light;
+}
