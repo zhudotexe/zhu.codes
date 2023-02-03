@@ -79,7 +79,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
                 <span class="icon">
                   <font-awesome-icon :icon="['fas', 'university']"/>
                 </span>
-                <span>University of Pennsylvania <i>(2022 - 2027, Ph.D.)</i></span>
+                <span>University of Pennsylvania <i>(2022 - present, Ph.D.)</i></span>
               </span>
             </p>
             <p>
@@ -95,7 +95,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
                 <span class="icon">
                   <font-awesome-icon :icon="['fas', 'building']"/>
                 </span>
-                <span>D&amp;D Beyond, Wizards of the Coast</span>
+                <span>D&amp;D Beyond, Wizards of the Coast <i>(2019 - present)</i></span>
               </span>
             </p>
           </div>
