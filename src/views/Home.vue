@@ -590,6 +590,22 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
 
       <div class="menu">
         <p class="menu-label">
+          2023
+        </p>
+        <ul class="menu-list">
+          <li><a href="https://arxiv.org/abs/2305.01528" target="_blank">
+            <b>Zhu, A.</b>, Aggarwal, K., Feng, A., Martin, L., Callison-Burch, C. (2023).
+            <i>FIREBALL: A Dataset of Dungeons and Dragons Actual-Play with Structured Game State Information</i>.
+                          The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
+          </a></li>
+          <li><a href="https://arxiv.org/abs/2212.10060" target="_blank">
+            Zhou, P., <b>Zhu, A.</b>, Hu, J., Pujara, J., Ren, X., Callison-Burch, C., Choi, Y., Ammanabrolu, P. (2023).
+            <i>An AI Dungeon Master’s Guide: Learning to Converse and Guide with Intents and Theory-of-Mind in Dungeons
+               and Dragons</i>. The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
+          </a></li>
+        </ul>
+
+        <p class="menu-label">
           2022
         </p>
         <ul class="menu-list">
@@ -612,6 +628,6 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
 
 <style scoped>
 .svg-margin {
-  margin: 2px;
+    margin: 2px;
 }
 </style>
