@@ -27,13 +27,10 @@ export function lotteryEntryCountStr(plot: PlotState): string {
     if (!isLottery(plot)) {
         return "N/A";
     }
-    if (plot.lotto_phase === null) {
+    if (plot.lotto_phase === null || isOutdatedPhase(plot)) {
         // BUG(server): sometimes, lotto_entries can be null on 0-entry plots; so we render 0 if it's not outdated
         // and only "Missing Data" if lotto_phase is null
-        return "Missing Data";
-    }
-    if (isOutdatedPhase(plot)) {
-        return "Outdated Data";
+        return "Missing Placard Data";
     }
     return plot.lotto_entries?.toString() ?? '0';
 }
@@ -41,10 +38,8 @@ export function lotteryEntryCountStr(plot: PlotState): string {
 export function lotteryPhaseStr(plot: PlotState): string {
     if (!isLottery(plot)) {
         return "FCFS";
-    } else if (plot.lotto_phase === null) {
-        return "Missing Data";
-    } else if (isOutdatedPhase(plot)) {
-        return "Outdated Data"
+    } else if (plot.lotto_phase === null || isOutdatedPhase(plot)) {
+        return "Missing Placard Data"
     }
     switch (plot.lotto_phase) {
         case LottoPhase.ENTRY:
