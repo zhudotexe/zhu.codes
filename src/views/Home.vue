@@ -95,7 +95,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
                 <span class="icon">
                   <font-awesome-icon :icon="['fas', 'building']"/>
                 </span>
-                <span>D&amp;D Beyond, Wizards of the Coast <i>(2019 - present)</i></span>
+                <span>D&amp;D Beyond, Wizards of the Coast <i>(2019 - 2023)</i></span>
               </span>
             </p>
           </div>
