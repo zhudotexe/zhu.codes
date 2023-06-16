@@ -209,12 +209,16 @@ onMounted(() => {
       <p class="level-item" v-if="client.nextOrLatestPhaseChange() > +new Date() / 1000">
         The current lottery phase ends at
         <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday"/>
-        (<TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>).
+        (
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>
+        ).
       </p>
       <p class="level-item" v-else-if="client.nextOrLatestPhaseChange() > 0">
         The previous lottery phase ended at
         <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday"/>
-        (<TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>).
+        (
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>
+        ).
       </p>
       <p class="level-item" v-else>
         There is insufficient data to calculate when the next lottery phase ends.
@@ -309,6 +313,15 @@ onMounted(() => {
                       @directionChanged="onSortDirectionChange('updateTime', $event)"/>
           </span>
         </th>
+        <th>
+          <span class="icon-text">
+            <span>First Seen</span>
+            <SortIcon class="ml-1"
+                      :index="getSortIndex('firstSeen')"
+                      :direction="getSortDirection('firstSeen')"
+                      @directionChanged="onSortDirectionChange('firstSeen', $event)"/>
+          </span>
+        </th>
       </tr>
       </thead>
 
@@ -332,6 +345,7 @@ onMounted(() => {
         <td>
           <FlashOnChange :value="utils.updatedStr(plot.last_updated_time)"/>
         </td>
+        <td>{{ utils.updatedStr(plot.first_seen_time) }}</td>
       </tr>
       </tbody>
     </table>

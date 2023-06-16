@@ -44,6 +44,9 @@ const phaseDesc = inverse(phase);
 const updateTime = (a: PlotState, b: PlotState) => b.last_updated_time - a.last_updated_time;
 const updateTimeDesc = inverse(updateTime);
 
+const firstSeen = (a: PlotState, b: PlotState) => b.first_seen_time - a.first_seen_time;
+const firstSeenDesc = inverse(firstSeen);
+
 // full mapping
 export const sorters: { [id: string]: { asc: Sorter, desc?: Sorter } } = {
     size: {asc: size, desc: sizeDesc},
@@ -51,4 +54,5 @@ export const sorters: { [id: string]: { asc: Sorter, desc?: Sorter } } = {
     entries: {asc: entries, desc: entriesDesc},
     phase: {asc: phase, desc: phaseDesc},
     updateTime: {asc: updateTime, desc: updateTimeDesc},
+    firstSeen: {asc: firstSeen, desc: firstSeenDesc},
 };

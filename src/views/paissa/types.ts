@@ -56,6 +56,7 @@ export interface OpenPlotDetail {
     size: number;
     price: number;
     last_updated_time: number;
+    first_seen_time: number;
     est_time_open_min: number;
     est_time_open_max: number;
     purchase_system: number;
@@ -72,6 +73,7 @@ export interface PlotUpdate {
     size: number;
     price: number;
     last_updated_time: number;
+    first_seen_time: number;
     purchase_system: number;
     lotto_entries: number;
     lotto_phase: number;

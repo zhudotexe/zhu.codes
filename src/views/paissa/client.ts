@@ -17,6 +17,7 @@ export interface PlotState {
     size: number;
     price: number;
     last_updated_time: number;
+    first_seen_time: number;
     purchase_system: number;
     lotto_entries: number | null;
     lotto_phase: number | null;
