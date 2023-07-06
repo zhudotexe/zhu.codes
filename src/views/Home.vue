@@ -43,7 +43,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
                   <span class="icon">
                     <font-awesome-icon :icon="['fab', 'discord']"/>
                   </span>
-                  <span>zhu.exe#4211</span>
+                  <span>zhu.exe</span>
                 </span>
               </a>
 
