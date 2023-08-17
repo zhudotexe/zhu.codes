@@ -163,41 +163,36 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
         Projects
       </h1>
 
+      <h2 class="subtitle">
+        Current
+      </h2>
       <div class="columns is-multiline">
-        <!-- avrae -->
+        <!-- kani -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <img src="../assets/AvraeBanner.webp" alt="Avrae Banner">
-              </figure>
-            </div>
-
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="../assets/AvraeLogo.png" alt="Avrae Logo">
+                    <img src="../assets/kani-logo.png" alt="Kani Logo">
                   </figure>
                 </div>
                 <div class="media-content">
-                  <p class="title is-4">
-                    Avrae
-                  </p>
-                  <p class="subtitle is-6">
-                    Just roll with it.
-                  </p>
+                  <p class="title is-4">Kani</p>
+                  <p class="subtitle is-6">Build AI apps faster and cleaner than ever before.</p>
                 </div>
               </div>
 
               <p>
-                Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
-                play D&amp;D together online.
-                Rolling with over 5 million users across over 400,000 Discord servers since 2016.
+                Kani is a lightweight, flexible, and model-agnostic framework for developing language model
+                applications. Kani helps developers implement a variety of complex features by supporting the
+                core building blocks of chat interaction: model interfacing, chat management, and robust function
+                calling. Researchers, hobbyists, and industry professionals alike can use Kani to accelerate their
+                development.
               </p>
               <div class="level is-mobile">
                 <div class="level-left">
-                  <i>2016 - current</i>
+                  <i>2023 - current</i>
                 </div>
 
                 <div class="level-right">
@@ -205,28 +200,18 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
                     <font-awesome-icon :icon="['fab', 'python']"/>
                   </span>
                   <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'node-js']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'aws']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'discord']"/>
+                    <font-awesome-icon :icon="['fas', 'code']"/>
                   </span>
                 </div>
               </div>
             </div>
-
             <footer class="card-footer">
-              <a href="https://github.com/avrae/avrae" target="_blank" class="card-footer-item">GitHub</a>
-              <a href="https://avrae.io/" target="_blank" class="card-footer-item">Website</a>
+              <a href="https://github.com/zhudotexe/kani" target="_blank" class="card-footer-item">GitHub</a>
+              <a href="https://kani.readthedocs.io/en/latest/" target="_blank" class="card-footer-item">Docs</a>
             </footer>
           </div>
         </div>
-        <!-- /avrae -->
+        <!-- /kani -->
 
         <!-- paissa -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
@@ -287,6 +272,113 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
         </div>
         <!-- /paissa -->
 
+        <!-- zhu.codes -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">zhu.codes</p>
+                  <p class="subtitle is-6">Getting meta</p>
+                </div>
+              </div>
+
+              <p>
+                This site was built using a FastAPI backend and Vue 3 frontend. It's a lot more than just a static
+                site &mdash; try and see if you can encounter all of the variations of this page! (Hint: some components
+                are time or location-specific.)
+              </p>
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <i>2021 - current</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'vuejs']"/>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="https://github.com/zhudotexe/zhu.codes" target="_blank" class="card-footer-item">GitHub</a>
+            </footer>
+          </div>
+        </div>
+        <!-- /zhu.codes -->
+      </div>
+
+      <h2 class="subtitle">
+        Previous
+      </h2>
+      <div class="columns is-multiline">
+        <!-- avrae -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <img src="../assets/AvraeBanner.webp" alt="Avrae Banner">
+              </figure>
+            </div>
+
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/AvraeLogo.png" alt="Avrae Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">
+                    Avrae
+                  </p>
+                  <p class="subtitle is-6">
+                    Just roll with it.
+                  </p>
+                </div>
+              </div>
+
+              <p>
+                Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
+                play D&amp;D together online.
+                Rolling with over 5 million users across over 400,000 Discord servers since 2016.
+              </p>
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <i>2016 - 2023</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'node-js']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'aws']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'discord']"/>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <footer class="card-footer">
+              <a href="https://github.com/avrae/avrae" target="_blank" class="card-footer-item">GitHub</a>
+              <a href="https://avrae.io/" target="_blank" class="card-footer-item">Website</a>
+            </footer>
+          </div>
+        </div>
+        <!-- /avrae -->
+
         <!-- draconic -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
@@ -314,7 +406,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
               </p>
               <div class="level is-mobile">
                 <div class="level-left">
-                  <i>2020 - current</i>
+                  <i>2020 - 2023</i>
                 </div>
 
                 <div class="level-right is-flex is-justify-content-center">
@@ -361,7 +453,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
               </p>
               <div class="level is-mobile">
                 <div class="level-left">
-                  <i>2020 - current</i>
+                  <i>2020 - 2023</i>
                 </div>
 
                 <div class="level-right">
@@ -411,7 +503,7 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
               </p>
               <div class="level is-mobile">
                 <div class="level-left">
-                  <i>2022 - current</i>
+                  <i>2022</i>
                 </div>
 
                 <div class="level-right">
@@ -435,44 +527,6 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
           </div>
         </div>
         <!-- /kinesis tools -->
-
-        <!-- zhu.codes -->
-        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
-          <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">zhu.codes</p>
-                  <p class="subtitle is-6">Getting meta</p>
-                </div>
-              </div>
-
-              <p>
-                This site was built using a FastAPI backend and Vue 3 frontend. It's a lot more than just a static
-                site &mdash; try and see if you can encounter all of the variations of this page! (Hint: some components
-                are time or location-specific.)
-              </p>
-              <div class="level is-mobile">
-                <div class="level-left">
-                  <i>2021 - current</i>
-                </div>
-
-                <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'vuejs']"/>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <footer class="card-footer">
-              <a href="https://github.com/zhudotexe/zhu.codes" target="_blank" class="card-footer-item">GitHub</a>
-            </footer>
-          </div>
-        </div>
-        <!-- /zhu.codes -->
 
         <!-- dicecloud tools -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
@@ -593,15 +647,24 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
           2023
         </p>
         <ul class="menu-list">
-          <li><a href="https://arxiv.org/abs/2305.01528" target="_blank">
+          <li><a>
+            <b>Zhu, A.</b>, Dugan, L., Hwang, A., Callison-Burch, C. (2023).
+            <i>Kani: A Lightweight and Highly Hackable Framework for Language Model Applications</i>. In review.
+          </a></li>
+          <li><a href="https://arxiv.org/abs/2308.07540" target="_blank">
+            <b>Zhu, A.</b>, Martin, L., Head, A., Callison-Burch, C. (2023).
+            <i>CALYPSO: LLMs as Dungeon Masters' Assistants</i>. The 19th AAAI Conference on
+            Artificial Intelligence and Interactive Digital Entertainment (AIIDE 2023).
+          </a></li>
+          <li><a href="https://aclanthology.org/2023.acl-long.229/" target="_blank">
             <b>Zhu, A.</b>, Aggarwal, K., Feng, A., Martin, L., Callison-Burch, C. (2023).
             <i>FIREBALL: A Dataset of Dungeons and Dragons Actual-Play with Structured Game State Information</i>.
-                          The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
+            The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
           </a></li>
-          <li><a href="https://arxiv.org/abs/2212.10060" target="_blank">
+          <li><a href="https://aclanthology.org/2023.acl-long.624/" target="_blank">
             Zhou, P., <b>Zhu, A.</b>, Hu, J., Pujara, J., Ren, X., Callison-Burch, C., Choi, Y., Ammanabrolu, P. (2023).
             <i>I Cast Detect Thoughts: Learning to Converse and Guide with Intents and Theory-of-Mind in Dungeons and
-               Dragons</i>. The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
+              Dragons</i>. The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
           </a></li>
         </ul>
 
