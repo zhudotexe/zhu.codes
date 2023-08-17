@@ -162,10 +162,6 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
       <h1 class="title">
         Projects
       </h1>
-
-      <h2 class="subtitle">
-        Current
-      </h2>
       <div class="columns is-multiline">
         <!-- kani -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
@@ -272,6 +268,70 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
         </div>
         <!-- /paissa -->
 
+        <!-- avrae -->
+        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <img src="../assets/AvraeBanner.webp" alt="Avrae Banner">
+              </figure>
+            </div>
+
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/AvraeLogo.png" alt="Avrae Logo">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">
+                    Avrae
+                  </p>
+                  <p class="subtitle is-6">
+                    Just roll with it.
+                  </p>
+                </div>
+              </div>
+
+              <p>
+                Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
+                play D&amp;D together online.
+                Rolling with over 5 million users across over 500,000 Discord servers since 2016.
+              </p>
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <i>2016 - 2023</i>
+                </div>
+
+                <div class="level-right">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'python']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'node-js']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'aws']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
+                  </span>
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fab', 'discord']"/>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <footer class="card-footer">
+              <a href="https://github.com/avrae/avrae" target="_blank" class="card-footer-item">GitHub</a>
+              <a href="https://avrae.io/" target="_blank" class="card-footer-item">Website</a>
+            </footer>
+          </div>
+        </div>
+        <!-- /avrae -->
+
         <!-- zhu.codes -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
           <div class="card">
@@ -309,75 +369,6 @@ import HomeSubtitle from "@/components/HomeSubtitle.vue";
           </div>
         </div>
         <!-- /zhu.codes -->
-      </div>
-
-      <h2 class="subtitle">
-        Previous
-      </h2>
-      <div class="columns is-multiline">
-        <!-- avrae -->
-        <div class="column is-6-tablet is-4-desktop is-3-fullhd">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <img src="../assets/AvraeBanner.webp" alt="Avrae Banner">
-              </figure>
-            </div>
-
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="../assets/AvraeLogo.png" alt="Avrae Logo">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">
-                    Avrae
-                  </p>
-                  <p class="subtitle is-6">
-                    Just roll with it.
-                  </p>
-                </div>
-              </div>
-
-              <p>
-                Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
-                play D&amp;D together online.
-                Rolling with over 5 million users across over 400,000 Discord servers since 2016.
-              </p>
-              <div class="level is-mobile">
-                <div class="level-left">
-                  <i>2016 - 2023</i>
-                </div>
-
-                <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'node-js']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'aws']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
-                  </span>
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'discord']"/>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <footer class="card-footer">
-              <a href="https://github.com/avrae/avrae" target="_blank" class="card-footer-item">GitHub</a>
-              <a href="https://avrae.io/" target="_blank" class="card-footer-item">Website</a>
-            </footer>
-          </div>
-        </div>
-        <!-- /avrae -->
 
         <!-- draconic -->
         <div class="column is-6-tablet is-4-desktop is-3-fullhd">
