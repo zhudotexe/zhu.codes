@@ -10,12 +10,13 @@ onMounted(async () => {
   try {
     const response = await axios.get(`${API_BASE}/specialVisitorMetadata`);
     if (response.data.message) {
-      typer.delete()
-          .pause(150)
-          .type(response.data.message)
-          .pause(2200)
-          .exec(() => typer.destroy())
-          .go();
+      typer
+        .delete()
+        .pause(150)
+        .type(response.data.message)
+        .pause(2200)
+        .exec(() => typer.destroy())
+        .go();
     }
   } catch (error) {
     console.warn("Failed to get special visitor info:", error);

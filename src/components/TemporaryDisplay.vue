@@ -4,9 +4,9 @@ import {DateTime} from "luxon";
 import {computed} from "vue";
 
 const props = defineProps<{
-  from: number,
-  to: number,
-  tempMessageClass: string
+  from: number;
+  to: number;
+  tempMessageClass: string;
 }>();
 
 const isDisplayed = computed(() => {
@@ -16,11 +16,11 @@ const isDisplayed = computed(() => {
 const displayedUntil = computed(() => {
   const until = DateTime.fromSeconds(props.to);
   let timeFmtOptions = DateTime.DATETIME_SHORT;
-  if (until.hasSame(DateTime.now(), 'day')) {
+  if (until.hasSame(DateTime.now(), "day")) {
     timeFmtOptions = DateTime.TIME_SIMPLE;
   }
   return until.toLocaleString(timeFmtOptions);
-})
+});
 </script>
 
 <template>
@@ -32,7 +32,7 @@ const displayedUntil = computed(() => {
         <p class="is-size-7 has-text-grey">
           <span class="icon-text">
             <span class="icon">
-              <font-awesome-icon :icon="['fas', 'exclamation-triangle']"/>
+              <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
             </span>
             <span>This is a temporary message. This message will disappear after {{ displayedUntil }}.</span>
           </span>

@@ -7,7 +7,7 @@ const notFoundMessages = [
   "that's the number of hamsters powering the server",
   "not found",
   "here be dragons",
-  "https://xkcd.com/1334/"
+  "https://xkcd.com/1334/",
 ];
 
 const message = notFoundMessages[Math.floor(Math.random() * notFoundMessages.length)];
@@ -17,9 +17,7 @@ const message = notFoundMessages[Math.floor(Math.random() * notFoundMessages.len
   <section class="section">
     <div class="container has-text-centered">
       <div class="content">
-        <p>
-          404
-        </p>
+        <p>404</p>
         <p>
           {{ message }}
         </p>

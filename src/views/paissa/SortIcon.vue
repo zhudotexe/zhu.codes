@@ -8,30 +8,30 @@ const props = defineProps<{
   disallowSortDesc?: boolean;
 }>();
 const emit = defineEmits<{
-  (e: 'directionChanged', direction: SortOrder): void
+  (e: "directionChanged", direction: SortOrder): void;
 }>();
 
 // methods
 function cycleSortState() {
   if (props.direction === SortOrder.NONE) {
-    emit('directionChanged', SortOrder.ASC)
+    emit("directionChanged", SortOrder.ASC);
   } else if (props.direction === SortOrder.ASC) {
     if (!props.disallowSortDesc) {
-      emit('directionChanged', SortOrder.DESC)
+      emit("directionChanged", SortOrder.DESC);
     } else {
-      emit('directionChanged', SortOrder.NONE)
+      emit("directionChanged", SortOrder.NONE);
     }
   } else {
-    emit('directionChanged', SortOrder.NONE)
+    emit("directionChanged", SortOrder.NONE);
   }
 }
 </script>
 
 <template>
   <span class="icon m-0 is-clickable" @click="cycleSortState">
-    <font-awesome-icon :icon="['fas', 'sort']" v-if="direction === 0"/>
-    <font-awesome-icon :icon="['fas', 'sort-up']" v-else-if="direction === 1"/>
-    <font-awesome-icon :icon="['fas', 'sort-down']" v-else/>
+    <font-awesome-icon :icon="['fas', 'sort']" v-if="direction === 0" />
+    <font-awesome-icon :icon="['fas', 'sort-up']" v-else-if="direction === 1" />
+    <font-awesome-icon :icon="['fas', 'sort-down']" v-else />
     {{ index !== null ? index + 1 : null }}
   </span>
 </template>

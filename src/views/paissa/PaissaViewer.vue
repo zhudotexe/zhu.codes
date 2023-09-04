@@ -21,7 +21,7 @@ const loadingWorld = ref(false);
 // computed
 const worldGroups = computed<[string, WorldSummary[]][]>(() => {
   let worlds = client.worlds;
-  worlds.sort(((a, b) => a.datacenter_name.localeCompare(b.datacenter_name) || a.name.localeCompare(b.name)));
+  worlds.sort((a, b) => a.datacenter_name.localeCompare(b.datacenter_name) || a.name.localeCompare(b.name));
   return Object.entries(groupBy(worlds, (world: WorldSummary) => world.datacenter_name));
 });
 
@@ -62,12 +62,12 @@ onUnmounted(() => client.close());
     <div class="container">
       <!-- title -->
       <h3 class="title">
-        <img src="@/assets/PaissaLogo.png" alt="PaissaHouse Logo" class="paissa-logo">
+        <img src="@/assets/PaissaLogo.png" alt="PaissaHouse Logo" class="paissa-logo" />
         PaissaDB
       </h3>
       <h5 class="subtitle">
-        A list of houses for sale in Final Fantasy XIV, how many lottery bids are on each, and where to contribute
-        using the
+        A list of houses for sale in Final Fantasy XIV, how many lottery bids are on each, and where to contribute using
+        the
         <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse" target="_blank">PaissaHouse XIVLauncher plugin</a>.
       </h5>
       <div class="notification is-warning" v-if="client.isDisconnected">
@@ -76,26 +76,22 @@ onUnmounted(() => client.close());
       <!-- /title -->
 
       <!-- world select -->
-      <h4 class="title is-4 mt-4">
-        Select a World
-      </h4>
-      <h6 class="subtitle is-6">
-        Select a world to view the houses available on the world.
-      </h6>
+      <h4 class="title is-4 mt-4">Select a World</h4>
+      <h6 class="subtitle is-6">Select a world to view the houses available on the world.</h6>
 
       <div class="buttons" v-if="!loadingWorldList">
-        <Dropdown class="mr-2"
-                  v-for="([datacenterName, worlds], idx) in worldGroups"
-                  :key="idx"
-                  :label="datacenterName">
+        <Dropdown
+          class="mr-2"
+          v-for="([datacenterName, worlds], idx) in worldGroups"
+          :key="idx"
+          :label="datacenterName"
+        >
           <a class="dropdown-item" v-for="world in worlds" :key="world.id" @click="onSelectWorld(world)">
             {{ world.name }}
           </a>
         </Dropdown>
       </div>
-      <div v-else>
-        <span class="loader is-inline-block"></span> Loading worlds...
-      </div>
+      <div v-else><span class="loader is-inline-block"></span> Loading worlds...</div>
       <!-- /world select -->
 
       <!-- world view -->
@@ -105,7 +101,7 @@ onUnmounted(() => client.close());
           <span class="loader is-inline-block" v-if="loadingWorld"></span>
         </h4>
 
-        <WorldView :client="client" :world-id="selectedWorldId" v-if="!loadingWorld"/>
+        <WorldView :client="client" :world-id="selectedWorldId" v-if="!loadingWorld" />
       </template>
       <!-- /world view -->
 
@@ -130,11 +126,9 @@ onUnmounted(() => client.close());
       -->
       <!-- /changelog -->
       <!-- ko-fi -->
-      <hr/>
-      <p class="mb-2">
-        Enjoy the site? Consider tipping to help me keep the servers alive!
-      </p>
-      <KofiButton/>
+      <hr />
+      <p class="mb-2">Enjoy the site? Consider tipping to help me keep the servers alive!</p>
+      <KofiButton />
     </div>
   </section>
 </template>

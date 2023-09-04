@@ -1,24 +1,22 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <p class="is-flex mb-4">
-        <span class="icon">
-          <font-awesome-icon :icon="['fas', 'sitemap']"/>
-        </span>
     <span class="icon">
-          <font-awesome-icon :icon="['fas', 'code']"/>
-        </span>
+      <font-awesome-icon :icon="['fas', 'sitemap']" />
+    </span>
     <span class="icon">
-          <font-awesome-icon :icon="['fab', 'd-and-d']"/>
-        </span>
+      <font-awesome-icon :icon="['fas', 'code']" />
+    </span>
     <span class="icon">
-          <img class="svg-grey-dark svg-margin" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor">
-        </span>
+      <font-awesome-icon :icon="['fab', 'd-and-d']" />
+    </span>
     <span class="icon">
-          <font-awesome-icon :icon="['fas', 'robot']"/>
-        </span>
+      <img class="svg-grey-dark svg-margin" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor" />
+    </span>
+    <span class="icon">
+      <font-awesome-icon :icon="['fas', 'robot']" />
+    </span>
   </p>
   <div class="columns is-multiline">
     <!-- kani -->
@@ -28,7 +26,7 @@
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img src="../assets/kani-logo.png" alt="Kani Logo">
+                <img src="../assets/kani-logo.png" alt="Kani Logo" />
               </figure>
             </div>
             <div class="media-content">
@@ -38,11 +36,10 @@
           </div>
 
           <p>
-            Kani is a lightweight, flexible, and model-agnostic framework for developing language model
-            applications. Kani helps developers implement a variety of complex features by supporting the
-            core building blocks of chat interaction: model interfacing, chat management, and robust function
-            calling. Researchers, hobbyists, and industry professionals alike can use Kani to accelerate their
-            development.
+            Kani is a lightweight, flexible, and model-agnostic framework for developing language model applications.
+            Kani helps developers implement a variety of complex features by supporting the core building blocks of chat
+            interaction: model interfacing, chat management, and robust function calling. Researchers, hobbyists, and
+            industry professionals alike can use Kani to accelerate their development.
           </p>
           <div class="level is-mobile">
             <div class="level-left">
@@ -50,12 +47,12 @@
             </div>
 
             <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fas', 'code']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fas', 'code']" />
+              </span>
             </div>
           </div>
         </div>
@@ -72,14 +69,14 @@
       <div class="card">
         <div class="card-image">
           <figure class="image is-16by9">
-            <img src="../assets/PaissaBanner.webp" alt="Paissa Stack Banner">
+            <img src="../assets/PaissaBanner.webp" alt="Paissa Stack Banner" />
           </figure>
         </div>
         <div class="card-content">
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo">
+                <img src="../assets/PaissaLogo.png" alt="Paissa Stack Logo" />
               </figure>
             </div>
             <div class="media-content">
@@ -99,28 +96,24 @@
             </div>
 
             <div class="level-right is-flex is-justify-content-center">
-                  <span class="icon">
-                    <img class="svg-grey-dark" src="../assets/CSharpLogo.webp" alt="CSharp">
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
+                <img class="svg-grey-dark" src="../assets/CSharpLogo.webp" alt="CSharp" />
+              </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fas', 'sitemap']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
               <span class="icon">
-                    <img class="svg-grey-dark svg-margin" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor">
-                  </span>
+                <font-awesome-icon :icon="['fas', 'sitemap']" />
+              </span>
+              <span class="icon">
+                <img class="svg-grey-dark svg-margin" src="../assets/FFXIVMeteor.svg" alt="FFXIV Meteor" />
+              </span>
             </div>
           </div>
         </div>
         <footer class="card-footer">
-          <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse" target="_blank" class="card-footer-item">
-            GitHub
-          </a>
-          <router-link to="/paissa" class="card-footer-item">
-            PaissaDB
-          </router-link>
+          <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse" target="_blank" class="card-footer-item">GitHub</a>
+          <router-link to="/paissa" class="card-footer-item">PaissaDB</router-link>
         </footer>
       </div>
     </div>
@@ -131,7 +124,7 @@
       <div class="card">
         <div class="card-image">
           <figure class="image is-16by9">
-            <img src="../assets/AvraeBanner.webp" alt="Avrae Banner">
+            <img src="../assets/AvraeBanner.webp" alt="Avrae Banner" />
           </figure>
         </div>
 
@@ -139,23 +132,18 @@
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img src="../assets/AvraeLogo.png" alt="Avrae Logo">
+                <img src="../assets/AvraeLogo.png" alt="Avrae Logo" />
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4">
-                Avrae
-              </p>
-              <p class="subtitle is-6">
-                Just roll with it.
-              </p>
+              <p class="title is-4">Avrae</p>
+              <p class="subtitle is-6">Just roll with it.</p>
             </div>
           </div>
 
           <p>
-            Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world
-            play D&amp;D together online.
-            Rolling with over 5 million users across over 500,000 Discord servers since 2016.
+            Avrae is the world's largest Discord bot designed to help players and Dungeon Masters around the world play
+            D&amp;D together online. Rolling with over 5 million users across over 500,000 Discord servers since 2016.
           </p>
           <div class="level is-mobile">
             <div class="level-left">
@@ -163,21 +151,21 @@
             </div>
 
             <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'node-js']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'aws']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'node-js']" />
+              </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'aws']" />
+              </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'discord']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'd-and-d']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fab', 'discord']" />
+              </span>
             </div>
           </div>
         </div>
@@ -202,9 +190,9 @@
           </div>
 
           <p>
-            This site was built using a FastAPI backend and Vue 3 frontend. It's a lot more than just a static
-            site &mdash; try and see if you can encounter all of the variations of this page! (Hint: some components
-            are time or location-specific.)
+            This site was built using a FastAPI backend and Vue 3 frontend. It's a lot more than just a static site
+            &mdash; try and see if you can encounter all of the variations of this page! (Hint: some components are time
+            or location-specific.)
           </p>
           <div class="level is-mobile">
             <div class="level-left">
@@ -212,12 +200,12 @@
             </div>
 
             <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'vuejs']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fab', 'vuejs']" />
+              </span>
             </div>
           </div>
         </div>
@@ -235,7 +223,7 @@
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img src="../assets/DraconicLogo.svg" alt="Draconic Logo">
+                <img src="../assets/DraconicLogo.svg" alt="Draconic Logo" />
               </figure>
             </div>
             <div class="media-content">
@@ -245,13 +233,14 @@
           </div>
 
           <p>
-            The Draconic language is built to enable users to write powerful custom commands in Avrae that run on
-            the application layer, while enforcing limits on resource usage. With a custom interpreter built in
-            Python, safety is enforced through both a runtime watchdog and its type system.
+            The Draconic language is built to enable users to write powerful custom commands in Avrae that run on the
+            application layer, while enforcing limits on resource usage. With a custom interpreter built in Python,
+            safety is enforced through both a runtime watchdog and its type system.
           </p>
           <p>
-            Draconic is used in production to run over 75 thousand user scripts daily. You can see some user
-            creations on the <a href="https://avrae.io/dashboard/workshop" target="_blank">Avrae Alias Workshop</a>.
+            Draconic is used in production to run over 75 thousand user scripts daily. You can see some user creations
+            on the
+            <a href="https://avrae.io/dashboard/workshop" target="_blank">Avrae Alias Workshop</a>.
           </p>
           <div class="level is-mobile">
             <div class="level-left">
@@ -259,12 +248,12 @@
             </div>
 
             <div class="level-right is-flex is-justify-content-center">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fas', 'code']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fas', 'code']" />
+              </span>
             </div>
           </div>
         </div>
@@ -282,7 +271,7 @@
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img class="svg-grey-dark" src="../assets/d20Logo.svg" alt="d20 Logo">
+                <img class="svg-grey-dark" src="../assets/d20Logo.svg" alt="d20 Logo" />
               </figure>
             </div>
             <div class="media-content">
@@ -293,25 +282,23 @@
 
           <p>
             <i>d20</i>
-            is a fast, powerful, safe, and extensible dice engine for D&D, d20 systems, and any other system that
-            needs dice. Built on top of the Lark parser, each roll comes with a rich expression tree that enables
-            applications to have full control over each roll.
+            is a fast, powerful, safe, and extensible dice engine for D&D, d20 systems, and any other system that needs
+            dice. Built on top of the Lark parser, each roll comes with a rich expression tree that enables applications
+            to have full control over each roll.
           </p>
-          <p>
-            <i>d20</i> is used in production to handle over 1 million dice rolls each day.
-          </p>
+          <p><i>d20</i> is used in production to handle over 1 million dice rolls each day.</p>
           <div class="level is-mobile">
             <div class="level-left">
               <i>2020 - 2023</i>
             </div>
 
             <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fas', 'code']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fas', 'code']" />
+              </span>
             </div>
           </div>
         </div>
@@ -330,7 +317,7 @@
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img src="../assets/KinesisToolsLogo.svg" alt="Kinesis Tools Logo">
+                <img src="../assets/KinesisToolsLogo.svg" alt="Kinesis Tools Logo" />
               </figure>
             </div>
             <div class="media-content">
@@ -345,9 +332,7 @@
             at UPenn, the Kinesis Tools are a blazing-fast (>10GB/min) way to explore a structured dataset.
           </p>
           <p>
-            <a href="mailto:me@andrew-zhu.com" target="_blank">
-              Contact me
-            </a>
+            <a href="mailto:me@andrew-zhu.com" target="_blank"> Contact me </a>
             for help using these tools for your own data science project!
           </p>
           <div class="level is-mobile">
@@ -356,22 +341,25 @@
             </div>
 
             <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'vuejs']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'aws']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'vuejs']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fab', 'aws']" />
+              </span>
             </div>
           </div>
         </div>
         <footer class="card-footer">
-          <a href="https://github.com/zhudotexe/aws-kinesis-dataset-exploration-tool"
-             target="_blank"
-             class="card-footer-item">GitHub</a>
+          <a
+            href="https://github.com/zhudotexe/aws-kinesis-dataset-exploration-tool"
+            target="_blank"
+            class="card-footer-item"
+            >GitHub</a
+          >
         </footer>
       </div>
     </div>
@@ -384,7 +372,7 @@
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img src="../assets/DicecloudLogo.png" alt="Dicecloud Tools Logo">
+                <img src="../assets/DicecloudLogo.png" alt="Dicecloud Tools Logo" />
               </figure>
             </div>
             <div class="media-content">
@@ -394,38 +382,28 @@
           </div>
 
           <p>
-            The Dicecloud Tools are an old project meant to help users create new characters and manage their
-            spellbooks in Dicecloud with minimal effort.
+            The Dicecloud Tools are an old project meant to help users create new characters and manage their spellbooks
+            in Dicecloud with minimal effort.
           </p>
-          <p>
-            The Dicecloud Tools are looking for new maintainers!
-          </p>
+          <p>The Dicecloud Tools are looking for new maintainers!</p>
           <div class="level is-mobile">
             <div class="level-left">
               <i>2018 - 2020</i>
             </div>
 
             <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'js-square']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'd-and-d']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'js-square']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fab', 'd-and-d']" />
+              </span>
             </div>
           </div>
         </div>
         <footer class="card-footer">
-          <a href="dnd/dicecloudtools/autochar.html"
-             target="_blank"
-             class="card-footer-item">
-            Autochar
-          </a>
-          <a href="dnd/dicecloudtools/spellbook.html"
-             target="_blank"
-             class="card-footer-item">
-            Spell Manager
-          </a>
+          <a href="dnd/dicecloudtools/autochar.html" target="_blank" class="card-footer-item"> Autochar </a>
+          <a href="dnd/dicecloudtools/spellbook.html" target="_blank" class="card-footer-item"> Spell Manager </a>
         </footer>
       </div>
     </div>
@@ -438,7 +416,7 @@
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
-                <img src="../assets/IrisLogo.jpeg" alt="Iris Logo">
+                <img src="../assets/IrisLogo.jpeg" alt="Iris Logo" />
               </figure>
             </div>
             <div class="media-content">
@@ -448,8 +426,8 @@
           </div>
 
           <p>
-            Built at CruzHacks 2019, Iris combines wearable technology and facial recognition in an AI-powered
-            virtual assistance to help Alzheimer's patients combat memory loss.
+            Built at CruzHacks 2019, Iris combines wearable technology and facial recognition in an AI-powered virtual
+            assistance to help Alzheimer's patients combat memory loss.
           </p>
           <p>
             <i>Winner: Tech Cares, Best Use of Google Cloud Platform</i>
@@ -460,28 +438,23 @@
             </div>
 
             <div class="level-right">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'python']"/>
-                  </span>
               <span class="icon">
-                    <font-awesome-icon :icon="['fab', 'angular']"/>
-                  </span>
+                <font-awesome-icon :icon="['fab', 'python']" />
+              </span>
+              <span class="icon">
+                <font-awesome-icon :icon="['fab', 'angular']" />
+              </span>
             </div>
           </div>
         </div>
         <footer class="card-footer">
-          <a href="https://github.com/CruzHacks2019/iris-frontend" target="_blank" class="card-footer-item">
-            GitHub
-          </a>
+          <a href="https://github.com/CruzHacks2019/iris-frontend" target="_blank" class="card-footer-item"> GitHub </a>
           <a href="https://devpost.com/software/iris-io" target="_blank" class="card-footer-item">Devpost</a>
         </footer>
       </div>
     </div>
     <!-- /iris -->
-
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

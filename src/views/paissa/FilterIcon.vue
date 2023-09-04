@@ -9,7 +9,7 @@ const props = defineProps<{
   selected: number[];
 }>();
 const emit = defineEmits<{
-  (e: 'selectionChanged', selectedOptions: number[]): void
+  (e: "selectionChanged", selectedOptions: number[]): void;
 }>();
 const vClickOutside = clickOutside.directive;
 
@@ -24,7 +24,7 @@ function onCheckboxChange(event: any, value: number) {
   } else {
     selectedOptions.delete(value);
   }
-  emit('selectionChanged', Array.from(selectedOptions));
+  emit("selectionChanged", Array.from(selectedOptions));
 }
 
 function onClick() {
@@ -37,15 +37,11 @@ function onClickOutside() {
 </script>
 
 <template>
-  <div class="dropdown"
-       :class="{'is-active': isExpanded}"
-       @click="onClick"
-       v-click-outside="onClickOutside">
-
+  <div class="dropdown" :class="{'is-active': isExpanded}" @click="onClick" v-click-outside="onClickOutside">
     <div class="dropdown-trigger">
       <!-- dropdown controller = filter button -->
       <span class="icon m-0 is-clickable" aria-haspopup="true" aria-controls="dropdown-menu">
-        <font-awesome-icon :icon="['fas', 'filter']"/>
+        <font-awesome-icon :icon="['fas', 'filter']" />
         {{ selected.length ? selected.length : null }}
       </span>
     </div>
@@ -54,9 +50,11 @@ function onClickOutside() {
       <div class="dropdown-content">
         <div class="dropdown-item" v-for="option in options" :key="option.value">
           <label class="checkbox">
-            <input type="checkbox"
-                   :checked="selected.includes(option.value)"
-                   @change="onCheckboxChange($event, option.value)">
+            <input
+              type="checkbox"
+              :checked="selected.includes(option.value)"
+              @change="onCheckboxChange($event, option.value)"
+            />
             {{ option.label }}
           </label>
         </div>

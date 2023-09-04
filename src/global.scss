@@ -2,25 +2,25 @@
 
 // site fonts
 @font-face {
-  font-family: 'Shadow';
+  font-family: "Shadow";
   font-style: normal;
   font-weight: normal;
-  src: local('Shadow'), url('assets/HDVLPMNT01.ttf') format('truetype');
+  src: local("Shadow"), url("assets/HDVLPMNT01.ttf") format("truetype");
 }
 
-@import url('https://fonts.googleapis.com/css?family=Zilla+Slab:400,700');
+@import url("https://fonts.googleapis.com/css?family=Zilla+Slab:400,700");
 
 // site colors
-$purple: #8A4D76;
-$pink: #FA7C91;
+$purple: #8a4d76;
+$pink: #fa7c91;
 $brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
 
-$lime: #C9F4C8;
-$cucumber: #84A456;
+$lime: #c9f4c8;
+$cucumber: #84a456;
 $green-dark: #324744;
-$grey-green: #59686C;
+$grey-green: #59686c;
 
 // Bulma global variables
 $family-sans-serif: "Zilla Slab", sans-serif;
@@ -42,7 +42,8 @@ $body-background-color: $beige-lighter;
 // ==== custom ====
 // svg color transforms - calculated with https://codepen.io/sosuke/pen/Pjoqqp
 .svg-grey-dark {
-  filter: brightness(0) saturate(100%) invert(25%) sepia(8%) saturate(1127%) hue-rotate(122deg) brightness(96%) contrast(94%);
+  filter: brightness(0) saturate(100%) invert(25%) sepia(8%) saturate(1127%) hue-rotate(122deg) brightness(96%)
+    contrast(94%);
 }
 
 // style horizontal rules to look better

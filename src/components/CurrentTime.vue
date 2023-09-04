@@ -4,7 +4,7 @@ import {DateTime} from "luxon";
 import {computed, onMounted, ref} from "vue";
 
 // setup
-const DEFAULT_TIME_ZONE = 'system';
+const DEFAULT_TIME_ZONE = "system";
 const DEFAULT_FORMAT = DateTime.TIME_SIMPLE;
 const props = defineProps<{
   fmtOptions?: Intl.DateTimeFormatOptions;
@@ -21,7 +21,7 @@ function updateTime() {
 
 // hooks
 onMounted(() => {
-  setInterval(updateTime, 1000)
+  setInterval(updateTime, 1000);
 });
 
 // computed

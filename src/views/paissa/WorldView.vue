@@ -15,14 +15,14 @@ import {useRoute, useRouter} from "vue-router";
 const router = useRouter();
 const route = useRoute();
 const props = defineProps<{
-  client: PaissaClient,
-  worldId: number
+  client: PaissaClient;
+  worldId: number;
 }>();
 
 // state
 const pagination = reactive({
   currentPage: 0,
-  numPerPage: 50
+  numPerPage: 50,
 });
 const filterSelections = reactive(new Map<string, Set<number>>());
 const sortOrders = reactive(new Map<string, SortOrder>());
@@ -30,7 +30,7 @@ const sortOrders = reactive(new Map<string, SortOrder>());
 // computed
 const worldPlots = computed(() => {
   const allPlots = Array.from(props.client.plotStates.values());
-  return allPlots.filter(state => state.world_id === props.worldId);
+  return allPlots.filter((state) => state.world_id === props.worldId);
 });
 const filteredSortedWorldPlots = computed(() => {
   let plots = [...worldPlots.value];
@@ -57,10 +57,13 @@ const filteredSortedWorldPlots = computed(() => {
   });
 });
 const currentPagePlots = computed(() => {
-  return filteredSortedWorldPlots.value.slice(pagination.currentPage * pagination.numPerPage, (pagination.currentPage + 1) * pagination.numPerPage);
+  return filteredSortedWorldPlots.value.slice(
+    pagination.currentPage * pagination.numPerPage,
+    (pagination.currentPage + 1) * pagination.numPerPage
+  );
 });
 const numPages = computed(() => {
-  return Math.ceil(filteredSortedWorldPlots.value.length / pagination.numPerPage)
+  return Math.ceil(filteredSortedWorldPlots.value.length / pagination.numPerPage);
 });
 
 // methods
@@ -103,10 +106,10 @@ function onSortDirectionChange(sorterKey: string, direction: SortOrder) {
 
 // query param helpers
 function updateQueryParams() {
-  const queryParams: { [key: string]: any } = {
+  const queryParams: {[key: string]: any} = {
     ...route.query,
-    sort: buildSortQueryParam()
-  }
+    sort: buildSortQueryParam(),
+  };
   for (const filterKey of Object.keys(filters)) {
     const oneFilterSelections = filterSelections.get(filterKey);
     if (oneFilterSelections) {
@@ -130,7 +133,7 @@ function loadFilterQueryParams() {
     // find the valid options
     let validOptions = [];
     for (const queryElem of filterQuery) {
-      const matchingOption = filterDef.options.find(option => option.value === +(queryElem ?? 0));
+      const matchingOption = filterDef.options.find((option) => option.value === +(queryElem ?? 0));
       if (matchingOption) {
         validOptions.push(matchingOption.value);
       }
@@ -153,7 +156,7 @@ function loadSortQueryParams() {
   for (const sortElem of sortQuery) {
     // ensure key and direction are valid
     if (!sortElem) continue;
-    const [sorterKey, direction] = sortElem.split(':', 2);
+    const [sorterKey, direction] = sortElem.split(":", 2);
     if (!(sorters[sorterKey] && (+direction === 1 || +direction === 2))) continue;
     // init the sorter
     sortOrders.set(sorterKey, +direction);
@@ -163,7 +166,7 @@ function loadSortQueryParams() {
 function buildSortQueryParam(): string[] {
   const result = [];
   for (const [sorterKey, direction] of sortOrders) {
-    result.push(`${sorterKey}:${direction}`)
+    result.push(`${sorterKey}:${direction}`);
   }
   return result;
 }
@@ -179,21 +182,21 @@ function clearFilters() {
 onMounted(() => {
   loadFilterQueryParams();
   loadSortQueryParams();
-})
+});
 </script>
 
 <template>
   <!-- # info -->
   <p>
     {{ client.worldName(worldId) }} has
-    <FlashOnChange :value="worldPlots.length"/>
+    <FlashOnChange :value="worldPlots.length" />
     open plots, at least
-    <FlashOnChange :value="worldPlots.filter(utils.isEntryPhase).length"/>
+    <FlashOnChange :value="worldPlots.filter(utils.isEntryPhase).length" />
     of which are available for bidding.
   </p>
   <p v-if="worldPlots.filter(utils.isUnknownOrOutdatedPhase).length">
     <strong>
-      <FlashOnChange :value="worldPlots.filter(utils.isUnknownOrOutdatedPhase).length"/>
+      <FlashOnChange :value="worldPlots.filter(utils.isUnknownOrOutdatedPhase).length" />
     </strong>
     plots have missing or outdated lottery data. You can contribute by installing the
     <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse#lottery-sweeps" target="_blank">
@@ -208,33 +211,28 @@ onMounted(() => {
     <div class="level-left">
       <p class="level-item" v-if="client.nextOrLatestPhaseChange() > +new Date() / 1000">
         The current lottery phase ends at
-        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday"/>
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday" />
         (
-        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative" />
         ).
       </p>
       <p class="level-item" v-else-if="client.nextOrLatestPhaseChange() > 0">
         The previous lottery phase ended at
-        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday"/>
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="datetimeWeekday" />
         (
-        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative"/>
+        <TimeDisplay :time="client.nextOrLatestPhaseChange()" format="relative" />
         ).
       </p>
-      <p class="level-item" v-else>
-        There is insufficient data to calculate when the next lottery phase ends.
-      </p>
+      <p class="level-item" v-else>There is insufficient data to calculate when the next lottery phase ends.</p>
     </div>
     <div class="level-right">
       <p class="level-item">
-        {{ filteredSortedWorldPlots.length }} {{
-          filteredSortedWorldPlots.length === 1 ? 'plot matches' : 'plots match'
-        }}
+        {{ filteredSortedWorldPlots.length }}
+        {{ filteredSortedWorldPlots.length === 1 ? "plot matches" : "plots match" }}
         your current filters.
       </p>
       <p class="level-item">
-        <button class="button" @click="clearFilters()">
-          Clear Sort &amp; Filters
-        </button>
+        <button class="button" @click="clearFilters()">Clear Sort &amp; Filters</button>
       </p>
     </div>
   </div>
@@ -243,110 +241,131 @@ onMounted(() => {
   <div class="table-container mt-4">
     <table class="table is-striped is-fullwidth is-hoverable">
       <thead>
-      <tr>
-        <th>
-          <span class="icon-text">
-            <span>Address</span>
-            <FilterIcon class="ml-1"
-                        :options="filters.districts.options"
-                        :selected="getSelectedFilterOptions('districts')"
-                        @selectionChanged="onFilterSelectionChange('districts', $event)"/>
-          </span>
-        </th>
-        <th>
-          <span class="icon-text">
-            <span>Size</span>
-            <SortIcon class="ml-1"
-                      :index="getSortIndex('size')"
-                      :direction="getSortDirection('size')"
-                      @directionChanged="onSortDirectionChange('size', $event)"/>
-            <FilterIcon :options="filters.sizes.options"
-                        :selected="getSelectedFilterOptions('sizes')"
-                        @selectionChanged="onFilterSelectionChange('sizes', $event)"/>
-          </span>
-        </th>
-        <th>
-          <span class="icon-text">
-            <span>Price</span>
-            <SortIcon class="ml-1"
-                      :index="getSortIndex('price')"
-                      :direction="getSortDirection('price')"
-                      @directionChanged="onSortDirectionChange('price', $event)"/>
-          </span>
-        </th>
-        <th>
-          <span class="icon-text">
-            <span>Entries</span>
-            <SortIcon class="ml-1"
-                      :index="getSortIndex('entries')"
-                      :direction="getSortDirection('entries')"
-                      @directionChanged="onSortDirectionChange('entries', $event)"/>
-          </span>
-        </th>
-        <th>
-          <span class="icon-text">
-            <span>Lottery Phase</span>
-            <SortIcon class="ml-1"
-                      :index="getSortIndex('phase')"
-                      :direction="getSortDirection('phase')"
-                      @directionChanged="onSortDirectionChange('phase', $event)"/>
-            <FilterIcon :options="filters.phases.options"
-                        :selected="getSelectedFilterOptions('phases')"
-                        @selectionChanged="onFilterSelectionChange('phases', $event)"/>
-          </span>
-        </th>
-        <th>
-          <span class="icon-text">
-            <span>Allowed Tenants</span>
-            <FilterIcon class="ml-1"
-                        :options="filters.tenants.options"
-                        :selected="getSelectedFilterOptions('tenants')"
-                        @selectionChanged="onFilterSelectionChange('tenants', $event)"/>
-          </span>
-        </th>
-        <th>
-          <span class="icon-text">
-            <span>Last Updated</span>
-            <SortIcon class="ml-1"
-                      :index="getSortIndex('updateTime')"
-                      :direction="getSortDirection('updateTime')"
-                      @directionChanged="onSortDirectionChange('updateTime', $event)"/>
-          </span>
-        </th>
-        <th>
-          <span class="icon-text">
-            <span>First Seen</span>
-            <SortIcon class="ml-1"
-                      :index="getSortIndex('firstSeen')"
-                      :direction="getSortDirection('firstSeen')"
-                      @directionChanged="onSortDirectionChange('firstSeen', $event)"/>
-          </span>
-        </th>
-      </tr>
+        <tr>
+          <th>
+            <span class="icon-text">
+              <span>Address</span>
+              <FilterIcon
+                class="ml-1"
+                :options="filters.districts.options"
+                :selected="getSelectedFilterOptions('districts')"
+                @selectionChanged="onFilterSelectionChange('districts', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Size</span>
+              <SortIcon
+                class="ml-1"
+                :index="getSortIndex('size')"
+                :direction="getSortDirection('size')"
+                @directionChanged="onSortDirectionChange('size', $event)"
+              />
+              <FilterIcon
+                :options="filters.sizes.options"
+                :selected="getSelectedFilterOptions('sizes')"
+                @selectionChanged="onFilterSelectionChange('sizes', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Price</span>
+              <SortIcon
+                class="ml-1"
+                :index="getSortIndex('price')"
+                :direction="getSortDirection('price')"
+                @directionChanged="onSortDirectionChange('price', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Entries</span>
+              <SortIcon
+                class="ml-1"
+                :index="getSortIndex('entries')"
+                :direction="getSortDirection('entries')"
+                @directionChanged="onSortDirectionChange('entries', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Lottery Phase</span>
+              <SortIcon
+                class="ml-1"
+                :index="getSortIndex('phase')"
+                :direction="getSortDirection('phase')"
+                @directionChanged="onSortDirectionChange('phase', $event)"
+              />
+              <FilterIcon
+                :options="filters.phases.options"
+                :selected="getSelectedFilterOptions('phases')"
+                @selectionChanged="onFilterSelectionChange('phases', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Allowed Tenants</span>
+              <FilterIcon
+                class="ml-1"
+                :options="filters.tenants.options"
+                :selected="getSelectedFilterOptions('tenants')"
+                @selectionChanged="onFilterSelectionChange('tenants', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Last Updated</span>
+              <SortIcon
+                class="ml-1"
+                :index="getSortIndex('updateTime')"
+                :direction="getSortDirection('updateTime')"
+                @directionChanged="onSortDirectionChange('updateTime', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>First Seen</span>
+              <SortIcon
+                class="ml-1"
+                :index="getSortIndex('firstSeen')"
+                :direction="getSortDirection('firstSeen')"
+                @directionChanged="onSortDirectionChange('firstSeen', $event)"
+              />
+            </span>
+          </th>
+        </tr>
       </thead>
 
       <tbody>
-      <tr v-for="plot in currentPagePlots"
-          :key="[plot.world_id, plot.district_id, plot.ward_number, plot.plot_number].toString()">
-        <td>
-          {{ client.districtName(plot.district_id) }}, Ward {{ plot.ward_number + 1 }}, Plot
-          {{ plot.plot_number + 1 }}
-        </td>
-        <td>{{ utils.sizeStr(plot.size) }}</td>
-        <td>{{ plot.price.toLocaleString() }}</td>
-        <td>
-          <FlashOnChange :value="utils.lotteryEntryCountStr(plot)"
-                         :class="{'is-italic': utils.shouldEm(plot)}"/>
-        </td>
-        <td>
-          <FlashOnChange :value="utils.lotteryPhaseStr(plot)" :class="{'is-italic': utils.shouldEm(plot)}"/>
-        </td>
-        <td>{{ utils.tenantStr(plot.purchase_system) }}</td>
-        <td>
-          <FlashOnChange :value="utils.updatedStr(plot.last_updated_time)"/>
-        </td>
-        <td>{{ utils.updatedStr(plot.first_seen_time) }}</td>
-      </tr>
+        <tr
+          v-for="plot in currentPagePlots"
+          :key="[plot.world_id, plot.district_id, plot.ward_number, plot.plot_number].toString()"
+        >
+          <td>
+            {{ client.districtName(plot.district_id) }}, Ward {{ plot.ward_number + 1 }}, Plot
+            {{ plot.plot_number + 1 }}
+          </td>
+          <td>{{ utils.sizeStr(plot.size) }}</td>
+          <td>{{ plot.price.toLocaleString() }}</td>
+          <td>
+            <FlashOnChange :value="utils.lotteryEntryCountStr(plot)" :class="{'is-italic': utils.shouldEm(plot)}" />
+          </td>
+          <td>
+            <FlashOnChange :value="utils.lotteryPhaseStr(plot)" :class="{'is-italic': utils.shouldEm(plot)}" />
+          </td>
+          <td>{{ utils.tenantStr(plot.purchase_system) }}</td>
+          <td>
+            <FlashOnChange :value="utils.updatedStr(plot.last_updated_time)" />
+          </td>
+          <td>{{ utils.updatedStr(plot.first_seen_time) }}</td>
+        </tr>
       </tbody>
     </table>
 
@@ -354,18 +373,17 @@ onMounted(() => {
       <p class="level-item">
         <button class="button mr-2" v-if="pagination.currentPage > 0" @click="pagination.currentPage--">
           <span class="icon is-small">
-            <font-awesome-icon :icon="['fas', 'angle-left']"/>
+            <font-awesome-icon :icon="['fas', 'angle-left']" />
           </span>
         </button>
         <span>Page {{ pagination.currentPage + 1 }} / {{ numPages }}</span>
         <button class="button ml-2" v-if="pagination.currentPage < numPages - 1" @click="pagination.currentPage++">
           <span class="icon is-small">
-            <font-awesome-icon :icon="['fas', 'angle-right']"/>
+            <font-awesome-icon :icon="['fas', 'angle-right']" />
           </span>
         </button>
       </p>
     </div>
-
   </div>
 </template>
 
