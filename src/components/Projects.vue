@@ -23,31 +23,54 @@ See project-tags.json for tags
 -->
 
 <script setup lang="ts">
-import projects from "@/projects.json";
-import tags from "@/project-tags.json";
+import {projects} from "@/projects";
+import {tags} from "@/project-tags";
 import {SRC_PATH} from "@/utils/constants";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {computed, reactive} from "vue";
+
+const filteredTags = reactive(new Set());
+const filteredProjects = computed(() => {
+  if (filteredTags.size > 0) {
+    // any project that has at least one of the selected tags
+    return projects.filter((project) => project.tags.find((tag) => filteredTags.has(tag)));
+  }
+  return projects;
+});
+
+function toggleTag(tag: string) {
+  if (filteredTags.has(tag)) {
+    filteredTags.delete(tag);
+  } else {
+    filteredTags.add(tag);
+  }
+}
 </script>
 
 <template>
   <!-- fancy icons -->
   <!-- this took me 4 hours to make please don't make me write CSS -->
   <div class="is-flex mb-6">
-    <div class="icon hex-icon" v-for="tag in tags">
+    <div class="icon hex-icon" v-for="[key, tag] in Object.entries(tags)" @click="toggleTag(key)" :key="key">
       <!-- label on hover -->
       <div class="hex-icon-label">
         <span>{{ tag.name }}</span>
       </div>
       <!-- icon -->
-      <img class="svg-grey-dark" :src="SRC_PATH + tag.icon" :alt="tag.name" v-if="typeof tag.icon === 'string'" />
-      <font-awesome-icon :icon="tag.icon" v-else />
+      <img
+        :class="{'svg-grey-dark': !filteredTags.has(key), 'active-blue': filteredTags.has(key)}"
+        :src="SRC_PATH + tag.icon"
+        :alt="tag.name"
+        v-if="typeof tag.icon === 'string'"
+      />
+      <font-awesome-icon :icon="tag.icon" :class="{'active-blue': filteredTags.has(key)}" v-else />
       <!-- bg -->
       <div class="hex-icon-bg"></div>
     </div>
   </div>
   <!-- projects -->
-  <div class="columns is-multiline">
-    <div class="column is-6-tablet is-4-desktop is-3-fullhd" v-for="project in projects">
+  <TransitionGroup name="projects" tag="div" class="columns is-multiline">
+    <div class="column is-6-tablet is-4-desktop is-3-fullhd project" v-for="project in filteredProjects" :key="project">
       <div class="card">
         <div class="card-image" v-if="project.banner !== null">
           <figure class="image is-16by9">
@@ -75,7 +98,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
             </div>
 
             <div class="level-right">
-              <span class="icon" v-for="tag in project.tags">
+              <span class="icon" v-for="tag in project.tags" :key="tag">
                 <img
                   class="svg-grey-dark"
                   :src="SRC_PATH + tags[tag].icon"
@@ -96,7 +119,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
         </footer>
       </div>
     </div>
-  </div>
+  </TransitionGroup>
 </template>
 
 <style scoped lang="scss">
@@ -107,7 +130,8 @@ $hex-margin: 4px;
 $icon-size: $hex-size - $hex-margin;
 $half-hex: $hex-size / 2;
 
-/* icon containers */
+// ===== ICONS =====
+// icon containers
 .hex-icon {
   margin-right: -($hex-size / 2) + 1px;
   width: $hex-size;
@@ -119,6 +143,7 @@ $half-hex: $hex-size / 2;
   padding-top: $icon-size * 1.5;
 }
 
+// icon
 .hex-icon > img {
   width: $icon-size;
   height: $icon-size;
@@ -128,7 +153,7 @@ $half-hex: $hex-size / 2;
   z-index: 3;
 }
 
-/* icon labels */
+// topic labels
 .hex-icon-label {
   position: absolute;
   white-space: nowrap;
@@ -168,7 +193,7 @@ $half-hex: $hex-size / 2;
   transform: translateX(50%) rotate(-30deg) translateX(-$half-hex);
 }
 
-/* set up hexagons - this is fairly hacky but oh well, CSS is a pain */
+// set up hexagons - this is fairly hacky but oh well, CSS is a pain
 .hex-icon-bg {
   position: absolute;
   background: white;
@@ -183,5 +208,28 @@ $half-hex: $hex-size / 2;
   .hex-icon:nth-child(#{$i}) {
     z-index: #{999 - $i};
   }
+}
+
+// active blue color
+.active-blue {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(73%) saturate(6154%) hue-rotate(196deg) brightness(101%)
+    contrast(102%);
+}
+
+// ===== PROJECTS =====
+.projects-move,
+.projects-enter-active,
+.projects-leave-active {
+  transition: all 0.3s ease;
+}
+
+.projects-enter-from,
+.projects-leave-to {
+  opacity: 0;
+  transform: scale(10%);
+}
+
+.projects-leave-active {
+  position: absolute;
 }
 </style>

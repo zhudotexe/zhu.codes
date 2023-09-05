@@ -143,6 +143,7 @@ import Projects from "@/components/Projects.vue";
   <section class="section">
     <div class="container">
       <h1 class="title">Projects</h1>
+      Click to filter by topic.
       <Projects />
     </div>
   </section>
