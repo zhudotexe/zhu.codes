@@ -5,6 +5,7 @@ import {
   faDAndD,
   faDiscord,
   faGithub,
+  faGoogle,
   faJsSquare,
   faLinkedin,
   faNodeJs,
@@ -14,6 +15,7 @@ import {
 import {
   faAngleLeft,
   faAngleRight,
+  faBrain,
   faBuilding,
   faCode,
   faDiceD20,
@@ -36,7 +38,19 @@ import router from "./router";
 
 // ==== fontawesome ====
 // brands
-library.add(faGithub, faDiscord, faDAndD, faLinkedin, faPython, faAws, faJsSquare, faNodeJs, faAngular, faVuejs);
+library.add(
+  faGithub,
+  faDiscord,
+  faDAndD,
+  faLinkedin,
+  faPython,
+  faAws,
+  faJsSquare,
+  faNodeJs,
+  faAngular,
+  faVuejs,
+  faGoogle
+);
 // regular
 library.add(
   faEnvelope,
@@ -54,7 +68,8 @@ library.add(
   faSort,
   faSortUp,
   faSortDown,
-  faFilter
+  faFilter,
+  faBrain
 );
 
 // ==== init ====
