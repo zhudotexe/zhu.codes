@@ -25,7 +25,6 @@ See project-tags.json for tags
 <script setup lang="ts">
 import {projects} from "@/projects";
 import {tags} from "@/project-tags";
-import {SRC_PATH} from "@/utils/constants";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {computed, reactive} from "vue";
 
@@ -59,7 +58,7 @@ function toggleTag(tag: string) {
       <!-- icon -->
       <img
         :class="{'svg-grey-dark': !filteredTags.has(key), 'active-blue': filteredTags.has(key)}"
-        :src="SRC_PATH + tag.icon"
+        :src="tag.icon"
         :alt="tag.name"
         v-if="typeof tag.icon === 'string'"
       />
@@ -78,7 +77,7 @@ function toggleTag(tag: string) {
       <div class="card">
         <div class="card-image" v-if="project.banner !== null">
           <figure class="image is-16by9">
-            <img :src="SRC_PATH + project.banner" :alt="project.name + ' Banner'" />
+            <img :src="project.banner" :alt="project.name + ' Banner'" />
           </figure>
         </div>
 
@@ -86,7 +85,7 @@ function toggleTag(tag: string) {
           <div class="media">
             <div class="media-left" v-if="project.icon !== null">
               <figure class="image is-48x48">
-                <img :src="SRC_PATH + project.icon" :alt="project.name + ' Logo'" />
+                <img :src="project.icon" :alt="project.name + ' Logo'" />
               </figure>
             </div>
             <div class="media-content">
@@ -105,7 +104,7 @@ function toggleTag(tag: string) {
               <span class="icon" v-for="tag in project.tags" :key="tag">
                 <img
                   class="svg-grey-dark"
-                  :src="SRC_PATH + tags[tag].icon"
+                  :src="tags[tag].icon as string"
                   :alt="tags[tag].name"
                   v-if="typeof tags[tag].icon === 'string'"
                 />

@@ -1,3 +1,6 @@
+import cSharpLogo from "@/assets/CSharpLogo.webp";
+import ffxivLogo from "@/assets/FFXIVMeteor.svg";
+
 interface ProjectTag {
   icon: string | string[];
   name: string;
@@ -13,7 +16,7 @@ export const tags: {[key: string]: ProjectTag} = {
     name: "JavaScript",
   },
   "lang-csharp": {
-    icon: "assets/CSharpLogo.webp",
+    icon: cSharpLogo,
     name: "C#",
   },
   "topic-pl": {
@@ -49,7 +52,7 @@ export const tags: {[key: string]: ProjectTag} = {
     name: "Dungeons & Dragons",
   },
   "game-ffxiv": {
-    icon: "assets/FFXIVMeteor.svg",
+    icon: ffxivLogo,
     name: "Final Fantasy XIV",
   },
 };
