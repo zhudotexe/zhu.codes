@@ -1,4 +1,9 @@
-export const tags = {
+interface ProjectTag {
+  icon: string | string[];
+  name: string;
+}
+
+export const tags: {[key: string]: ProjectTag} = {
   "lang-python": {
     icon: ["fab", "python"],
     name: "Python",

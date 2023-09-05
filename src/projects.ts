@@ -1,4 +1,21 @@
-export const projects = [
+interface ProjectLink {
+  name: string;
+  href: string;
+  routerLink?: boolean;
+}
+
+interface Project {
+  name: string;
+  tagline: string;
+  description: string;
+  date: string;
+  banner: string | null;
+  icon: string | null;
+  tags: string[];
+  links: ProjectLink[];
+}
+
+export const projects: Project[] = [
   {
     name: "Kani",
     tagline: "Build AI apps faster and cleaner than ever before.",

@@ -70,7 +70,11 @@ function toggleTag(tag: string) {
   </div>
   <!-- projects -->
   <TransitionGroup name="projects" tag="div" class="columns is-multiline">
-    <div class="column is-6-tablet is-4-desktop is-3-fullhd project" v-for="project in filteredProjects" :key="project">
+    <div
+      class="column is-6-tablet is-4-desktop is-3-fullhd project"
+      v-for="project in filteredProjects"
+      :key="project.name"
+    >
       <div class="card">
         <div class="card-image" v-if="project.banner !== null">
           <figure class="image is-16by9">
@@ -123,17 +127,18 @@ function toggleTag(tag: string) {
 </template>
 
 <style scoped lang="scss">
+@use "sass:math";
 @import "@/global.scss";
 
 $hex-size: 28px;
 $hex-margin: 4px;
 $icon-size: $hex-size - $hex-margin;
-$half-hex: $hex-size / 2;
+$half-hex: math.div($hex-size, 2);
 
 // ===== ICONS =====
 // icon containers
 .hex-icon {
-  margin-right: -($hex-size / 2) + 1px;
+  margin-right: -$half-hex + 1px;
   width: $hex-size;
   height: $hex-size;
   pointer-events: none;
