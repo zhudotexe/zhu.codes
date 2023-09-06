@@ -1,5 +1,6 @@
 import cSharpLogo from "@/assets/CSharpLogo.webp";
 import ffxivLogo from "@/assets/FFXIVMeteor.svg";
+import typeScriptLogo from "@/assets/TypeScriptLogo.svg";
 
 interface ProjectTag {
   icon: string | string[];
@@ -10,6 +11,10 @@ export const tags: {[key: string]: ProjectTag} = {
   "lang-python": {
     icon: ["fab", "python"],
     name: "Python",
+  },
+  "lang-ts": {
+    icon: typeScriptLogo,
+    name: "typeScript",
   },
   "lang-js": {
     icon: ["fab", "js-square"],

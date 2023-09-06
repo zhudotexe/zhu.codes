@@ -55,7 +55,7 @@ export const projects: Project[] = [
     date: "2021 - current",
     banner: paissaBanner,
     icon: paissaLogo,
-    tags: ["lang-csharp", "lang-python", "topic-ds", "game-ffxiv"],
+    tags: ["lang-csharp", "lang-python", "lang-ts", "topic-ds", "game-ffxiv"],
     links: [
       {
         name: "GitHub",
@@ -96,7 +96,7 @@ export const projects: Project[] = [
     date: "2021 - current",
     banner: null,
     icon: null,
-    tags: ["lang-python", "lib-vue"],
+    tags: ["lang-python", "lang-ts", "lib-vue"],
     links: [
       {
         name: "GitHub",
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     date: "2022",
     banner: null,
     icon: kinesisToolsLogo,
-    tags: ["lang-python", "topic-nlp", "lib-vue", "infra-aws"],
+    tags: ["lang-python", "lang-ts", "topic-nlp", "lib-vue", "infra-aws"],
     links: [
       {
         name: "GitHub",
