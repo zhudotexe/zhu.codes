@@ -14,7 +14,7 @@ export const tags: {[key: string]: ProjectTag} = {
   },
   "lang-ts": {
     icon: typeScriptLogo,
-    name: "typeScript",
+    name: "TypeScript",
   },
   "lang-js": {
     icon: ["fab", "js-square"],
