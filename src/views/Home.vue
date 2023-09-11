@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CurrentTime from "@/components/CurrentTime.vue";
 import HomeSubtitle from "@/components/HomeSubtitle.vue";
+import Papers from "@/components/Papers.vue";
 import Projects from "@/components/Projects.vue";
 </script>
 
@@ -153,67 +154,10 @@ import Projects from "@/components/Projects.vue";
   <section class="section">
     <div class="container">
       <h1 class="title">Publications</h1>
-
-      <div class="menu">
-        <p class="menu-label">2023</p>
-        <ul class="menu-list">
-          <li>
-            <a>
-              <b>Zhu, A.</b>, Dugan, L., Hwang, A., Callison-Burch, C. (2023).
-              <i>Kani: A Lightweight and Highly Hackable Framework for Language Model Applications</i>. In review.
-            </a>
-          </li>
-          <li>
-            <a href="https://arxiv.org/abs/2308.07540" target="_blank">
-              <b>Zhu, A.</b>, Martin, L., Head, A., Callison-Burch, C. (2023).
-              <i>CALYPSO: LLMs as Dungeon Masters' Assistants</i>. The 19th AAAI Conference on Artificial Intelligence
-              and Interactive Digital Entertainment (AIIDE 2023).
-            </a>
-          </li>
-          <li>
-            <a href="https://aclanthology.org/2023.acl-long.229/" target="_blank">
-              <b>Zhu, A.</b>, Aggarwal, K., Feng, A., Martin, L., Callison-Burch, C. (2023).
-              <i>FIREBALL: A Dataset of Dungeons and Dragons Actual-Play with Structured Game State Information</i>. The
-              61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
-            </a>
-          </li>
-          <li>
-            <a href="https://aclanthology.org/2023.acl-long.624/" target="_blank">
-              Zhou, P., <b>Zhu, A.</b>, Hu, J., Pujara, J., Ren, X., Callison-Burch, C., Choi, Y., Ammanabrolu, P.
-              (2023).
-              <i
-                >I Cast Detect Thoughts: Learning to Converse and Guide with Intents and Theory-of-Mind in Dungeons and
-                Dragons</i
-              >. The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
-            </a>
-          </li>
-        </ul>
-
-        <p class="menu-label">2022</p>
-        <ul class="menu-list">
-          <li>
-            <a href="https://openreview.net/forum?id=jQSStHwtmDN" target="_blank">
-              Papazov, S., Gill, W., Garcia Ferreiro, M., <b>Zhu, A.</b>, Martin, L., Callison-Burch, C. (2022).
-              <i>Using Language Models to Convert Between Natural Language and Game Commands</i>. NAACL 2022 Wordplay
-              Workshop.
-            </a>
-          </li>
-          <li>
-            <a href="https://arxiv.org/abs/2101.07524" target="_blank">
-              Wei, J., Liu, M., Luo, J., <b>Zhu, A.</b>, Li, Q., Davis, J., Liu, Y. (2022).
-              <i>DuelGAN: A Duel Between Two Discriminators Stabilizes the GAN Training</i>. European Conference on
-              Computer Vision.
-            </a>
-          </li>
-        </ul>
-      </div>
+      <Papers />
     </div>
   </section>
   <!-- /publications -->
 </template>
 
-<style scoped>
-.svg-margin {
-  margin: 2px;
-}
-</style>
+<style scoped></style>

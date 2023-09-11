@@ -23,8 +23,8 @@ See project-tags.json for tags
 -->
 
 <script setup lang="ts">
-import {projects} from "@/projects";
-import {tags} from "@/project-tags";
+import {projects} from "@/data/projects";
+import {tags} from "@/data/project-tags";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {computed, reactive} from "vue";
 
