@@ -54,7 +54,7 @@ export const papers: Paper[] = [
       "Lara J. Martin",
       "Chris Callison-Burch",
     ],
-    title: "FIREBALL: A Dataset of Dungeons and Dragons Actual-Play with Structured Game State Information",
+    title: "Using Language Models to Convert Between Natural Language and Game Commands",
     url: "https://openreview.net/forum?id=jQSStHwtmDN",
     year: 2022,
     conf: "NAACL 2022 Wordplay Workshop",
