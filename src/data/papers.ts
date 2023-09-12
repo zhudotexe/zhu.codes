@@ -10,7 +10,7 @@ export const papers: Paper[] = [
   {
     authors: ["Andrew Zhu", "Liam Dugan", "Alyssa Hwang", "Chris Callison-Burch"],
     title: "Kani: A Lightweight and Highly Hackable Framework for Building Language Model Applications",
-    url: https://arxiv.org/abs/2309.05542,
+    url: "https://arxiv.org/abs/2309.05542",
     year: 2023,
     conf: "In review",
   },
