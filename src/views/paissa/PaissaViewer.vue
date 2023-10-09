@@ -73,9 +73,6 @@ onUnmounted(() => client.close());
       <div class="notification is-warning" v-if="client.isDisconnected">
         Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
       </div>
-      <div class="notification is-warning">
-        PaissaDB is not yet updated for FFXIV version 6.5. Houses that appear here may not be up to date.
-      </div>
       <!-- /title -->
 
       <!-- world select -->
