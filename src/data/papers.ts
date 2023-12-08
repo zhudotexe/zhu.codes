@@ -10,7 +10,7 @@ export const papers: Paper[] = [
   {
     authors: ["Andrew Zhu", "Liam Dugan", "Alyssa Hwang", "Chris Callison-Burch"],
     title: "Kani: A Lightweight and Highly Hackable Framework for Building Language Model Applications",
-    url: "https://arxiv.org/abs/2309.05542",
+    url: "https://aclanthology.org/2023.nlposs-1.8/",
     year: 2023,
     conf: "3rd Workshop for Natural Language Processing Open Source Software (NLP-OSS @ EMNLP 2023)",
   },
