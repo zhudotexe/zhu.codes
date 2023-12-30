@@ -3,6 +3,7 @@ import FlashOnChange from "@/components/FlashOnChange.vue";
 import TimeDisplay from "@/components/TimeDisplay.vue";
 import type {PaissaClient} from "@/views/paissa/client";
 import FilterIcon from "@/views/paissa/FilterIcon.vue";
+import FilterIconGrid from "@/views/paissa/FilterIconGrid.vue";
 import {filters} from "@/views/paissa/filters";
 import {addressSorter, sorters, SortOrder} from "@/views/paissa/sorters";
 import SortIcon from "@/views/paissa/SortIcon.vue";
@@ -256,7 +257,7 @@ onMounted(() => {
           <th>
             <span class="icon-text">
               <span>Ward</span>
-              <FilterIcon
+              <FilterIconGrid
                 class="ml-1"
                 :options="filters.wards.options"
                 :selected="getSelectedFilterOptions('wards')"
@@ -267,7 +268,7 @@ onMounted(() => {
           <th>
             <span class="icon-text">
               <span>Plot</span>
-              <FilterIcon
+              <FilterIconGrid
                 class="ml-1"
                 :options="filters.plots.options"
                 :selected="getSelectedFilterOptions('plots')"
