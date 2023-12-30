@@ -244,12 +244,34 @@ onMounted(() => {
         <tr>
           <th>
             <span class="icon-text">
-              <span>Address</span>
+              <span>District</span>
               <FilterIcon
                 class="ml-1"
                 :options="filters.districts.options"
                 :selected="getSelectedFilterOptions('districts')"
                 @selectionChanged="onFilterSelectionChange('districts', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Ward</span>
+              <FilterIcon
+                class="ml-1"
+                :options="filters.wards.options"
+                :selected="getSelectedFilterOptions('wards')"
+                @selectionChanged="onFilterSelectionChange('wards', $event)"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="icon-text">
+              <span>Plot</span>
+              <FilterIcon
+                class="ml-1"
+                :options="filters.plots.options"
+                :selected="getSelectedFilterOptions('plots')"
+                @selectionChanged="onFilterSelectionChange('plots', $event)"
               />
             </span>
           </th>
@@ -348,10 +370,9 @@ onMounted(() => {
           v-for="plot in currentPagePlots"
           :key="[plot.world_id, plot.district_id, plot.ward_number, plot.plot_number].toString()"
         >
-          <td>
-            {{ client.districtName(plot.district_id) }}, Ward {{ plot.ward_number + 1 }}, Plot
-            {{ plot.plot_number + 1 }}
-          </td>
+          <td>{{ client.districtName(plot.district_id) }}</td>
+          <td>{{ plot.ward_number + 1 }}</td>
+          <td>{{ plot.plot_number + 1 }}</td>
           <td>{{ utils.sizeStr(plot.size) }}</td>
           <td>{{ plot.price.toLocaleString() }}</td>
           <td>
