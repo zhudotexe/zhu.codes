@@ -17,12 +17,13 @@ const vClickOutside = clickOutside.directive;
 const isExpanded = ref(false);
 
 // methods
-function onCheckboxChange(event: any, value: number) {
+function onButtonClick(event: any, value: number) {
   const selectedOptions = new Set<number>(props.selected);
-  if (event.currentTarget.checked) {
-    selectedOptions.add(value);
-  } else {
+
+  if (selectedOptions.has(value)) {
     selectedOptions.delete(value);
+  } else {
+    selectedOptions.add(value);
   }
   emit("selectionChanged", Array.from(selectedOptions));
 }
@@ -48,15 +49,18 @@ function onClickOutside() {
 
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
       <div class="dropdown-content">
-        <div class="dropdown-item" v-for="option in options" :key="option.value">
-          <label class="checkbox">
-            <input
-              type="checkbox"
-              :checked="selected.includes(option.value)"
-              @change="onCheckboxChange($event, option.value)"
-            />
-            {{ option.label }}
-          </label>
+        <div class="dropdown-item">
+          <div style="width: 440px">
+            <button v-for="option in options"
+              style="width: 40px"
+              :class="['button mr-1 mb-1',
+                (selected.includes(option.value) ? 'is-primary' : '')
+              ]"
+              @click="onButtonClick($event, option.value)"
+            >
+              {{ option.label }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
