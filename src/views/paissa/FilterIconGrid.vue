@@ -50,11 +50,11 @@ function onClickOutside() {
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
       <div class="dropdown-content">
         <div class="dropdown-item">
-          <div style="width: 440px">
+          <div class="grid-container">
             <button
               v-for="option in options"
-              style="width: 40px"
-              :class="['button mr-1 mb-1', selected.includes(option.value) ? 'is-primary' : '']"
+              class="grid-button button mr-1 mb-1"
+              :class="{'is-primary': selected.includes(option.value)}"
               @click="onButtonClick($event, option.value)"
             >
               {{ option.label }}
@@ -65,3 +65,14 @@ function onClickOutside() {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* this is hardcoded for 10 buttons wide, which is fine since this is only used in ward/plot filters */
+.grid-container {
+  width: 440px;
+}
+
+.grid-button {
+  width: 40px;
+}
+</style>
