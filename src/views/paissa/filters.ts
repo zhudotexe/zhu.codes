@@ -84,8 +84,8 @@ export const filters: {[id: string]: FilterParams<number>} = {
 };
 
 function generateOptionSequence(untilNumber: number): FilterOption<number>[] {
-  return [...Array(untilNumber).keys()].map(i => ({
+  return [...Array(untilNumber).keys()].map((i) => ({
     label: `${i + 1}`,
     value: i,
-  }))
+  }));
 }

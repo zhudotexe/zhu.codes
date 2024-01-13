@@ -51,11 +51,10 @@ function onClickOutside() {
       <div class="dropdown-content">
         <div class="dropdown-item">
           <div style="width: 440px">
-            <button v-for="option in options"
+            <button
+              v-for="option in options"
               style="width: 40px"
-              :class="['button mr-1 mb-1',
-                (selected.includes(option.value) ? 'is-primary' : '')
-              ]"
+              :class="['button mr-1 mb-1', selected.includes(option.value) ? 'is-primary' : '']"
               @click="onButtonClick($event, option.value)"
             >
               {{ option.label }}
