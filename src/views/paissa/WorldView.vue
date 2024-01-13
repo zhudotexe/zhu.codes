@@ -372,8 +372,8 @@ onMounted(() => {
           :key="[plot.world_id, plot.district_id, plot.ward_number, plot.plot_number].toString()"
         >
           <td>{{ client.districtName(plot.district_id) }}</td>
-          <td>{{ plot.ward_number + 1 }}</td>
-          <td>{{ plot.plot_number + 1 }}</td>
+          <td>Ward {{ plot.ward_number + 1 }}</td>
+          <td>Plot {{ plot.plot_number + 1 }}</td>
           <td>{{ utils.sizeStr(plot.size) }}</td>
           <td>{{ plot.price.toLocaleString() }}</td>
           <td>
