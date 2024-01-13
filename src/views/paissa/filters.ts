@@ -2,6 +2,9 @@ import type {PlotState} from "@/views/paissa/client";
 import {HouseSize, LottoPhase, PurchaseSystem} from "@/views/paissa/types";
 import {isLottery, isUnknownOrOutdatedPhase} from "@/views/paissa/utils";
 
+const maxWardNumber = 30;
+const maxPlotNumber = 60;
+
 export interface FilterOption<T> {
   label: string;
   value: T;
@@ -25,6 +28,18 @@ export const filters: {[id: string]: FilterParams<number>} = {
     ],
     strategy(values: number[]): (plot: PlotState) => boolean {
       return (plot: PlotState) => values.includes(plot.district_id);
+    },
+  },
+  wards: {
+    options: generateOptionSequence(maxWardNumber),
+    strategy(values: number[]): (plot: PlotState) => boolean {
+      return (plot: PlotState) => values.includes(plot.ward_number);
+    },
+  },
+  plots: {
+    options: generateOptionSequence(maxPlotNumber),
+    strategy(values: number[]): (plot: PlotState) => boolean {
+      return (plot: PlotState) => values.includes(plot.plot_number);
     },
   },
   sizes: {
@@ -67,3 +82,10 @@ export const filters: {[id: string]: FilterParams<number>} = {
     },
   },
 };
+
+function generateOptionSequence(untilNumber: number): FilterOption<number>[] {
+  return [...Array(untilNumber).keys()].map((i) => ({
+    label: `${i + 1}`,
+    value: i,
+  }));
+}
