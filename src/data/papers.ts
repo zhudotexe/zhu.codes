@@ -7,6 +7,31 @@ interface Paper {
 }
 
 export const papers: Paper[] = [
+  // === 2024 ===
+  {
+    authors: ["Andrew Zhu", "Alyssa Hwang", "Liam Dugan", "Chris Callison-Burch"],
+    title: "FanOutQA: Multi-Hop, Multi-Document Question Answering for Large Language Models",
+    url: "https://arxiv.org/abs/2402.14116",
+    year: 2024,
+    conf: "In review at ACL 2024",
+  },
+  {
+    authors: [
+      "Liam Dugan",
+      "Alyssa Hwang",
+      "Filip Trhlik",
+      "Josh Magnus Ludan",
+      "Andrew Zhu",
+      "Hainiu Xu",
+      "Daphne Ippolito",
+      "Chris Callison-Burch",
+    ],
+    title: "RAID: A Shared Benchmark for Robust Evaluation of Machine-Generated Text Detectors",
+    url: null,
+    year: 2024,
+    conf: "In review at ACL 2024",
+  },
+  // === 2023 ===
   {
     authors: ["Andrew Zhu", "Liam Dugan", "Alyssa Hwang", "Chris Callison-Burch"],
     title: "Kani: A Lightweight and Highly Hackable Framework for Building Language Model Applications",
@@ -45,6 +70,7 @@ export const papers: Paper[] = [
     year: 2023,
     conf: "The 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023)",
   },
+  // === 2022 ===
   {
     authors: [
       "Stefan Papazov",
