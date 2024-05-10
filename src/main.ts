@@ -29,6 +29,7 @@ import {
   faSort,
   faSortDown,
   faSortUp,
+  faTrophy,
   faUniversity,
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
@@ -69,7 +70,8 @@ library.add(
   faSortUp,
   faSortDown,
   faFilter,
-  faBrain
+  faBrain,
+  faTrophy
 );
 
 // ==== init ====

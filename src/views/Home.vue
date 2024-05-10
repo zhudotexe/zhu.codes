@@ -79,6 +79,14 @@ import Projects from "@/components/Projects.vue";
             <p>
               <span class="icon-text">
                 <span class="icon">
+                  <font-awesome-icon :icon="['fas', 'trophy']" />
+                </span>
+                <span>NSF Graduate Research Fellow</span>
+              </span>
+            </p>
+            <p>
+              <span class="icon-text">
+                <span class="icon">
                   <font-awesome-icon :icon="['fas', 'university']" />
                 </span>
                 <span>University of Pennsylvania <i>(2022 - present, Ph.D.)</i></span>
