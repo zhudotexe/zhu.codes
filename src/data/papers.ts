@@ -27,7 +27,7 @@ export const papers: Paper[] = [
       "Chris Callison-Burch",
     ],
     title: "RAID: A Shared Benchmark for Robust Evaluation of Machine-Generated Text Detectors",
-    url: null,
+    url: "https://arxiv.org/abs/2405.07940",
     year: 2024,
     conf: "In review at ACL 2024",
   },
