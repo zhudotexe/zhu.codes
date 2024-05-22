@@ -13,7 +13,7 @@ export const papers: Paper[] = [
     title: "FanOutQA: Multi-Hop, Multi-Document Question Answering for Large Language Models",
     url: "https://arxiv.org/abs/2402.14116",
     year: 2024,
-    conf: "In review at ACL 2024",
+    conf: "To appear at ACL 2024",
   },
   {
     authors: [
@@ -29,7 +29,7 @@ export const papers: Paper[] = [
     title: "RAID: A Shared Benchmark for Robust Evaluation of Machine-Generated Text Detectors",
     url: "https://arxiv.org/abs/2405.07940",
     year: 2024,
-    conf: "In review at ACL 2024",
+    conf: "To appear at ACL 2024",
   },
   // === 2023 ===
   {
