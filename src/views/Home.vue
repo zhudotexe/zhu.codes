@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CurrentTime from "@/components/CurrentTime.vue";
 import HomeSubtitle from "@/components/HomeSubtitle.vue";
-import Papers from "@/components/Papers.vue";
+import Papers from "@/components/papers/Papers.vue";
 import Projects from "@/components/Projects.vue";
 </script>
 
@@ -161,7 +161,6 @@ import Projects from "@/components/Projects.vue";
   <!-- publications -->
   <section class="section">
     <div class="container">
-      <h1 class="title">Publications</h1>
       <Papers />
     </div>
   </section>
