@@ -73,10 +73,6 @@ onUnmounted(() => client.close());
       <div class="notification is-warning" v-if="client.isDisconnected">
         Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
       </div>
-      <div class="notification is-danger">
-        PaissaDB has not yet been updated for Dawntrail. Information shown here will be missing or out of date.<br />
-        For more information, join <a href="https://discord.gg/9rduk8aDek" target="_blank">the Discord server.</a>
-      </div>
       <!-- /title -->
 
       <!-- world select -->
