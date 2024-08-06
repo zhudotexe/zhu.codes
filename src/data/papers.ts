@@ -14,6 +14,16 @@ export interface Paper {
 export const papers: Paper[] = [
   // === 2024 ===
   {
+    authors: ["Andrew Zhu", "Liam Dugan", "Chris Callison-Burch"],
+    title: "ReDel: A Toolkit for LLM-Powered Recursive Multi-Agent Systems",
+    url: "https://arxiv.org/abs/2408.02248",
+    year: 2024,
+    conf: "In submission to EMNLP 2024 (Demo Track)",
+    website: "https://redel.readthedocs.io/",
+    github: "https://github.com/zhudotexe/redel",
+    additional: [{title: "Demo", url: "https://datasets.mechanus.zhu.codes/redel-dist.zip"}],
+  },
+  {
     authors: ["Andrew Zhu", "Alyssa Hwang", "Liam Dugan", "Chris Callison-Burch"],
     title: "FanOutQA: A Multi-Hop, Multi-Document Question Answering Benchmark for Large Language Models",
     url: "https://arxiv.org/abs/2402.14116",
@@ -21,6 +31,7 @@ export const papers: Paper[] = [
     conf: "To appear at ACL 2024",
     website: "https://fanoutqa.com/",
     github: "https://github.com/zhudotexe/fanoutqa",
+    poster: "/posters/fanoutqa.pdf",
   },
   {
     authors: [

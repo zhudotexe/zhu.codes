@@ -20,6 +20,7 @@ function authorHtml(authors: string[]) {
       <a class="tag is-success" v-if="paper.website" :href="paper.website" target="_blank"> Website </a>
       <a class="tag is-warning" v-if="paper.github" :href="paper.github" target="_blank"> GitHub </a>
       <a class="tag is-danger" v-if="paper.poster" :href="paper.poster" target="_blank"> Poster </a>
+      <a class="tag" v-for="tag in paper.additional" :href="tag.url" target="_blank"> {{ tag.title }} </a>
     </div>
   </a>
 </template>
