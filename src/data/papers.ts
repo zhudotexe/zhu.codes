@@ -16,9 +16,9 @@ export const papers: Paper[] = [
   {
     authors: ["Andrew Zhu", "Liam Dugan", "Chris Callison-Burch"],
     title: "ReDel: A Toolkit for LLM-Powered Recursive Multi-Agent Systems",
-    url: "https://arxiv.org/abs/2408.02248",
+    url: "https://aclanthology.org/2024.emnlp-demo.17/",
     year: 2024,
-    conf: "In submission to EMNLP 2024 (Demo Track)",
+    conf: "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: System Demonstrations (EMNLP 2024 Demo)",
     website: "https://redel.readthedocs.io/",
     github: "https://github.com/zhudotexe/redel",
     additional: [{title: "Demo", url: "https://datasets.mechanus.zhu.codes/redel-dist.zip"}],
