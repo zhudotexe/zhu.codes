@@ -9,12 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "lts"
           cache: "npm"
 
       - name: Install deps
@@ -27,7 +27,7 @@ jobs:
           cp src/assets/ghpages404.html dist/404.html
 
       - name: Upload dist artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
@@ -38,10 +38,10 @@ jobs:
     needs: build
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
