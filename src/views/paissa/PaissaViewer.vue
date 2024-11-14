@@ -73,6 +73,10 @@ onUnmounted(() => client.close());
       <div class="notification is-warning" v-if="client.isDisconnected">
         Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
       </div>
+      <div class="notification is-warning">
+        PaissaHouse has not yet been updated to be compatible with Patch 7.1! The data shown here is probably outdated.
+        For updates, come join the <a href="https://discord.gg/GB8vPJ8tD5" target="_blank">developer Discord</a>.
+      </div>
       <!-- /title -->
 
       <!-- world select -->
