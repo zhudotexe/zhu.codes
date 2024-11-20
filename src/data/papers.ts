@@ -21,6 +21,7 @@ export const papers: Paper[] = [
     conf: "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: System Demonstrations (EMNLP 2024 Demo)",
     website: "https://redel.readthedocs.io/",
     github: "https://github.com/zhudotexe/redel",
+    poster: "/posters/redel.pdf",
     additional: [{title: "Demo", url: "https://datasets.mechanus.zhu.codes/redel-dist.zip"}],
   },
   {
