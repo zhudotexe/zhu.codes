@@ -15,7 +15,7 @@ import Projects from "@/components/Projects.vue";
           <div class="column is-2">
             <a href="https://github.com/zhudotexe" target="_blank">
               <figure class="image is-1by1">
-                <img class="is-rounded" src="me@512.webp" alt="Portrait of me" title="Hi!" />
+                <img class="is-rounded" src="@/assets/me@512.webp" alt="Portrait of me" title="Hi!" />
               </figure>
             </a>
           </div>
