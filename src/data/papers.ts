@@ -12,6 +12,16 @@ export interface Paper {
 }
 
 export const papers: Paper[] = [
+  // === 2025 ===
+  {
+    authors: ["Liam Dugan", "Andrew Zhu", "Firoj Alam", "Preslav Nakov", "Marianna Apidianaki", "Chris Callison-Burch"],
+    title: "GenAI Content Detection Task 3: Cross-Domain Machine-Generated Text Detection Challenge",
+    url: "https://aclanthology.org/2025.genaidetect-1.45/",
+    year: 2025,
+    conf: "Proceedings of the 1st Workshop on GenAI Content Detection (GenAIDetect @ COLING 2025)",
+    website: "https://raid-bench.xyz/shared-task",
+    github: "https://github.com/liamdugan/raid",
+  },
   // === 2024 ===
   {
     authors: ["Andrew Zhu", "Liam Dugan", "Chris Callison-Burch"],
@@ -51,6 +61,20 @@ export const papers: Paper[] = [
     conf: "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL 2024)",
     website: "https://raid-bench.xyz/",
     github: "https://github.com/liamdugan/raid",
+  },
+  {
+    authors: [
+      "Raffaella Bernardi",
+      "Julia Hockenmaier",
+      "Udo Kruschwitz",
+      "Massimo Poesio",
+      "Workshop Participants (incl. Andrew Zhu)",
+    ],
+    title: "Human in the Loop Learning through Grounded Interaction in Games",
+    url: "https://www.dagstuhl.de/24492",
+    year: 2024,
+    conf: "Schloss Dagstuhl Perspectives Workshop (WIP)",
+    website: "https://www.dagstuhl.de/24492",
   },
   // === 2023 ===
   {

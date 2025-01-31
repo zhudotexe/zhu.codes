@@ -8,7 +8,7 @@ defineProps<{
 const ME = "Andrew Zhu";
 
 function authorHtml(authors: string[]) {
-  return authors.map((author) => (author === ME ? `<b>${author}</b>` : author)).join(", ");
+  return authors.map((author) => author.replace(ME, `<b>${ME}</b>`)).join(", ");
 }
 </script>
 
