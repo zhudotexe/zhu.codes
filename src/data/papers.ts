@@ -22,13 +22,13 @@ export const papers: Paper[] = [
     website: "https://raid-bench.xyz/shared-task",
     github: "https://github.com/liamdugan/raid",
   },
-  {
-    authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Chandra Guntuku"],
-    title: "PAL: Exploring the Design of Chatbots for Palliative Care Training",
-    url: "",
-    year: 2025,
-    conf: "CHI 2025 Late Breaking Work (In submission)",
-  },
+  // {
+  //   authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Chandra Guntuku"],
+  //   title: "PAL: Exploring the Design of Chatbots for Palliative Care Training",
+  //   url: "",
+  //   year: 2025,
+  //   conf: "CHI 2025 Late Breaking Work (In submission)",
+  // },
   {
     authors: ["Andrew Zhu"],
     title: "Tool Usage in Large Language Models: Frameworks, Multi-Agent Systems, and Complex Tasks",
