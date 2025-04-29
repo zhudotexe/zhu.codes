@@ -22,13 +22,6 @@ export const papers: Paper[] = [
     website: "https://raid-bench.xyz/shared-task",
     github: "https://github.com/liamdugan/raid",
   },
-  // {
-  //   authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Chandra Guntuku"],
-  //   title: "PAL: Exploring the Design of Chatbots for Palliative Care Training",
-  //   url: "",
-  //   year: 2025,
-  //   conf: "CHI 2025 Late Breaking Work (In submission)",
-  // },
   {
     authors: ["Andrew Zhu"],
     title: "Tool Usage in Large Language Models: Frameworks, Multi-Agent Systems, and Complex Tasks",
@@ -85,10 +78,10 @@ export const papers: Paper[] = [
       "Massimo Poesio",
       "Workshop Participants (incl. Andrew Zhu)",
     ],
-    title: "Human in the Loop Learning through Grounded Interaction in Games",
-    url: "https://www.dagstuhl.de/24492",
+    title: "Human in the Loop Learning through Grounded Interaction in Games (Dagstuhl Perspectives Workshop 24492)",
+    url: "https://doi.org/10.4230/DagRep.14.12.28",
     year: 2024,
-    conf: "Schloss Dagstuhl Perspectives Workshop (WIP)",
+    conf: "Dagstuhl Reports, Volume 14, Issue 12, Schloss Dagstuhl – Leibniz-Zentrum für Informatik",
     website: "https://www.dagstuhl.de/24492",
   },
   // === 2023 ===
