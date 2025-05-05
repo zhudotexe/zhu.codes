@@ -85,7 +85,7 @@ import Projects from "@/components/Projects.vue";
                 <span class="icon">
                   <font-awesome-icon :icon="['fas', 'university']" />
                 </span>
-                <span>University of Pennsylvania <i>(2022 - present, Ph.D.)</i></span>
+                <span>University of Pennsylvania <i>(2022 - present, M.S., Ph.D.)</i></span>
               </span>
             </p>
             <p>
