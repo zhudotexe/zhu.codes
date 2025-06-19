@@ -14,6 +14,28 @@ export interface Paper {
 export const papers: Paper[] = [
   // === 2025 ===
   {
+    authors: ["Andrew Zhu", "Evan Osgood", "Chris Callison-Burch"],
+    title: "First Steps Towards Overhearing LLM Agents: A Case Study With Dungeons & Dragons Gameplay",
+    url: "https://arxiv.org/abs/2505.22809",
+    year: 2025,
+    conf: "In submission to EMNLP 2025",
+  },
+  {
+    authors: ["Prabhu Kagitha", "Andrew Zhu", "Li Zhang"],
+    title: "Addressing the Challenges of Planning Language Generation",
+    url: null,
+    year: 2025,
+    conf: "In submission to EMNLP 2025",
+  },
+  {
+    authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Guntuku"],
+    title:
+      "PAL: Designing Conversational Agents as Scalable, Cooperative Patient Simulators for Palliative‑Care Training",
+    url: null,
+    year: 2025,
+    conf: "To appear at CSCW 2025",
+  },
+  {
     authors: ["Liam Dugan", "Andrew Zhu", "Firoj Alam", "Preslav Nakov", "Marianna Apidianaki", "Chris Callison-Burch"],
     title: "GenAI Content Detection Task 3: Cross-Domain Machine-Generated Text Detection Challenge",
     url: "https://aclanthology.org/2025.genaidetect-1.45/",
