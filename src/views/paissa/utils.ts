@@ -82,3 +82,12 @@ export function updatedStr(updatedAt: number): string {
   const time = DateTime.fromSeconds(updatedAt);
   return time.toRelative() ?? "Unknown";
 }
+
+// fallback for event log if a world is not loaded
+export const KNOWN_DISTRICT_IDS: {[districtId: number]: string} = {
+  339: "Mist",
+  340: "The Lavender Beds",
+  341: "The Goblet",
+  641: "Shirogane",
+  979: "Empyreum",
+};

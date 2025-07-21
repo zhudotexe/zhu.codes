@@ -7,6 +7,7 @@ import WorldView from "@/views/paissa/WorldView.vue";
 import {groupBy} from "lodash";
 import {computed, onMounted, onUnmounted, reactive, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";
+import EventLog from "@/views/paissa/EventLog.vue";
 
 // setup
 const router = useRouter();
@@ -17,6 +18,7 @@ const client = reactive(new PaissaClient());
 const loadingWorldList = ref(true);
 const selectedWorldId = ref<number | null>(null);
 const loadingWorld = ref(false);
+const showEventLog = ref(false);
 
 // computed
 const worldGroups = computed<[string, WorldSummary[]][]>(() => {
@@ -62,7 +64,9 @@ onUnmounted(() => client.close());
     <div class="container">
       <!-- title -->
       <h3 class="title">
-        <img src="@/assets/PaissaLogo.png" alt="PaissaHouse Logo" class="paissa-logo" />
+        <a @click="showEventLog = !showEventLog">
+          <img src="@/assets/PaissaLogo.png" alt="PaissaHouse Logo" class="paissa-logo" />
+        </a>
         PaissaDB
       </h3>
       <h5 class="subtitle">
@@ -104,6 +108,13 @@ onUnmounted(() => client.close());
         <WorldView :client="client" :world-id="selectedWorldId" v-if="!loadingWorld" />
       </template>
       <!-- /world view -->
+
+      <!-- event log -->
+      <template v-if="showEventLog">
+        <h4 class="title is-4 mt-4">Live Events</h4>
+        <EventLog :client="client" />
+      </template>
+      <!-- /event log -->
 
       <!-- changelog -->
       <!--

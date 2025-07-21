@@ -8,6 +8,7 @@ import type {
   WSMessage,
 } from "@/views/paissa/types";
 import axios from "axios";
+import {KNOWN_DISTRICT_IDS} from "@/views/paissa/utils";
 
 export interface PlotState {
   world_id: number;
@@ -38,6 +39,7 @@ export class PaissaClient {
   districtNames: Map<number, string> = new Map<number, string>();
   isWSConnecting = false;
   isWSDisconnected = false;
+  eventListeners: ((data: WSMessage) => any)[] = [];
 
   // ==== lifecycle ====
   public init() {
@@ -107,14 +109,21 @@ export class PaissaClient {
       return;
     }
 
+    // call the state updaters
     switch (message.type) {
       case "plot_open":
-        return this.onPlotOpen(message.data);
+        this.onPlotOpen(message.data);
+        break;
       case "plot_update":
-        return this.onPlotUpdate(message.data);
+        this.onPlotUpdate(message.data);
+        break;
       case "plot_sold":
-        return this.onPlotSold(message.data);
+        this.onPlotSold(message.data);
+        break;
     }
+
+    // call custom event listeners
+    this.eventListeners.forEach((callback) => callback(message));
   }
 
   onPlotOpen(event: OpenPlotDetail) {
@@ -158,13 +167,23 @@ export class PaissaClient {
     setTimeout(() => this.attemptReconnect(attempt + 1, maxAttempts), attempt * 1000 + Math.random() * 1000);
   }
 
+  public addEventListener(callback: (data: WSMessage) => any) {
+    this.eventListeners.push(callback);
+  }
+
+  public removeEventListener(callback: (data: WSMessage) => any) {
+    const spliceIdx = this.eventListeners.indexOf(callback);
+    if (spliceIdx == -1) return;
+    this.eventListeners.splice(spliceIdx, 1);
+  }
+
   // ==== helpers ====
   public worldName(worldId: number): string {
     return this.worldMap.get(worldId)?.name ?? worldId.toString();
   }
 
   public districtName(districtId: number): string {
-    return this.districtNames.get(districtId) ?? districtId.toString();
+    return this.districtNames.get(districtId) ?? KNOWN_DISTRICT_IDS[districtId] ?? districtId.toString();
   }
 
   public nextOrLatestPhaseChange(): number {
