@@ -18,7 +18,7 @@ function onWSMessage(msg: WSMessage) {
 }
 
 const sortedEvents = computed(() => {
-  const sorted = [...events];
+  const sorted = events.filter((e) => e.type !== "ping");
   return sorted.reverse();
 });
 // hooks
