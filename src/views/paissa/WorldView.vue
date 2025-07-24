@@ -82,6 +82,7 @@ function onFilterSelectionChange(filterKey: string, selected: number[]) {
     filterSelections.delete(filterKey);
   } else {
     filterSelections.set(filterKey, new Set<number>(selected));
+    pagination.currentPage = Math.max(Math.min(pagination.currentPage, numPages.value - 1), 0);
   }
   updateQueryParams();
 }
