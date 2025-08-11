@@ -74,6 +74,10 @@ onUnmounted(() => client.close());
         the
         <a href="https://github.com/zhudotexe/FFXIV_PaissaHouse" target="_blank">PaissaHouse XIVLauncher plugin</a>.
       </h5>
+      <div class="notification is-warning">
+        The PaissaHouse plugin has not yet been updated for the latest FFXIV version. Information displayed here may be
+        out of date.
+      </div>
       <div class="notification is-warning" v-if="client.isDisconnected">
         Disconnected from the server! Please refresh the page to stay up-to-date with the latest data.
       </div>
