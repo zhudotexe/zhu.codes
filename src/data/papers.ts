@@ -14,19 +14,26 @@ export interface Paper {
 export const papers: Paper[] = [
   // === 2025 ===
   {
+    authors: ["Andrew Zhu", "Chris Callison-Burch"],
+    title: "Overhearing LLM Agents: A Survey, Taxonomy, and Roadmap",
+    url: null,
+    year: 2025,
+    conf: "In submission to AAAI 2026",
+  },
+  {
     authors: ["Andrew Zhu", "Evan Osgood", "Chris Callison-Burch"],
     title: "First Steps Towards Overhearing LLM Agents: A Case Study With Dungeons & Dragons Gameplay",
     url: "https://arxiv.org/abs/2505.22809",
     year: 2025,
-    conf: "In submission to EMNLP 2025",
+    conf: "COLM 2025 Workshop on AI Agents",
   },
-  {
-    authors: ["Prabhu Kagitha", "Andrew Zhu", "Li Zhang"],
-    title: "Addressing the Challenges of Planning Language Generation",
-    url: null,
-    year: 2025,
-    conf: "In submission to EMNLP 2025",
-  },
+  // {
+  //   authors: ["Prabhu Kagitha", "Andrew Zhu", "Li Zhang"],
+  //   title: "Addressing the Challenges of Planning Language Generation",
+  //   url: null,
+  //   year: 2025,
+  //   conf: "In submission to EMNLP 2025",
+  // },
   {
     authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Guntuku"],
     title:
