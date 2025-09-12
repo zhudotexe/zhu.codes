@@ -35,6 +35,20 @@ export const papers: Paper[] = [
   //   conf: "In submission to EMNLP 2025",
   // },
   {
+    authors: ["Shengqi Li", "Ziyi Zeng", "Jiajun Xi", "Andrew Zhu", "Prithviraj Ammanabrolu"],
+    title: "Setting the DC: Tool-Grounded D&D Simulations to Test LLM Agents",
+    url: null,
+    year: 2025,
+    conf: "In submission to NeurIPS 2025 Workshop on Generative and Protective AI for Content Creation (GenProCC)",
+  },
+  {
+    authors: ["Anna B. Stephenson", "Andrew Zhu", "Chris Callison-Burch", "Jan Kulveit"],
+    title: "Comparing Collective Behavior of LLM and Human Groups",
+    url: null,
+    year: 2025,
+    conf: "In submission to NeurIPS 2025 Workshop on Algorithmic Collective Action",
+  },
+  {
     authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Guntuku"],
     title:
       "PAL: Designing Conversational Agents as Scalable, Cooperative Patient Simulators for Palliative‑Care Training",
