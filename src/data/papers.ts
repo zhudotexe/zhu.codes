@@ -16,9 +16,9 @@ export const papers: Paper[] = [
   {
     authors: ["Andrew Zhu", "Chris Callison-Burch"],
     title: "Overhearing LLM Agents: A Survey, Taxonomy, and Roadmap",
-    url: null,
+    url: "https://arxiv.org/abs/2509.16325",
     year: 2025,
-    conf: "In submission to AAAI 2026",
+    conf: "arXiv:2509.16325",
   },
   {
     authors: ["Andrew Zhu", "Evan Osgood", "Chris Callison-Burch"],
@@ -39,14 +39,14 @@ export const papers: Paper[] = [
     title: "Setting the DC: Tool-Grounded D&D Simulations to Test LLM Agents",
     url: null,
     year: 2025,
-    conf: "In submission to NeurIPS 2025 Workshop on Generative and Protective AI for Content Creation (GenProCC)",
+    conf: "To appear at NeurIPS 2025 Workshop on Generative and Protective AI for Content Creation (GenProCC)",
   },
   {
     authors: ["Anna B. Stephenson", "Andrew Zhu", "Chris Callison-Burch", "Jan Kulveit"],
     title: "Comparing Collective Behavior of LLM and Human Groups",
     url: null,
     year: 2025,
-    conf: "In submission to NeurIPS 2025 Workshop on Algorithmic Collective Action",
+    conf: "To appear at NeurIPS 2025 Workshop on Algorithmic Collective Action",
   },
   {
     authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Guntuku"],
