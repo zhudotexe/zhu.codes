@@ -39,22 +39,22 @@ export const papers: Paper[] = [
     title: "Setting the DC: Tool-Grounded D&D Simulations to Test LLM Agents",
     url: null,
     year: 2025,
-    conf: "To appear at NeurIPS 2025 Workshop on Generative and Protective AI for Content Creation (GenProCC)",
+    conf: "NeurIPS 2025 Workshop on Generative and Protective AI for Content Creation (GenProCC)",
   },
   {
     authors: ["Anna B. Stephenson", "Andrew Zhu", "Chris Callison-Burch", "Jan Kulveit"],
     title: "Comparing Collective Behavior of LLM and Human Groups",
     url: null,
     year: 2025,
-    conf: "To appear at NeurIPS 2025 Workshop on Algorithmic Collective Action",
+    conf: "NeurIPS 2025 Workshop on Algorithmic Collective Action",
   },
   {
     authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Guntuku"],
     title:
       "PAL: Designing Conversational Agents as Scalable, Cooperative Patient Simulators for Palliative‑Care Training",
-    url: null,
+    url: "https://dl.acm.org/doi/10.1145/3715070.3749250",
     year: 2025,
-    conf: "To appear at CSCW 2025",
+    conf: "The 28th ACM SIGCHI Conference on Computer-Supported Cooperative Work & Social Computing (CSCW 2025)",
   },
   {
     authors: ["Liam Dugan", "Andrew Zhu", "Firoj Alam", "Preslav Nakov", "Marianna Apidianaki", "Chris Callison-Burch"],
