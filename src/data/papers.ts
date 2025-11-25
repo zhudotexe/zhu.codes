@@ -46,7 +46,7 @@ export const papers: Paper[] = [
     title: "Comparing Collective Behavior of LLM and Human Groups",
     url: null,
     year: 2025,
-    conf: "NeurIPS 2025 Workshop on Algorithmic Collective Action",
+    conf: "NeurIPS 2025 Workshop on Algorithmic Collective Action; PersonaLLM: Workshop on LLM Persona Modeling @ NeurIPS 2025",
   },
   {
     authors: ["Neil Sehgal", "Hita Kambhamettu", "Allen Chang", "Andrew Zhu", "Lyle Ungar", "Sharath Guntuku"],
