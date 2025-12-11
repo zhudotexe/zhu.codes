@@ -14,6 +14,14 @@ export interface Paper {
 export const papers: Paper[] = [
   // === 2025 ===
   {
+    authors: ["Andrew Zhu"],
+    title: "Towards Robust and Effective Tool-Calling LLM Agents Across Diverse Use Cases",
+    url: "/papers/proposal.pdf",
+    year: 2025,
+    conf: "Dissertation Proposal @ University of Pennsylvania",
+    additional: [{title: "Presentation", url: "/papers/proposal/index.html"}],
+  },
+  {
     authors: ["Andrew Zhu", "Chris Callison-Burch"],
     title: "Overhearing LLM Agents: A Survey, Taxonomy, and Roadmap",
     url: "https://arxiv.org/abs/2509.16325",
