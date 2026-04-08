@@ -12,6 +12,23 @@ export interface Paper {
 }
 
 export const papers: Paper[] = [
+  // === 2026 ===
+  {
+    authors: [
+      "Prabhu Prakash Kagitha",
+      "Bo Sun",
+      "Ishan Desai",
+      "Andrew Zhu",
+      "Cassie Huang",
+      "Manling Li",
+      "Ziyang Li",
+      "Li Zhang",
+    ],
+    title: "Unifying Inference-Time Planning Language Generation",
+    url: "https://openreview.net/forum?id=xtXFydESVo",
+    year: 2026,
+    conf: "To appear at ACL 2026 (Findings)",
+  },
   // === 2025 ===
   {
     authors: ["Andrew Zhu"],
@@ -35,24 +52,17 @@ export const papers: Paper[] = [
     year: 2025,
     conf: "COLM 2025 Workshop on AI Agents",
   },
-  // {
-  //   authors: ["Prabhu Kagitha", "Andrew Zhu", "Li Zhang"],
-  //   title: "Addressing the Challenges of Planning Language Generation",
-  //   url: null,
-  //   year: 2025,
-  //   conf: "In submission to EMNLP 2025",
-  // },
   {
     authors: ["Shengqi Li", "Ziyi Zeng", "Jiajun Xi", "Andrew Zhu", "Prithviraj Ammanabrolu"],
     title: "Setting the DC: Tool-Grounded D&D Simulations to Test LLM Agents",
-    url: null,
+    url: "https://neurips.cc/virtual/2025/loc/san-diego/128312",
     year: 2025,
     conf: "NeurIPS 2025 Workshop on Generative and Protective AI for Content Creation (GenProCC)",
   },
   {
     authors: ["Anna B. Stephenson", "Andrew Zhu", "Chris Callison-Burch", "Jan Kulveit"],
     title: "Comparing Collective Behavior of LLM and Human Groups",
-    url: null,
+    url: "https://openreview.net/forum?id=9ply9CAnSC",
     year: 2025,
     conf: "NeurIPS 2025 Workshop on Algorithmic Collective Action; PersonaLLM: Workshop on LLM Persona Modeling @ NeurIPS 2025",
   },
@@ -218,14 +228,14 @@ export const supervisedPapers: Paper[] = [
     ],
     title:
       "Outwit, Outplay, Out-Generate: A Framework for Designing Strategic Generative Agents in Competitive Environments",
-    url: null,
+    url: "https://wordplay-workshop.github.io/wordplay2024/pdfs/18.pdf",
     year: 2024,
     conf: "The 4th Wordplay: When Language Meets Games Workshop @ ACL 2024",
   },
   {
     authors: ["Jaewoo Song", "Andrew Zhu", "Chris Callison-Burch"],
     title: "You Have Thirteen Hours in Which to Solve the Labyrinth: Enhancing AI Game Masters with Function Calling",
-    url: null,
+    url: "https://wordplay-workshop.github.io/wordplay2024/pdfs/11.pdf",
     year: 2024,
     conf: "The 4th Wordplay: When Language Meets Games Workshop @ ACL 2024",
   },
@@ -242,14 +252,14 @@ export const supervisedPapers: Paper[] = [
       "Chris Callison-Burch",
     ],
     title: "WorldWeaver: Procedural World Generation for Text Adventure Games using Large Language Models",
-    url: null,
+    url: "https://wordplay-workshop.github.io/wordplay2024/pdfs/15.pdf",
     year: 2024,
     conf: "The 4th Wordplay: When Language Meets Games Workshop @ ACL 2024",
   },
   {
     authors: ["Chris Callison-Burch", "Ajay Patel", "James Dennis", "Andrew Zhu"],
     title: "DAGGER: Data Augmentation for Generative Gaming in Enriched Realms",
-    url: null,
+    url: "https://wordplay-workshop.github.io/wordplay2024/pdfs/13.pdf",
     year: 2024,
     conf: "The 4th Wordplay: When Language Meets Games Workshop @ ACL 2024",
   },
